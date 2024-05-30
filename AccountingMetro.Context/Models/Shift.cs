@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace AccountingMetro.Context.Models
 {
+    /// <summary>
+    /// Сущность смены
+    /// </summary>
     public class Shift
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
-        public DateTimeOffset ShiftOpened { get; set; }
-        public DateTimeOffset? ShiftClosed { get; set; }
+        public DateTime ShiftOpened { get; set; } = DateTime.Now;
+        public DateTime? ShiftClosed { get; set; }
         public int StatusChangeId { get; set; }
         public StatusShift StatusChange { get; set; }
     }

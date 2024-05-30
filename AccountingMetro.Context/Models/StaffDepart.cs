@@ -20,5 +20,8 @@ namespace AccountingMetro.Context.Models
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string Salt { get; set; }
     }
 }

@@ -2,6 +2,9 @@
 
 namespace AccountingMetro.Context.Models
 {
+    /// <summary>
+    /// Сущность состояние смены
+    /// </summary>
     public class StatusShift
     {
         public int Id { get; set; }

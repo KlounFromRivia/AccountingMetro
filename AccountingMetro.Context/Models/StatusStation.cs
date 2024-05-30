@@ -3,12 +3,12 @@
 namespace AccountingMetro.Context.Models
 {
     /// <summary>
-    /// Сущность подразделения
+    /// Сущность статуса станции
     /// </summary>
-    public class Division
+    public class StatusStation
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<Station> Stations { get; set; }
     }
 }

@@ -56,10 +56,14 @@
     <Compile Include="Migrations\202405230944019_AccountMetroDB.Designer.cs">
       <DependentUpon>202405230944019_AccountMetroDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405301046568_DeleteDivison.cs" />
+    <Compile Include="Migrations\202405301046568_DeleteDivison.Designer.cs">
+      <DependentUpon>202405301046568_DeleteDivison.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Shift.cs" />
-    <Compile Include="Models\Division.cs" />
+    <Compile Include="Models\StatusStation.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\StaffDepart.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202405230944019_AccountMetroDB.resx">
       <DependentUpon>202405230944019_AccountMetroDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405301046568_DeleteDivison.resx">
+      <DependentUpon>202405301046568_DeleteDivison.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
