@@ -28,7 +28,6 @@ namespace AccountingMetro.UI.Forms
             {
                 FillStationView();
 
-
                 cmbVetka.Items.Clear();
                 cmbVetka.Items.AddRange(db.Vetkas.ToArray());
                 cmbVetka.Items.Insert(0, new Vetka()
@@ -51,6 +50,38 @@ namespace AccountingMetro.UI.Forms
                 cmbVetka.SelectedIndex = 0;
             }
         }
+        #region Фильтрация
+        private void Filter()
+        {
+            var station = ((Station)cmbStation.SelectedItem);
+            var vetka = ((Vetka)cmbVetka.SelectedItem);
+            var post = ((Post)cmbPost.SelectedItem);
+
+            if (station == null || vetka == null || post == null)
+            {
+                return;
+            }
+            flpEmployees.Controls.Clear();
+            using (var db = new AccountingMetroDBContext())
+            {
+                var employees = db.Employees
+                    .Include(x => x.Person)
+                    .Include(x => x.Station)
+                    .Include(x => x.Train)
+                    .Include(x => x.Post)
+                    .Where(x => (x.StationId == station.Id || station.Id == -1)
+                    && (x.Station.VetkaId == vetka.Id || vetka.Id == -1)
+                    && (x.PostId == post.Id || post.Id == -1))
+                    .ToList();
+                foreach(var employee in employees)
+                {
+                    AddOrderView(employee);
+                }
+                tsslCountEmployee.Text = "Кол-во сотрудников: " + db.Employees.Count();
+                tsslCountOnStation.Text = "Кол-во сотрудников на станции: " + db.Employees.Where(x => x.StationId == station.Id).Count();
+            }
+        }
+        #endregion
 
         public void FillStationView()
         {
@@ -73,88 +104,8 @@ namespace AccountingMetro.UI.Forms
 
         public void AddOrderView(Employee employee)
         {
-            var stationControl = new EmployeeView(employee);
-            stationControl.Parent = flpEmployees;
-            //stationControl.StatusCount += StationControl_StatusCount;
-            //CountComplete();
-        }
-        private void Filter()
-        {
-            var station = ((Station)cmbStation.SelectedItem);
-            var vetka = ((Vetka)cmbVetka.SelectedItem);
-            var post = ((Post)cmbPost.SelectedItem);
-
-            //List<Station> listStation;
-            //using (var db = new AccountingMetroDBContext())
-            //{
-            //    listStation = db.Stations
-            //                .Include(x => x.Vetka)
-            //                .Include(x => x.StatusStation)
-            //                .ToList();
-            //    foreach (var stationlst in listStation)
-            //    {
-            //        if (stationlst.VetkaId == vetka.Id)
-            //        {
-            //            cmbStation.DataSource = db.Stations.Where(x => x.VetkaId == 1).ToList();
-            //            cmbStation.DisplayMember = nameof(Station.Title);
-            //            cmbStation.ValueMember = nameof(Station.Id);
-            //        }
-            //    }
-            //}
-
-            if (station == null || vetka == null || post == null)
-            {
-                return;
-            }
-            foreach (var control in flpEmployees.Controls)
-            {
-                if (control is EmployeeView employeeView)
-                {
-                    var visible = true;
-
-                    if (station.Id != -1 && employeeView.Employee.StationId != station.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (vetka.Id != -1 && employeeView.Employee.Station.VetkaId != vetka.Id)
-                    {
-                        visible = false;
-                    }
-                    if (post.Id != -1 && employeeView.Employee.PostId != post.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(txtSearchFIO.Text) && !employeeView.Employee.Person.LastName.ToLower().Contains(txtSearchFIO.Text.ToLower()))
-                    {
-                        visible = false;
-                    }
-
-                    employeeView.Visible = visible;
-                }
-            }
-        }
-
-        private void StationControl_StatusCount()
-        {
-            CountComplete();
-        }
-        public void CountComplete()
-        {
-            int CountComplete = 0;
-
-            foreach (var status in flpEmployees.Controls)
-            {
-                if (status is StationView controlStation)
-                {
-                    if (controlStation.Station.StatusStationId == 1)
-                    {
-                        CountComplete++;
-                    }
-                }
-            }
-            //tsslStatusStaion.Text = "Окрытых станций: " + CountComplete.ToString();
+            var employeeControl = new EmployeeView(employee);
+            employeeControl.Parent = flpEmployees;
         }
 
         private void FillComboBoxStation()
@@ -176,6 +127,7 @@ namespace AccountingMetro.UI.Forms
                     Id = -1,
                     Title = "Все станции"
                 });
+
                 cmbStation.DisplayMember = nameof(Station.Title);
                 cmbStation.SelectedIndex = 0;
             }
@@ -185,10 +137,19 @@ namespace AccountingMetro.UI.Forms
         {
             if(sender.Equals(cmbVetka))
             {
-                //lblStation.Visible = cmbStation.Visible = ((Vetka)cmbVetka.SelectedItem).Id != -1;
                 FillComboBoxStation();
             }
+
+            if (sender.Equals(cmbStation))
+            {
+                tsslCountOnStation.Visible = ((Station)cmbStation.SelectedItem).Id != -1;
+            }
             Filter();
+        }
+
+        private void tssmBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

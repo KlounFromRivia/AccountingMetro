@@ -60,6 +60,10 @@
     <Compile Include="Migrations\202405301046568_DeleteDivison.Designer.cs">
       <DependentUpon>202405301046568_DeleteDivison.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406021439416_AddVetkaTrain.cs" />
+    <Compile Include="Migrations\202406021439416_AddVetkaTrain.Designer.cs">
+      <DependentUpon>202406021439416_AddVetkaTrain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Shift.cs" />
@@ -87,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405301046568_DeleteDivison.resx">
       <DependentUpon>202405301046568_DeleteDivison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406021439416_AddVetkaTrain.resx">
+      <DependentUpon>202406021439416_AddVetkaTrain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

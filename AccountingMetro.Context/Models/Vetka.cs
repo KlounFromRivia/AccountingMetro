@@ -10,5 +10,6 @@ namespace AccountingMetro.Context.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public ICollection<Station> Stations { get; set; }
+        public ICollection<Train> Trains { get; set; }
     }
 }

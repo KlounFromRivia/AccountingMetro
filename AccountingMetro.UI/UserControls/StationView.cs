@@ -82,11 +82,11 @@ namespace AccountingMetro.UI.UserControls
                     var station = db.Stations.FirstOrDefault(x => x.Id == Station.Id);
                     db.Stations.Remove(station);
                     db.SaveChanges();
-                    MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Станция удалена", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Station = station;
                     StatusCount?.Invoke();
                 }
-                var sf = this.ParentForm as StationForm;
+                var sf = this.ParentForm as MetroForm;
                 sf.FillStationView();
             }
         }

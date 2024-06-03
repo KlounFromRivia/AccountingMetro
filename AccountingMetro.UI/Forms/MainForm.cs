@@ -40,7 +40,7 @@ namespace AccountingMetro.UI.Forms
 
         private void btnBDOther_Click(object sender, EventArgs e)
         {
-            var stationForm = new StationForm();
+            var stationForm = new MetroForm();
             this.Hide();
             stationForm.ShowDialog();
             this.Show();

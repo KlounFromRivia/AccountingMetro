@@ -30,11 +30,5 @@ namespace AccountingMetro.Context.Models
         public int Salary { get; set; }
         public int Allowance { get; set; }
         public int Vacation { get; set; }
-        //public int SalaryAll { get; set; } = InitSalary();
-
-        //public int InitSalary()
-        //{
-        //    return (Salary = Salary + (Salary * (Allowance/100)));
-        //}
     }
 }

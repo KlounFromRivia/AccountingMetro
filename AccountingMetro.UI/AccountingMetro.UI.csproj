@@ -65,6 +65,12 @@
     <Compile Include="Forms\AddStationForm.Designer.cs">
       <DependentUpon>AddStationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddTrainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddTrainForm.Designer.cs">
+      <DependentUpon>AddTrainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,21 +101,15 @@
     <Compile Include="Forms\ShiftForm.Designer.cs">
       <DependentUpon>ShiftForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StationForm.cs">
+    <Compile Include="Forms\MetroForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StationForm.Designer.cs">
-      <DependentUpon>StationForm.cs</DependentUpon>
+    <Compile Include="Forms\MetroForm.Designer.cs">
+      <DependentUpon>MetroForm.cs</DependentUpon>
     </Compile>
     <Compile Include="General\Authorization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\EmployeeData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\EmployeeData.Designer.cs">
-      <DependentUpon>EmployeeData.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\EmployeeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,10 +122,19 @@
     <Compile Include="UserControls\StationView.Designer.cs">
       <DependentUpon>StationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TrainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TrainView.Designer.cs">
+      <DependentUpon>TrainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validate\CurrectEmployee.cs" />
     <Compile Include="Validate\CurrectShift.cs" />
     <EmbeddedResource Include="Forms\AddStationForm.resx">
       <DependentUpon>AddStationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddTrainForm.resx">
+      <DependentUpon>AddTrainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
@@ -139,8 +148,11 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StationForm.resx">
-      <DependentUpon>StationForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MetroForm.resx">
+      <DependentUpon>MetroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ShiftForm.resx">
+      <DependentUpon>ShiftForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -152,14 +164,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControls\EmployeeData.resx">
-      <DependentUpon>EmployeeData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\EmployeeView.resx">
       <DependentUpon>EmployeeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StationView.resx">
       <DependentUpon>StationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TrainView.resx">
+      <DependentUpon>TrainView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -187,6 +199,10 @@
   <ItemGroup>
     <None Include="Resources\hr-06-2-512_40600.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\employee.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

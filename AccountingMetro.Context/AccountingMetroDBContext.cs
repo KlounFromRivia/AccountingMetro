@@ -17,6 +17,7 @@ namespace AccountingMetro.Context
         public DbSet<StatusShift> StatusShifts { get; set; }
         public DbSet<StatusTrain> StatusTrains { get; set; }
         public DbSet<Train> Trains { get; set; }
+        public DbSet<Gender> Genders { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Vetka> Vetkas { get; set; }
         public DbSet<Post> Posts { get; set; }

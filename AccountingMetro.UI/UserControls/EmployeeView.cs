@@ -1,5 +1,6 @@
 ﻿using AccountingMetro.Context;
 using AccountingMetro.Context.Models;
+using AccountingMetro.UI.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,17 @@ namespace AccountingMetro.UI.UserControls
 {
     public partial class EmployeeView : UserControl
     {
+        public event Action StatusCount;
         public Employee Employee { get; set; }
+        public Document Document { get; set; }
+        public Person Person { get; set; }
         public EmployeeView(Employee employee)
         {
             InitializeComponent();
             this.Employee = employee;
             Initialize(employee);
         }
-        public void Initialize(Employee employee)
+        private void Initialize(Employee employee)
         {
             using (var db = new AccountingMetroDBContext())
             {
@@ -46,7 +50,11 @@ namespace AccountingMetro.UI.UserControls
 
         private void tsmiEdit_Click(object sender, EventArgs e)
         {
-
+            var employeeView = new EmployeeViewForm(Employee);
+            this.ParentForm.Hide();
+            employeeView.Employee = this.Employee;
+            employeeView.ShowDialog();
+            this.ParentForm.Show();
         }
     }
 }
