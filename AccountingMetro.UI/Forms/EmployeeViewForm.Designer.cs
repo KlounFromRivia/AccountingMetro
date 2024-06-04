@@ -45,12 +45,11 @@
             this.label25 = new System.Windows.Forms.Label();
             this.grpMesto = new System.Windows.Forms.GroupBox();
             this.cmbVetka = new System.Windows.Forms.ComboBox();
-            this.lblVetka = new System.Windows.Forms.Label();
             this.cmbTrain = new System.Windows.Forms.ComboBox();
             this.cmbStation = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblTrain = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -142,9 +141,9 @@
             this.grpJob.Controls.Add(this.label4);
             this.grpJob.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.grpJob.Location = new System.Drawing.Point(9, 470);
-            this.grpJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpJob.Margin = new System.Windows.Forms.Padding(4);
             this.grpJob.Name = "grpJob";
-            this.grpJob.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpJob.Padding = new System.Windows.Forms.Padding(4);
             this.grpJob.Size = new System.Drawing.Size(966, 214);
             this.grpJob.TabIndex = 11;
             this.grpJob.TabStop = false;
@@ -193,7 +192,7 @@
             0,
             0});
             this.numSalary.Location = new System.Drawing.Point(145, 86);
-            this.numSalary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numSalary.Margin = new System.Windows.Forms.Padding(4);
             this.numSalary.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -217,7 +216,7 @@
             // numNormShift
             // 
             this.numNormShift.Location = new System.Drawing.Point(145, 128);
-            this.numNormShift.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numNormShift.Margin = new System.Windows.Forms.Padding(4);
             this.numNormShift.Maximum = new decimal(new int[] {
             12,
             0,
@@ -251,7 +250,7 @@
             // 
             this.txtStagJob.Enabled = false;
             this.txtStagJob.Location = new System.Drawing.Point(584, 174);
-            this.txtStagJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStagJob.Margin = new System.Windows.Forms.Padding(4);
             this.txtStagJob.Name = "txtStagJob";
             this.txtStagJob.Size = new System.Drawing.Size(339, 23);
             this.txtStagJob.TabIndex = 39;
@@ -280,7 +279,7 @@
             // 
             this.txtAllSalary.Enabled = false;
             this.txtAllSalary.Location = new System.Drawing.Point(477, 127);
-            this.txtAllSalary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAllSalary.Margin = new System.Windows.Forms.Padding(4);
             this.txtAllSalary.Name = "txtAllSalary";
             this.txtAllSalary.Size = new System.Drawing.Size(132, 23);
             this.txtAllSalary.TabIndex = 36;
@@ -318,16 +317,15 @@
             // grpMesto
             // 
             this.grpMesto.Controls.Add(this.cmbVetka);
-            this.grpMesto.Controls.Add(this.lblVetka);
             this.grpMesto.Controls.Add(this.cmbTrain);
             this.grpMesto.Controls.Add(this.cmbStation);
             this.grpMesto.Controls.Add(this.label24);
             this.grpMesto.Controls.Add(this.label22);
-            this.grpMesto.Controls.Add(this.label23);
+            this.grpMesto.Controls.Add(this.lblTrain);
             this.grpMesto.Location = new System.Drawing.Point(504, 28);
-            this.grpMesto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpMesto.Margin = new System.Windows.Forms.Padding(4);
             this.grpMesto.Name = "grpMesto";
-            this.grpMesto.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpMesto.Padding = new System.Windows.Forms.Padding(4);
             this.grpMesto.Size = new System.Drawing.Size(454, 95);
             this.grpMesto.TabIndex = 29;
             this.grpMesto.TabStop = false;
@@ -338,23 +336,11 @@
             this.cmbVetka.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVetka.FormattingEnabled = true;
             this.cmbVetka.Location = new System.Drawing.Point(331, 24);
-            this.cmbVetka.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbVetka.Margin = new System.Windows.Forms.Padding(4);
             this.cmbVetka.Name = "cmbVetka";
             this.cmbVetka.Size = new System.Drawing.Size(115, 24);
             this.cmbVetka.TabIndex = 31;
             this.cmbVetka.SelectedIndexChanged += new System.EventHandler(this.cmbVetka_SelectedIndexChanged);
-            // 
-            // lblVetka
-            // 
-            this.lblVetka.AutoSize = true;
-            this.lblVetka.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblVetka.ForeColor = System.Drawing.Color.Purple;
-            this.lblVetka.Location = new System.Drawing.Point(308, 52);
-            this.lblVetka.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblVetka.Name = "lblVetka";
-            this.lblVetka.Size = new System.Drawing.Size(85, 25);
-            this.lblVetka.TabIndex = 32;
-            this.lblVetka.Text = "●▬●▬●";
             // 
             // cmbTrain
             // 
@@ -362,7 +348,7 @@
             this.cmbTrain.Enabled = false;
             this.cmbTrain.FormattingEnabled = true;
             this.cmbTrain.Location = new System.Drawing.Point(80, 57);
-            this.cmbTrain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTrain.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTrain.Name = "cmbTrain";
             this.cmbTrain.Size = new System.Drawing.Size(188, 24);
             this.cmbTrain.TabIndex = 31;
@@ -374,7 +360,7 @@
             this.cmbStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStation.FormattingEnabled = true;
             this.cmbStation.Location = new System.Drawing.Point(80, 23);
-            this.cmbStation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbStation.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStation.Name = "cmbStation";
             this.cmbStation.Size = new System.Drawing.Size(188, 24);
             this.cmbStation.TabIndex = 30;
@@ -400,17 +386,15 @@
             this.label22.TabIndex = 27;
             this.label22.Text = "Станция";
             // 
-            // label23
+            // lblTrain
             // 
-            this.label23.AutoSize = true;
-            this.label23.Enabled = false;
-            this.label23.Location = new System.Drawing.Point(7, 60);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(47, 16);
-            this.label23.TabIndex = 28;
-            this.label23.Text = "Поезд";
-            this.label23.Visible = false;
+            this.lblTrain.AutoSize = true;
+            this.lblTrain.Location = new System.Drawing.Point(7, 60);
+            this.lblTrain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTrain.Name = "lblTrain";
+            this.lblTrain.Size = new System.Drawing.Size(47, 16);
+            this.lblTrain.TabIndex = 28;
+            this.lblTrain.Text = "Поезд";
             // 
             // label21
             // 
@@ -447,7 +431,7 @@
             this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPost.FormattingEnabled = true;
             this.cmbPost.Location = new System.Drawing.Point(145, 37);
-            this.cmbPost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbPost.Margin = new System.Windows.Forms.Padding(4);
             this.cmbPost.Name = "cmbPost";
             this.cmbPost.Size = new System.Drawing.Size(351, 24);
             this.cmbPost.TabIndex = 21;
@@ -473,9 +457,9 @@
             this.grpContactInfo.Controls.Add(this.label31);
             this.grpContactInfo.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.grpContactInfo.Location = new System.Drawing.Point(9, 364);
-            this.grpContactInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpContactInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grpContactInfo.Name = "grpContactInfo";
-            this.grpContactInfo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpContactInfo.Padding = new System.Windows.Forms.Padding(4);
             this.grpContactInfo.Size = new System.Drawing.Size(966, 98);
             this.grpContactInfo.TabIndex = 10;
             this.grpContactInfo.TabStop = false;
@@ -484,7 +468,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(384, 30);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(191, 23);
             this.txtEmail.TabIndex = 7;
@@ -502,7 +486,7 @@
             // mtxtWorkPhone
             // 
             this.mtxtWorkPhone.Location = new System.Drawing.Point(169, 60);
-            this.mtxtWorkPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtxtWorkPhone.Margin = new System.Windows.Forms.Padding(4);
             this.mtxtWorkPhone.Mask = "+7(000)-000-00-00";
             this.mtxtWorkPhone.Name = "mtxtWorkPhone";
             this.mtxtWorkPhone.Size = new System.Drawing.Size(139, 23);
@@ -522,7 +506,7 @@
             // mtxtMobilePhone
             // 
             this.mtxtMobilePhone.Location = new System.Drawing.Point(169, 28);
-            this.mtxtMobilePhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mtxtMobilePhone.Margin = new System.Windows.Forms.Padding(4);
             this.mtxtMobilePhone.Mask = "+7(000)-000-00-00";
             this.mtxtMobilePhone.Name = "mtxtMobilePhone";
             this.mtxtMobilePhone.Size = new System.Drawing.Size(139, 23);
@@ -553,9 +537,9 @@
             this.grpDocument.Controls.Add(this.label15);
             this.grpDocument.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.grpDocument.Location = new System.Drawing.Point(9, 247);
-            this.grpDocument.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpDocument.Margin = new System.Windows.Forms.Padding(4);
             this.grpDocument.Name = "grpDocument";
-            this.grpDocument.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpDocument.Padding = new System.Windows.Forms.Padding(4);
             this.grpDocument.Size = new System.Drawing.Size(966, 110);
             this.grpDocument.TabIndex = 9;
             this.grpDocument.TabStop = false;
@@ -564,7 +548,7 @@
             // txtInsCertific
             // 
             this.txtInsCertific.Location = new System.Drawing.Point(504, 74);
-            this.txtInsCertific.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInsCertific.Margin = new System.Windows.Forms.Padding(4);
             this.txtInsCertific.Name = "txtInsCertific";
             this.txtInsCertific.Size = new System.Drawing.Size(256, 23);
             this.txtInsCertific.TabIndex = 18;
@@ -574,7 +558,7 @@
             // txtINN
             // 
             this.txtINN.Location = new System.Drawing.Point(129, 74);
-            this.txtINN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtINN.Margin = new System.Windows.Forms.Padding(4);
             this.txtINN.Name = "txtINN";
             this.txtINN.Size = new System.Drawing.Size(231, 23);
             this.txtINN.TabIndex = 17;
@@ -605,7 +589,7 @@
             // 
             this.dtpPassportDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpPassportDate.Location = new System.Drawing.Point(821, 25);
-            this.dtpPassportDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPassportDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPassportDate.Name = "dtpPassportDate";
             this.dtpPassportDate.Size = new System.Drawing.Size(111, 23);
             this.dtpPassportDate.TabIndex = 14;
@@ -614,7 +598,7 @@
             // txtAdresPassport
             // 
             this.txtAdresPassport.Location = new System.Drawing.Point(468, 26);
-            this.txtAdresPassport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdresPassport.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdresPassport.Multiline = true;
             this.txtAdresPassport.Name = "txtAdresPassport";
             this.txtAdresPassport.Size = new System.Drawing.Size(344, 40);
@@ -625,7 +609,7 @@
             // txtNomerPassport
             // 
             this.txtNomerPassport.Location = new System.Drawing.Point(256, 25);
-            this.txtNomerPassport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNomerPassport.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomerPassport.Name = "txtNomerPassport";
             this.txtNomerPassport.Size = new System.Drawing.Size(149, 23);
             this.txtNomerPassport.TabIndex = 12;
@@ -635,7 +619,7 @@
             // txtSeriePassport
             // 
             this.txtSeriePassport.Location = new System.Drawing.Point(129, 25);
-            this.txtSeriePassport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSeriePassport.Margin = new System.Windows.Forms.Padding(4);
             this.txtSeriePassport.Name = "txtSeriePassport";
             this.txtSeriePassport.Size = new System.Drawing.Size(57, 23);
             this.txtSeriePassport.TabIndex = 11;
@@ -700,9 +684,9 @@
             this.grpPerson.Controls.Add(this.label3);
             this.grpPerson.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.grpPerson.Location = new System.Drawing.Point(9, 33);
-            this.grpPerson.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpPerson.Margin = new System.Windows.Forms.Padding(4);
             this.grpPerson.Name = "grpPerson";
-            this.grpPerson.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpPerson.Padding = new System.Windows.Forms.Padding(4);
             this.grpPerson.Size = new System.Drawing.Size(966, 207);
             this.grpPerson.TabIndex = 8;
             this.grpPerson.TabStop = false;
@@ -713,7 +697,7 @@
             this.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGender.FormattingEnabled = true;
             this.cmbGender.Location = new System.Drawing.Point(711, 100);
-            this.cmbGender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbGender.Margin = new System.Windows.Forms.Padding(4);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(88, 24);
             this.cmbGender.TabIndex = 23;
@@ -732,7 +716,7 @@
             // 
             this.dtpJob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpJob.Location = new System.Drawing.Point(536, 101);
-            this.dtpJob.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpJob.Margin = new System.Windows.Forms.Padding(4);
             this.dtpJob.Name = "dtpJob";
             this.dtpJob.Size = new System.Drawing.Size(111, 23);
             this.dtpJob.TabIndex = 21;
@@ -753,7 +737,7 @@
             this.cmbStatusMari.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatusMari.FormattingEnabled = true;
             this.cmbStatusMari.Location = new System.Drawing.Point(180, 100);
-            this.cmbStatusMari.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbStatusMari.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStatusMari.Name = "cmbStatusMari";
             this.cmbStatusMari.Size = new System.Drawing.Size(171, 24);
             this.cmbStatusMari.TabIndex = 19;
@@ -771,7 +755,7 @@
             // txtAdresResid
             // 
             this.txtAdresResid.Location = new System.Drawing.Point(180, 172);
-            this.txtAdresResid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdresResid.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdresResid.Name = "txtAdresResid";
             this.txtAdresResid.Size = new System.Drawing.Size(467, 23);
             this.txtAdresResid.TabIndex = 17;
@@ -779,7 +763,7 @@
             // txtAdresReg
             // 
             this.txtAdresReg.Location = new System.Drawing.Point(180, 140);
-            this.txtAdresReg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdresReg.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdresReg.Name = "txtAdresReg";
             this.txtAdresReg.Size = new System.Drawing.Size(467, 23);
             this.txtAdresReg.TabIndex = 16;
@@ -809,7 +793,7 @@
             // 
             this.dtpContract.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpContract.Location = new System.Drawing.Point(688, 63);
-            this.dtpContract.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpContract.Margin = new System.Windows.Forms.Padding(4);
             this.dtpContract.Name = "dtpContract";
             this.dtpContract.Size = new System.Drawing.Size(111, 23);
             this.dtpContract.TabIndex = 13;
@@ -829,7 +813,7 @@
             // 
             this.txtNomeContract.Enabled = false;
             this.txtNomeContract.Location = new System.Drawing.Point(632, 63);
-            this.txtNomeContract.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNomeContract.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomeContract.Name = "txtNomeContract";
             this.txtNomeContract.Size = new System.Drawing.Size(48, 23);
             this.txtNomeContract.TabIndex = 11;
@@ -838,7 +822,7 @@
             // 
             this.txtAge.Enabled = false;
             this.txtAge.Location = new System.Drawing.Point(387, 63);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(4);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(64, 23);
             this.txtAge.TabIndex = 10;
@@ -847,7 +831,7 @@
             // 
             this.dtpBithDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBithDay.Location = new System.Drawing.Point(180, 63);
-            this.dtpBithDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpBithDay.Margin = new System.Windows.Forms.Padding(4);
             this.dtpBithDay.Name = "dtpBithDay";
             this.dtpBithDay.Size = new System.Drawing.Size(111, 23);
             this.dtpBithDay.TabIndex = 9;
@@ -866,7 +850,7 @@
             // txtPatr
             // 
             this.txtPatr.Location = new System.Drawing.Point(556, 31);
-            this.txtPatr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPatr.Margin = new System.Windows.Forms.Padding(4);
             this.txtPatr.Name = "txtPatr";
             this.txtPatr.Size = new System.Drawing.Size(172, 23);
             this.txtPatr.TabIndex = 7;
@@ -874,7 +858,7 @@
             // txtIma
             // 
             this.txtIma.Location = new System.Drawing.Point(317, 31);
-            this.txtIma.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIma.Margin = new System.Windows.Forms.Padding(4);
             this.txtIma.Name = "txtIma";
             this.txtIma.Size = new System.Drawing.Size(149, 23);
             this.txtIma.TabIndex = 6;
@@ -883,7 +867,7 @@
             // txtFam
             // 
             this.txtFam.Location = new System.Drawing.Point(93, 31);
-            this.txtFam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFam.Margin = new System.Windows.Forms.Padding(4);
             this.txtFam.Name = "txtFam";
             this.txtFam.Size = new System.Drawing.Size(168, 23);
             this.txtFam.TabIndex = 5;
@@ -903,7 +887,7 @@
             // 
             this.picEmployee.Image = global::AccountingMetro.UI.Properties.Resources.employee;
             this.picEmployee.Location = new System.Drawing.Point(821, 24);
-            this.picEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.picEmployee.Name = "picEmployee";
             this.picEmployee.Size = new System.Drawing.Size(137, 142);
             this.picEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -994,7 +978,7 @@
             this.Controls.Add(this.grpPerson);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EmployeeViewForm";
-            this.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Добавление/редактирование сотрудника";
             this.grpJob.ResumeLayout(false);
             this.grpJob.PerformLayout();
@@ -1036,12 +1020,11 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.GroupBox grpMesto;
-        private System.Windows.Forms.Label lblVetka;
         private System.Windows.Forms.ComboBox cmbTrain;
         private System.Windows.Forms.ComboBox cmbStation;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblTrain;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;

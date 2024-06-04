@@ -36,37 +36,27 @@ namespace AccountingMetro.UI
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (isAuthForm)
+            using (var db = new AccountingMetroDBContext())
             {
-                using (var db = new AccountingMetroDBContext())
+                var user = db.StaffDeparts.Include(x => x.Employee.Person).FirstOrDefault(x => x.Login == txtLogin.Text
+                && x.Password == txtPassword.Text);
+
+                if (user == null)
                 {
-                    var user = db.StaffDeparts.Include(x => x.Id)
-                                       .FirstOrDefault(x => x.Login == txtLogin.Text);
-
-                    if (user == null)
-                    {
-                        MessageBox.Show("Введенные данные неверны!",
-                            "Пользователь не существует!",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    var hashPassword = new Authorization()
-                        .GenerateSHA256Hash(txtPassword.Text, user.Salt);
-
-                    if (hashPassword != user.Password)
-                    {
-                        MessageBox.Show("Введенные данные неверны!",
+                    MessageBox.Show("Введенные данные неверны!",
                         "Пользователь не существует!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-
-                        return;
-                    }
-
-                    db.SaveChanges();
-
+                }
+                else
+                {
+                    MessageBox.Show("Добро пожаловать, "+user.Employee.Person.LastName+ " "
+                        + user.Employee.Person.FirstName + " "
+                        + user.Employee.Person.Patronymic + "!",
+                        "Авторизация успешна!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    CurrectEmployee.User = user;
                     var mainForm = new MainForm();
                     this.Hide();
                     mainForm.ShowDialog();
@@ -75,8 +65,24 @@ namespace AccountingMetro.UI
                     this.Show();
                 }
 
-                return;
+                //var hashPassword = new Authorization()
+                //    .GenerateSHA256Hash(txtPassword.Text, user.Salt);
+
+                //if (hashPassword != user.Password)
+                //{
+                //    MessageBox.Show("Введенные данные неверны!",
+                //    "Пользователь не существует!",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
+                //    return;
+                //}
+                //db.SaveChanges();
             }
+            //if (isAuthForm)
+            //{
+
+            //    return;
+            //}
         }
 
         private void txtLogin_TextChanged(object sender, EventArgs e)

@@ -106,20 +106,6 @@ namespace AccountingMetro.UI.Forms
             }
         }
 
-        private void cmbTrain_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var train = (Train)cmbTrain.SelectedItem;
-            if(train != null)
-            {
-                if (train.StatusTrainId != 1)
-                {
-                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
-                }
-            }
-            ValidateInput();
-        }
-
         private void numSalary_ValueChanged(object sender, EventArgs e)
         {
             FillNoneDB();
@@ -145,6 +131,7 @@ namespace AccountingMetro.UI.Forms
                 {
                     cmbTrain.Enabled = true;
                     cmbTrain.Visible = true;
+                    lblTrain.Visible = true;
                     cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
                     cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
 
@@ -156,9 +143,10 @@ namespace AccountingMetro.UI.Forms
                 {
                     cmbTrain.Enabled = false;
                     cmbTrain.Visible = false;
+                    lblTrain.Visible = false;
                     cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
                 }
+                cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
             }
         }
         private void FillComboBoxVetka()
@@ -181,6 +169,7 @@ namespace AccountingMetro.UI.Forms
                 {
                     cmbTrain.Enabled = true;
                     cmbTrain.Visible = true;
+                    lblTrain.Visible = true;
                     cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
                     cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
 
@@ -192,6 +181,7 @@ namespace AccountingMetro.UI.Forms
                 {
                     cmbTrain.Enabled = false;
                     cmbTrain.Visible = false;
+                    lblTrain.Visible = false;
                     cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
                     cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
                 }
@@ -255,8 +245,31 @@ namespace AccountingMetro.UI.Forms
             #endregion
         }
 
+        private void cmbTrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var train = (Train)cmbTrain.SelectedItem;
+            if (train != null)
+            {
+                if (train.StatusTrainId != 1)
+                {
+                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
+                }
+            }
+            ValidateInput();
+        }
+
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var station = (Station)cmbStation.SelectedItem;
+            if (station != null)
+            {
+                if (station.StatusStationId != 1)
+                {
+                    MessageBox.Show("Станция " + station.Title + " на реконструкции!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == Employee.StationId);
+                }
+            }
             ValidateInput();
         }
 
@@ -336,6 +349,7 @@ namespace AccountingMetro.UI.Forms
                 }
                 db.SaveChanges();
                 MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
 
