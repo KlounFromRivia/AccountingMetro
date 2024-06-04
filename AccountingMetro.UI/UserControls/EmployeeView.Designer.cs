@@ -39,7 +39,7 @@
             this.lblTrains = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiViewShift = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,22 +132,23 @@
             this.contextMenuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiEdit,
-            this.tsmiDelete});
+            this.tsmiViewShift});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(194, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 70);
             // 
             // tsmiEdit
             // 
             this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(193, 22);
+            this.tsmiEdit.Size = new System.Drawing.Size(192, 22);
             this.tsmiEdit.Text = "Просмотр данных";
             this.tsmiEdit.Click += new System.EventHandler(this.tsmiEdit_Click);
             // 
-            // tsmiDelete
+            // tsmiViewShift
             // 
-            this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(193, 22);
-            this.tsmiDelete.Text = "Удалить станцию";
+            this.tsmiViewShift.Name = "tsmiViewShift";
+            this.tsmiViewShift.Size = new System.Drawing.Size(192, 22);
+            this.tsmiViewShift.Text = "Просмотр смен";
+            this.tsmiViewShift.Click += new System.EventHandler(this.tsmiViewShift_Click);
             // 
             // EmployeeView
             // 
@@ -186,6 +187,6 @@
         private System.Windows.Forms.Label lblTrains;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
+        private System.Windows.Forms.ToolStripMenuItem tsmiViewShift;
     }
 }

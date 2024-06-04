@@ -1,8 +1,13 @@
-﻿using System;
+﻿using AccountingMetro.Context;
+using AccountingMetro.Context.Models;
+using AccountingMetro.UI.Validate;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +54,23 @@ namespace AccountingMetro.UI.Forms
         private void btnStaffDepart_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void Initizalis()
+        {
+            tsslFIO.Text = CurrectEmployee.User.Employee.Person.LastName + " "
+            + CurrectEmployee.User.Employee.Person.FirstName + " " +
+            CurrectEmployee.User.Employee.Person.Patronymic + " ";
+            if (CurrectEmployee.User.Employee.Person.ImagePreview != null)
+            {
+                var image = Image.FromStream(new MemoryStream(CurrectEmployee.User.Employee.Person.ImagePreview));
+                picEmployee.Image = image;
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Initizalis();
         }
     }
 }

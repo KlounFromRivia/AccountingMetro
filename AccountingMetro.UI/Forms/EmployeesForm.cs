@@ -26,7 +26,7 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                FillStationView();
+                FillEmployeeView();
 
                 cmbVetka.Items.Clear();
                 cmbVetka.Items.AddRange(db.Vetkas.ToArray());
@@ -71,9 +71,12 @@ namespace AccountingMetro.UI.Forms
                     .Include(x => x.Post)
                     .Where(x => (x.StationId == station.Id || station.Id == -1)
                     && (x.Station.VetkaId == vetka.Id || vetka.Id == -1)
-                    && (x.PostId == post.Id || post.Id == -1))
+                    && (x.PostId == post.Id || post.Id == -1)
+                    && (x.Person.LastName.Contains(txtSearchFIO.Text) || x.Person.FirstName.Contains(txtSearchFIO.Text) 
+                    || x.Person.Patronymic.Contains(txtSearchFIO.Text)))
                     .ToList();
-                foreach(var employee in employees)
+
+                foreach (var employee in employees)
                 {
                     AddOrderView(employee);
                 }
@@ -83,7 +86,7 @@ namespace AccountingMetro.UI.Forms
         }
         #endregion
 
-        public void FillStationView()
+        public void FillEmployeeView()
         {
             flpEmployees.Controls.Clear();
             using (var db = new AccountingMetroDBContext())

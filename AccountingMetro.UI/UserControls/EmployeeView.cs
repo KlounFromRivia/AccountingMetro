@@ -1,12 +1,14 @@
 ﻿using AccountingMetro.Context;
 using AccountingMetro.Context.Models;
 using AccountingMetro.UI.Forms;
+using AccountingMetro.UI.Validate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +56,17 @@ namespace AccountingMetro.UI.UserControls
             this.ParentForm.Hide();
             employeeView.Employee = this.Employee;
             employeeView.ShowDialog();
+            //var employeeForm = new EmployeesForm();
+            //employeeForm.FillEmployeeView();
+            this.ParentForm.Show();
+        }
+
+        private void tsmiViewShift_Click(object sender, EventArgs e)
+        {
+            var shiftForm = new ShiftForm(Employee);
+            this.ParentForm.Hide();
+            shiftForm.Employee = this.Employee;
+            shiftForm.ShowDialog();
             this.ParentForm.Show();
         }
     }
