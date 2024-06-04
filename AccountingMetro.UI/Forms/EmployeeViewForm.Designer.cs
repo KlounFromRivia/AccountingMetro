@@ -345,7 +345,6 @@
             // cmbTrain
             // 
             this.cmbTrain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTrain.Enabled = false;
             this.cmbTrain.FormattingEnabled = true;
             this.cmbTrain.Location = new System.Drawing.Point(80, 57);
             this.cmbTrain.Margin = new System.Windows.Forms.Padding(4);
@@ -983,6 +982,7 @@
             this.Name = "EmployeeViewForm";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Добавление/редактирование сотрудника";
+            this.Load += new System.EventHandler(this.EmployeeViewForm_Load);
             this.grpJob.ResumeLayout(false);
             this.grpJob.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVacation)).EndInit();

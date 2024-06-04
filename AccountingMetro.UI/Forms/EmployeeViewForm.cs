@@ -39,8 +39,8 @@ namespace AccountingMetro.UI.Forms
                 txtStagJob.Text = "";
                 cmbGender.SelectedItem = cmbGender.Items.Cast<Gender>().FirstOrDefault(x => x.Id == employee.Person.GenderId);
                 cmbStatusMari.SelectedItem = cmbStatusMari.Items.Cast<StatusMari>().FirstOrDefault(x => x.Id == employee.Person.StatusMariId);
-                cmbPost.SelectedItem = cmbPost.Items.Cast<Post>().FirstOrDefault(x => x.Id == employee.PostId);
                 cmbVetka.SelectedItem = cmbVetka.Items.Cast<Vetka>().FirstOrDefault(x => x.Id == employee.Station.VetkaId);
+                cmbPost.SelectedItem = cmbPost.Items.Cast<Post>().FirstOrDefault(x => x.Id == employee.PostId);
 
                 txtNomeContract.Text = employee.Id.ToString();
                 mtxtWorkPhone.Text = employee.PhoneWork;
@@ -90,13 +90,13 @@ namespace AccountingMetro.UI.Forms
                 cmbStatusMari.Items.AddRange(db.StatusMaris.ToArray());
                 cmbStatusMari.DisplayMember = nameof(StatusMari.Title);
 
-                cmbPost.Items.Clear();
-                cmbPost.Items.AddRange(db.Posts.ToArray());
-                cmbPost.DisplayMember = nameof(Post.Title);
-
                 cmbVetka.Items.Clear();
                 cmbVetka.Items.AddRange(db.Vetkas.ToArray());
                 cmbVetka.DisplayMember = nameof(Vetka.Title);
+
+                cmbPost.Items.Clear();
+                cmbPost.Items.AddRange(db.Posts.ToArray());
+                cmbPost.DisplayMember = nameof(Post.Title);
 
                 cmbStation.DisplayMember = nameof(Station.Title);
                 cmbTrain.DisplayMember = nameof(Train.Nomer);
@@ -128,6 +128,11 @@ namespace AccountingMetro.UI.Forms
                 {
                     MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
+
+                    if(cmbTrain.SelectedItem == null)
+                    {
+                        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.StatusTrainId == 1);
+                    }
                 }
             }
             ValidateInput();
@@ -139,91 +144,62 @@ namespace AccountingMetro.UI.Forms
             ValidateInput();
         }
 
-        private void FillComboBoxPost()
+        private void FillComboBoxStation()
         {
             using (var db = new AccountingMetroDBContext())
             {
-                var employee = db.Employees
-                    .Include(x => x.Station)
-                    .Include(x => x.Station.Vetka)
-                    .FirstOrDefault(x => x.Id == Employee.Id);
-
-                var post = (Post)cmbPost.SelectedItem;
                 cmbStation.Items.Clear();
-                cmbTrain.Items.Clear();
-
-                if (post.Id == 1)
-                {
-                    cmbTrain.Enabled = true;
-                    cmbTrain.Visible = true;
-                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
-
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).FirstOrDefault());
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).OrderByDescending(x => x.Id)
-                        .FirstOrDefault());
-                }
-                else
-                {
-                    cmbTrain.Enabled = false;
-                    cmbTrain.Visible = false;
-                    cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
-                }
-            }
-        }
-        private void FillComboBoxVetka()
-        {
-            using (var db = new AccountingMetroDBContext())
-            {
-                var employee = db.Employees
-                    .Include(x => x.Station)
-                    .Include(x => x.Station.Vetka)
-                    .FirstOrDefault(x => x.Id == Employee.Id);
-
                 var post = (Post)cmbPost.SelectedItem;
                 var vetka = (Vetka)cmbVetka.SelectedItem;
-                cmbStation.Items.Clear();
-                cmbTrain.Items.Clear();
-                cmbStation.DisplayMember = nameof(Station.Title);
-                cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                if (post.Id == 1)
+                if (post != null && post.Id == 1)
                 {
-                    cmbTrain.Enabled = true;
-                    cmbTrain.Visible = true;
-                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
-
                     cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
                     cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
                         .FirstOrDefault());
                 }
                 else
                 {
-                    cmbTrain.Enabled = false;
-                    cmbTrain.Visible = false;
                     cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
+                }
+                cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == Employee.StationId);
+                if(cmbStation.SelectedItem == null)
+                {
+                    cmbStation.SelectedIndex = 0;
+                }
+            }
+        }
+        private void FillComboBoxTrain()
+        {
+            using (var db = new AccountingMetroDBContext())
+            {
+                cmbTrain.Items.Clear();
+                var post = (Post)cmbPost.SelectedItem;
+                var vetka = (Vetka)cmbVetka.SelectedItem;
+                if (post != null && post.Id == 1)
+                {
+                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
+                }
+                cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
+                if (cmbTrain.SelectedItem == null 
+                    && cmbTrain.Items.Count > 0)
+                {
+                    cmbTrain.SelectedIndex = 0;
                 }
             }
         }
 
         private void cmbPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sender.Equals(cmbPost))
-            {
-                FillComboBoxPost();
-            }
+            FillComboBoxStation();
+            FillComboBoxTrain();
             ValidateInput();
+            cmbTrain.Visible = lblTrain.Visible = cmbPost.SelectedItem != null && ((Post)cmbPost.SelectedItem).Id == 1;
         }
 
         private void cmbVetka_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sender.Equals(cmbVetka))
-            {
-                FillComboBoxVetka();
-            }
+            FillComboBoxStation();
+            FillComboBoxTrain();
             ValidateInput();
         }
 
@@ -268,6 +244,15 @@ namespace AccountingMetro.UI.Forms
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //var  = (Train)cmbTrain.SelectedItem;
+            //if (train != null)
+            //{
+            //    if (train.StatusTrainId != 1)
+            //    {
+            //        MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
+            //    }
+            //}
             ValidateInput();
         }
 
