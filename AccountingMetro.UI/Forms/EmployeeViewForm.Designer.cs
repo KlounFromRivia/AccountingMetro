@@ -717,6 +717,8 @@
             this.dtpJob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpJob.Location = new System.Drawing.Point(536, 101);
             this.dtpJob.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpJob.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.dtpJob.MinDate = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
             this.dtpJob.Name = "dtpJob";
             this.dtpJob.Size = new System.Drawing.Size(111, 23);
             this.dtpJob.TabIndex = 21;
@@ -797,6 +799,7 @@
             this.dtpContract.Name = "dtpContract";
             this.dtpContract.Size = new System.Drawing.Size(111, 23);
             this.dtpContract.TabIndex = 13;
+            this.dtpContract.Value = new System.DateTime(2024, 6, 4, 0, 0, 0, 0);
             this.dtpContract.ValueChanged += new System.EventHandler(this.txtFam_TextChanged);
             // 
             // label7

@@ -44,6 +44,7 @@
             this.flpEmployees = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tssmBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddEmployee = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.grpList.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -65,6 +66,7 @@
             // grpList
             // 
             this.grpList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grpList.Controls.Add(this.btnAddEmployee);
             this.grpList.Controls.Add(this.cmbPost);
             this.grpList.Controls.Add(this.label3);
             this.grpList.Controls.Add(this.txtSearchFIO);
@@ -222,6 +224,16 @@
             this.tssmBack.Text = "Назад";
             this.tssmBack.Click += new System.EventHandler(this.tssmBack_Click);
             // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.Location = new System.Drawing.Point(7, 316);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(227, 33);
+            this.btnAddEmployee.TabIndex = 14;
+            this.btnAddEmployee.Text = "Добавить нового сотрудника";
+            this.btnAddEmployee.UseVisualStyleBackColor = true;
+            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
+            // 
             // EmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -268,5 +280,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpEmployees;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tssmBack;
+        private System.Windows.Forms.Button btnAddEmployee;
     }
 }

@@ -154,5 +154,18 @@ namespace AccountingMetro.UI.Forms
         {
             this.Close();
         }
+
+        private void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Вы хотите добавить новую станцию?", "Подтвердите действие",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var acf = new EmployeeViewForm();
+                if (acf.ShowDialog() == DialogResult.OK)
+                {
+                    FillEmployeeView();
+                }
+            }
+        }
     }
 }

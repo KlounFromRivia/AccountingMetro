@@ -20,15 +20,65 @@ namespace AccountingMetro.UI.Forms
         public Employee Employee { get; set; }
 
         private string photoUrl = null;
+        public bool selectedView = true;
+
+        public EmployeeViewForm()
+        {
+            InitializeComponent();
+            selectedView = false;
+            tsmiBack.Enabled = tsmiBack.Visible = false;
+            Initialize();
+        }
 
         public EmployeeViewForm(Employee employee)
         {
             InitializeComponent();
             this.Employee = employee;
-            Initialize(employee);
+            InitializeView(employee);
+        }
+        public void Initialize()
+        {
+            #region Инизиализация формы
+            using (var db = new AccountingMetroDBContext())
+            {
+                txtStagJob.Text = "";
+
+                cmbGender.Items.Clear();
+                cmbGender.Items.AddRange(db.Genders.ToArray());
+                cmbGender.DisplayMember = nameof(Gender.Title);
+
+                cmbStatusMari.Items.Clear();
+                cmbStatusMari.Items.AddRange(db.StatusMaris.ToArray());
+                cmbStatusMari.DisplayMember = nameof(StatusMari.Title);
+
+                cmbPost.Items.Clear();
+                cmbPost.Items.AddRange(db.Posts.ToArray());
+                cmbPost.DisplayMember = nameof(Post.Title);
+
+                cmbVetka.Items.Clear();
+                cmbVetka.Items.AddRange(db.Vetkas.ToArray());
+                cmbVetka.DisplayMember = nameof(Vetka.Title);
+
+                cmbStation.Items.Clear();
+                cmbStation.Items.AddRange(db.Stations.ToArray());
+                cmbStation.DisplayMember = nameof(Station.Title);
+
+                cmbTrain.Items.Clear();
+                cmbTrain.Items.AddRange(db.Trains.ToArray());
+                cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                cmbGender.SelectedIndex = 0;
+                cmbStatusMari.SelectedIndex = 0;
+                cmbVetka.SelectedIndex = 0;
+                cmbPost.SelectedIndex = 0;
+                cmbTrain.SelectedIndex = 0;
+
+                dtpContract.MaxDate = DateTime.Now;
+            }
+            #endregion
         }
 
-        public void Initialize(Employee employee)
+        public void InitializeView(Employee employee)
         {
             #region Инизиализация формы
             using (var db = new AccountingMetroDBContext())
@@ -116,74 +166,137 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                var employee = db.Employees
-                    .Include(x => x.Station)
-                    .Include(x => x.Station.Vetka)
-                    .FirstOrDefault(x => x.Id == Employee.Id);
-
-                var post = (Post)cmbPost.SelectedItem;
-                cmbStation.Items.Clear();
-                cmbTrain.Items.Clear();
-                cmbStation.DisplayMember = nameof(Station.Title);
-                cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                if (post.Id == 1)
+                if(selectedView == true)
                 {
-                    cmbTrain.Enabled = true;
-                    cmbTrain.Visible = true;
-                    lblTrain.Visible = true;
-                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
+                    var employee = db.Employees
+                        .Include(x => x.Station)
+                        .Include(x => x.Station.Vetka)
+                        .FirstOrDefault(x => x.Id == Employee.Id);
 
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).FirstOrDefault());
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).OrderByDescending(x => x.Id)
-                        .FirstOrDefault());
+                    var post = (Post)cmbPost.SelectedItem;
+                    cmbStation.Items.Clear();
+                    cmbTrain.Items.Clear();
+                    cmbStation.DisplayMember = nameof(Station.Title);
+                    cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                    if (post.Id == 1)
+                    {
+                        cmbTrain.Enabled = true;
+                        cmbTrain.Visible = true;
+                        lblTrain.Visible = true;
+                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
+                        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
+
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).FirstOrDefault());
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).OrderByDescending(x => x.Id)
+                            .FirstOrDefault());
+                    }
+                    else
+                    {
+                        cmbTrain.Enabled = false;
+                        cmbTrain.Visible = false;
+                        lblTrain.Visible = false;
+                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
+                    }
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
                 }
                 else
                 {
-                    cmbTrain.Enabled = false;
-                    cmbTrain.Visible = false;
-                    lblTrain.Visible = false;
-                    cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
+                    var post = (Post)cmbPost.SelectedItem;
+                    var vetka = (Vetka)cmbVetka.SelectedItem;
+                    cmbStation.Items.Clear();
+                    cmbTrain.Items.Clear();
+                    cmbStation.DisplayMember = nameof(Station.Title);
+                    cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                    if (post.Id == 1)
+                    {
+                        cmbTrain.Enabled = true;
+                        cmbTrain.Visible = true;
+                        lblTrain.Visible = true;
+                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
+
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
+                            .FirstOrDefault());
+                    }
+                    else
+                    {
+                        cmbTrain.Enabled = false;
+                        cmbTrain.Visible = false;
+                        lblTrain.Visible = false;
+                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
+                    }
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == vetka.Id);
                 }
-                cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
             }
         }
         private void FillComboBoxVetka()
         {
             using (var db = new AccountingMetroDBContext())
             {
-                var employee = db.Employees
-                    .Include(x => x.Station)
-                    .Include(x => x.Station.Vetka)
-                    .FirstOrDefault(x => x.Id == Employee.Id);
-
-                var post = (Post)cmbPost.SelectedItem;
-                var vetka = (Vetka)cmbVetka.SelectedItem;
-                cmbStation.Items.Clear();
-                cmbTrain.Items.Clear();
-                cmbStation.DisplayMember = nameof(Station.Title);
-                cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                if (post.Id == 1)
+                if(selectedView == true)
                 {
-                    cmbTrain.Enabled = true;
-                    cmbTrain.Visible = true;
-                    lblTrain.Visible = true;
-                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
+                    var employee = db.Employees
+                        .Include(x => x.Station)
+                        .Include(x => x.Station.Vetka)
+                        .FirstOrDefault(x => x.Id == Employee.Id);
 
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
-                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
-                        .FirstOrDefault());
+                    var post = (Post)cmbPost.SelectedItem;
+                    var vetka = (Vetka)cmbVetka.SelectedItem;
+                    cmbStation.Items.Clear();
+                    cmbTrain.Items.Clear();
+                    cmbStation.DisplayMember = nameof(Station.Title);
+                    cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                    if (post.Id == 1)
+                    {
+                        cmbTrain.Enabled = true;
+                        cmbTrain.Visible = true;
+                        lblTrain.Visible = true;
+                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
+                        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
+
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
+                            .FirstOrDefault());
+                    }
+                    else
+                    {
+                        cmbTrain.Enabled = false;
+                        cmbTrain.Visible = false;
+                        lblTrain.Visible = false;
+                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
+                        cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
+                    }
                 }
                 else
                 {
-                    cmbTrain.Enabled = false;
-                    cmbTrain.Visible = false;
-                    lblTrain.Visible = false;
-                    cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
+                    var post = (Post)cmbPost.SelectedItem;
+                    var vetka = (Vetka)cmbVetka.SelectedItem;
+                    cmbStation.Items.Clear();
+                    cmbTrain.Items.Clear();
+                    cmbStation.DisplayMember = nameof(Station.Title);
+                    cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                    if (post.Id == 1)
+                    {
+                        cmbTrain.Enabled = true;
+                        cmbTrain.Visible = true;
+                        lblTrain.Visible = true;
+                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
+
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
+                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
+                            .FirstOrDefault());
+                    }
+                    else
+                    {
+                        cmbTrain.Enabled = false;
+                        cmbTrain.Visible = false;
+                        lblTrain.Visible = false;
+                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
+                    }
                 }
             }
         }
@@ -206,9 +319,9 @@ namespace AccountingMetro.UI.Forms
             ValidateInput();
         }
 
+        #region Проверка данных
         public void ValidateInput()
         {
-            #region Проверка данных
             TimeSpan job = dtpJob.Value.Subtract(dtpContract.Value);
 
             if (cmbTrain.Enabled == true && cmbTrain.Visible == true)
@@ -222,6 +335,7 @@ namespace AccountingMetro.UI.Forms
                     txtNomerPassport.Text.Length == 6 &&
                     txtINN.Text.Length == 12 &&
                     txtInsCertific.Text.Length == 16 &&
+                    dtpContract.Value <= DateTime.Now &&
                     DateTime.Now.Year - dtpBithDay.Value.Year >= 16 &&
                     job.Days >= 1 &&
                     cmbStation.SelectedIndex >= 0 && 
@@ -238,12 +352,13 @@ namespace AccountingMetro.UI.Forms
                     txtNomerPassport.Text.Length == 6 &&
                     txtINN.Text.Length == 12 &&
                     txtInsCertific.Text.Length == 16 &&
+                    dtpContract.Value <= DateTime.Now &&
                     DateTime.Now.Year - dtpBithDay.Value.Year >= 16 &&
                     job.Days >= 1 &&
                     cmbStation.SelectedIndex >= 0;
             }
-            #endregion
         }
+        #endregion
 
         private void cmbTrain_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -303,7 +418,7 @@ namespace AccountingMetro.UI.Forms
 
         private void tsmiBack_Click(object sender, EventArgs e)
         {
-            Initialize(Employee);
+            InitializeView(Employee);
             FillNoneDB();
         }
 
