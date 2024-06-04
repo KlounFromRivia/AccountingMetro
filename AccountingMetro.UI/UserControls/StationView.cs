@@ -18,9 +18,8 @@ namespace AccountingMetro.UI.UserControls
 {
     public partial class StationView : UserControl
     {
-        public event Action StatusCount;
         public Station Station { get; set; }
-        string element ="";
+        string element = "";
         public StationView(Station station)
         {
             InitializeComponent();
@@ -66,7 +65,7 @@ namespace AccountingMetro.UI.UserControls
                 db.SaveChanges();
                 MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Station = station;
-                StatusCount?.Invoke();
+                ((MetroForm)ParentForm).FillStationCount();
             }
         }
 
@@ -84,10 +83,8 @@ namespace AccountingMetro.UI.UserControls
                     db.SaveChanges();
                     MessageBox.Show("Станция удалена", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Station = station;
-                    StatusCount?.Invoke();
                 }
-                var sf = this.ParentForm as MetroForm;
-                sf.FillStationView();
+                this.Parent.Controls.Remove(this);
             }
         }
 

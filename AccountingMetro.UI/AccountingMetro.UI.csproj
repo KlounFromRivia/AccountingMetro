@@ -114,6 +114,7 @@
       <DependentUpon>StaffDepartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="General\Authorization.cs" />
+    <Compile Include="General\Encryption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\EmployeeView.cs">

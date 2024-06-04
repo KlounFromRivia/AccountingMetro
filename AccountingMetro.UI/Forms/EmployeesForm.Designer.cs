@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpList = new System.Windows.Forms.GroupBox();
+            this.btnAddEmployee = new System.Windows.Forms.Button();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSearchFIO = new System.Windows.Forms.TextBox();
@@ -65,6 +66,7 @@
             // grpList
             // 
             this.grpList.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grpList.Controls.Add(this.btnAddEmployee);
             this.grpList.Controls.Add(this.cmbPost);
             this.grpList.Controls.Add(this.label3);
             this.grpList.Controls.Add(this.txtSearchFIO);
@@ -82,6 +84,16 @@
             this.grpList.TabIndex = 2;
             this.grpList.TabStop = false;
             this.grpList.Text = "Отображать в списке";
+            // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.Location = new System.Drawing.Point(7, 316);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(227, 33);
+            this.btnAddEmployee.TabIndex = 14;
+            this.btnAddEmployee.Text = "Добавить нового сотрудника";
+            this.btnAddEmployee.UseVisualStyleBackColor = true;
+            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
             // 
             // cmbPost
             // 
@@ -268,5 +280,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpEmployees;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tssmBack;
+        private System.Windows.Forms.Button btnAddEmployee;
     }
 }

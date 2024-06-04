@@ -20,7 +20,6 @@ namespace AccountingMetro.UI.UserControls
 {
     public partial class EmployeeView : UserControl
     {
-        public event Action StatusCount;
         public Employee Employee { get; set; }
         public Document Document { get; set; }
         public Person Person { get; set; }
@@ -56,8 +55,6 @@ namespace AccountingMetro.UI.UserControls
             this.ParentForm.Hide();
             employeeView.Employee = this.Employee;
             employeeView.ShowDialog();
-            //var employeeForm = new EmployeesForm();
-            //employeeForm.FillEmployeeView();
             this.ParentForm.Show();
         }
 

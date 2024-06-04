@@ -162,30 +162,6 @@ namespace AccountingMetro.UI.Forms
         {
             var stationControl = new StationView(station);
             stationControl.Parent = flpStation;
-            stationControl.StatusCount += StationControl_StatusCount;
-            CountStation();
-        }
-
-        private void StationControl_StatusCount()
-        {
-            CountStation();
-        }
-
-        public void CountStation()
-        {
-            int CountStation = 0;
-
-            foreach (var status in flpStation.Controls)
-            {
-                if (status is StationView controlStation)
-                {
-                    if (controlStation.Station.StatusStationId == 1)
-                    {
-                        CountStation++;
-                    }
-                }
-            }
-            tsslStatusStaion.Text = "Открытых станций: " + CountStation.ToString();
         }
 
         private void btnAddStation_Click(object sender, EventArgs e)
@@ -372,6 +348,20 @@ namespace AccountingMetro.UI.Forms
         private void tsmiBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void FillStationCount()
+        {
+            using (var db = new AccountingMetroDBContext())
+            {
+                var stationCount = db.Stations.Where(x => x.StatusStationId == 1).Count();
+                tsslStatusStation.Text = "Открытых станций: " + stationCount;
+            }
+        }
+
+        private void flpStation_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            FillStationCount();
         }
     }
 }
