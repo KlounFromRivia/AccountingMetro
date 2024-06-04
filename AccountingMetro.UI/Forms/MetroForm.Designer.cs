@@ -49,7 +49,7 @@
             this.cmbVetka = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsslStatusStaion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslStatusStation = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabTrain = new System.Windows.Forms.TabPage();
             this.flpTrain = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -314,7 +314,7 @@
             // 
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslStatusStaion});
+            this.tsslStatusStation});
             this.statusStrip1.Location = new System.Drawing.Point(4, 562);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
@@ -322,11 +322,11 @@
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // tsslStatusStaion
+            // tsslStatusStation
             // 
-            this.tsslStatusStaion.Name = "tsslStatusStaion";
-            this.tsslStatusStaion.Size = new System.Drawing.Size(183, 17);
-            this.tsslStatusStaion.Text = "Кол-во открытых станций";
+            this.tsslStatusStation.Name = "tsslStatusStation";
+            this.tsslStatusStation.Size = new System.Drawing.Size(183, 17);
+            this.tsslStatusStation.Text = "Кол-во открытых станций";
             // 
             // tabTrain
             // 
@@ -548,7 +548,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNameVetka;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel tsslStatusStaion;
+        private System.Windows.Forms.ToolStripStatusLabel tsslStatusStation;
         private System.Windows.Forms.TextBox txtSearchStation;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MenuStrip menuStrip1;

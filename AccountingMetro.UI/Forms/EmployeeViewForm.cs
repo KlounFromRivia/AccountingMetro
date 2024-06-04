@@ -20,88 +20,26 @@ namespace AccountingMetro.UI.Forms
         public Employee Employee { get; set; }
 
         private string photoUrl = null;
-        public bool selectedView = true;
-
         public EmployeeViewForm()
         {
             InitializeComponent();
-            selectedView = false;
-            tsmiBack.Enabled = tsmiBack.Visible = false;
-            Initialize();
         }
 
         public EmployeeViewForm(Employee employee)
         {
             InitializeComponent();
             this.Employee = employee;
-            InitializeView(employee);
         }
-        public void Initialize()
+
+        public void Initialize(Employee employee)
         {
             #region Инизиализация формы
             using (var db = new AccountingMetroDBContext())
             {
                 txtStagJob.Text = "";
-
-                cmbGender.Items.Clear();
-                cmbGender.Items.AddRange(db.Genders.ToArray());
-                cmbGender.DisplayMember = nameof(Gender.Title);
-
-                cmbStatusMari.Items.Clear();
-                cmbStatusMari.Items.AddRange(db.StatusMaris.ToArray());
-                cmbStatusMari.DisplayMember = nameof(StatusMari.Title);
-
-                cmbPost.Items.Clear();
-                cmbPost.Items.AddRange(db.Posts.ToArray());
-                cmbPost.DisplayMember = nameof(Post.Title);
-
-                cmbVetka.Items.Clear();
-                cmbVetka.Items.AddRange(db.Vetkas.ToArray());
-                cmbVetka.DisplayMember = nameof(Vetka.Title);
-
-                cmbStation.Items.Clear();
-                cmbStation.Items.AddRange(db.Stations.ToArray());
-                cmbStation.DisplayMember = nameof(Station.Title);
-
-                cmbTrain.Items.Clear();
-                cmbTrain.Items.AddRange(db.Trains.ToArray());
-                cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                cmbGender.SelectedIndex = 0;
-                cmbStatusMari.SelectedIndex = 0;
-                cmbVetka.SelectedIndex = 0;
-                cmbPost.SelectedIndex = 0;
-                cmbTrain.SelectedIndex = 0;
-
-                dtpContract.MaxDate = DateTime.Now;
-            }
-            #endregion
-        }
-
-        public void InitializeView(Employee employee)
-        {
-            #region Инизиализация формы
-            using (var db = new AccountingMetroDBContext())
-            {
-                txtStagJob.Text = "";
-                cmbGender.DataSource = db.Genders.ToList();
-                cmbGender.DisplayMember = nameof(Gender.Title);
-                cmbGender.ValueMember = nameof(Gender.Id);
                 cmbGender.SelectedItem = cmbGender.Items.Cast<Gender>().FirstOrDefault(x => x.Id == employee.Person.GenderId);
-
-                cmbStatusMari.DataSource = db.StatusMaris.ToList();
-                cmbStatusMari.DisplayMember = nameof(StatusMari.Title);
-                cmbStatusMari.ValueMember = nameof(StatusMari.Id);
                 cmbStatusMari.SelectedItem = cmbStatusMari.Items.Cast<StatusMari>().FirstOrDefault(x => x.Id == employee.Person.StatusMariId);
-
-                cmbPost.DataSource = db.Posts.ToList();
-                cmbPost.DisplayMember = nameof(Post.Title);
-                cmbPost.ValueMember = nameof(Post.Id);
                 cmbPost.SelectedItem = cmbPost.Items.Cast<Post>().FirstOrDefault(x => x.Id == employee.PostId);
-
-                cmbVetka.DataSource = db.Vetkas.ToList();
-                cmbVetka.DisplayMember = nameof(Vetka.Title);
-                cmbVetka.ValueMember = nameof(Vetka.Id);
                 cmbVetka.SelectedItem = cmbVetka.Items.Cast<Vetka>().FirstOrDefault(x => x.Id == employee.Station.VetkaId);
 
                 txtNomeContract.Text = employee.Id.ToString();
@@ -140,6 +78,31 @@ namespace AccountingMetro.UI.Forms
             #endregion
         }
 
+        public void FillComboBoxes()
+        {
+            using (var db = new AccountingMetroDBContext())
+            {
+                cmbGender.Items.Clear();
+                cmbGender.Items.AddRange(db.Genders.ToArray());
+                cmbGender.DisplayMember = nameof(Gender.Title);
+
+                cmbStatusMari.Items.Clear();
+                cmbStatusMari.Items.AddRange(db.StatusMaris.ToArray());
+                cmbStatusMari.DisplayMember = nameof(StatusMari.Title);
+
+                cmbPost.Items.Clear();
+                cmbPost.Items.AddRange(db.Posts.ToArray());
+                cmbPost.DisplayMember = nameof(Post.Title);
+
+                cmbVetka.Items.Clear();
+                cmbVetka.Items.AddRange(db.Vetkas.ToArray());
+                cmbVetka.DisplayMember = nameof(Vetka.Title);
+
+                cmbStation.DisplayMember = nameof(Station.Title);
+                cmbTrain.DisplayMember = nameof(Train.Nomer);
+            }
+        }
+
         public void FillNoneDB()
         {
             using (var db = new AccountingMetroDBContext())
@@ -156,6 +119,20 @@ namespace AccountingMetro.UI.Forms
             }
         }
 
+        private void cmbTrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var train = (Train)cmbTrain.SelectedItem;
+            if (train != null)
+            {
+                if (train.StatusTrainId != 1)
+                {
+                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
+                }
+            }
+            ValidateInput();
+        }
+
         private void numSalary_ValueChanged(object sender, EventArgs e)
         {
             FillNoneDB();
@@ -166,68 +143,32 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                if(selectedView == true)
+                var employee = db.Employees
+                    .Include(x => x.Station)
+                    .Include(x => x.Station.Vetka)
+                    .FirstOrDefault(x => x.Id == Employee.Id);
+
+                var post = (Post)cmbPost.SelectedItem;
+                cmbStation.Items.Clear();
+                cmbTrain.Items.Clear();
+
+                if (post.Id == 1)
                 {
-                    var employee = db.Employees
-                        .Include(x => x.Station)
-                        .Include(x => x.Station.Vetka)
-                        .FirstOrDefault(x => x.Id == Employee.Id);
+                    cmbTrain.Enabled = true;
+                    cmbTrain.Visible = true;
+                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
+                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
 
-                    var post = (Post)cmbPost.SelectedItem;
-                    cmbStation.Items.Clear();
-                    cmbTrain.Items.Clear();
-                    cmbStation.DisplayMember = nameof(Station.Title);
-                    cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                    if (post.Id == 1)
-                    {
-                        cmbTrain.Enabled = true;
-                        cmbTrain.Visible = true;
-                        lblTrain.Visible = true;
-                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
-
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).FirstOrDefault());
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).OrderByDescending(x => x.Id)
-                            .FirstOrDefault());
-                    }
-                    else
-                    {
-                        cmbTrain.Enabled = false;
-                        cmbTrain.Visible = false;
-                        lblTrain.Visible = false;
-                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
-                    }
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
+                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).FirstOrDefault());
+                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).OrderByDescending(x => x.Id)
+                        .FirstOrDefault());
                 }
                 else
                 {
-                    var post = (Post)cmbPost.SelectedItem;
-                    var vetka = (Vetka)cmbVetka.SelectedItem;
-                    cmbStation.Items.Clear();
-                    cmbTrain.Items.Clear();
-                    cmbStation.DisplayMember = nameof(Station.Title);
-                    cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                    if (post.Id == 1)
-                    {
-                        cmbTrain.Enabled = true;
-                        cmbTrain.Visible = true;
-                        lblTrain.Visible = true;
-                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
-
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
-                            .FirstOrDefault());
-                    }
-                    else
-                    {
-                        cmbTrain.Enabled = false;
-                        cmbTrain.Visible = false;
-                        lblTrain.Visible = false;
-                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    }
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == vetka.Id);
+                    cmbTrain.Enabled = false;
+                    cmbTrain.Visible = false;
+                    cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == employee.Station.VetkaId).ToArray());
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
                 }
             }
         }
@@ -235,68 +176,35 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                if(selectedView == true)
+                var employee = db.Employees
+                    .Include(x => x.Station)
+                    .Include(x => x.Station.Vetka)
+                    .FirstOrDefault(x => x.Id == Employee.Id);
+
+                var post = (Post)cmbPost.SelectedItem;
+                var vetka = (Vetka)cmbVetka.SelectedItem;
+                cmbStation.Items.Clear();
+                cmbTrain.Items.Clear();
+                cmbStation.DisplayMember = nameof(Station.Title);
+                cmbTrain.DisplayMember = nameof(Train.Nomer);
+
+                if (post.Id == 1)
                 {
-                    var employee = db.Employees
-                        .Include(x => x.Station)
-                        .Include(x => x.Station.Vetka)
-                        .FirstOrDefault(x => x.Id == Employee.Id);
+                    cmbTrain.Enabled = true;
+                    cmbTrain.Visible = true;
+                    cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
+                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
 
-                    var post = (Post)cmbPost.SelectedItem;
-                    var vetka = (Vetka)cmbVetka.SelectedItem;
-                    cmbStation.Items.Clear();
-                    cmbTrain.Items.Clear();
-                    cmbStation.DisplayMember = nameof(Station.Title);
-                    cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                    if (post.Id == 1)
-                    {
-                        cmbTrain.Enabled = true;
-                        cmbTrain.Visible = true;
-                        lblTrain.Visible = true;
-                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
-                        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == employee.TrainId);
-
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
-                            .FirstOrDefault());
-                    }
-                    else
-                    {
-                        cmbTrain.Enabled = false;
-                        cmbTrain.Visible = false;
-                        lblTrain.Visible = false;
-                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
-                        cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
-                    }
+                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
+                    cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
+                        .FirstOrDefault());
                 }
                 else
                 {
-                    var post = (Post)cmbPost.SelectedItem;
-                    var vetka = (Vetka)cmbVetka.SelectedItem;
-                    cmbStation.Items.Clear();
-                    cmbTrain.Items.Clear();
-                    cmbStation.DisplayMember = nameof(Station.Title);
-                    cmbTrain.DisplayMember = nameof(Train.Nomer);
-
-                    if (post.Id == 1)
-                    {
-                        cmbTrain.Enabled = true;
-                        cmbTrain.Visible = true;
-                        lblTrain.Visible = true;
-                        cmbTrain.Items.AddRange(db.Trains.Where(x => x.VetkaId == vetka.Id).ToArray());
-
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).FirstOrDefault());
-                        cmbStation.Items.Add(db.Stations.Where(x => x.VetkaId == vetka.Id).OrderByDescending(x => x.Id)
-                            .FirstOrDefault());
-                    }
-                    else
-                    {
-                        cmbTrain.Enabled = false;
-                        cmbTrain.Visible = false;
-                        lblTrain.Visible = false;
-                        cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
-                    }
+                    cmbTrain.Enabled = false;
+                    cmbTrain.Visible = false;
+                    cmbStation.Items.AddRange(db.Stations.Where(x => x.VetkaId == vetka.Id).ToArray());
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == employee.StationId);
                 }
             }
         }
@@ -319,9 +227,9 @@ namespace AccountingMetro.UI.Forms
             ValidateInput();
         }
 
-        #region Проверка данных
         public void ValidateInput()
         {
+            #region Проверка данных
             TimeSpan job = dtpJob.Value.Subtract(dtpContract.Value);
 
             if (cmbTrain.Enabled == true && cmbTrain.Visible == true)
@@ -335,10 +243,9 @@ namespace AccountingMetro.UI.Forms
                     txtNomerPassport.Text.Length == 6 &&
                     txtINN.Text.Length == 12 &&
                     txtInsCertific.Text.Length == 16 &&
-                    dtpContract.Value <= DateTime.Now &&
                     DateTime.Now.Year - dtpBithDay.Value.Year >= 16 &&
                     job.Days >= 1 &&
-                    cmbStation.SelectedIndex >= 0 && 
+                    cmbStation.SelectedIndex >= 0 &&
                     cmbTrain.SelectedIndex >= 0;
             }
             else
@@ -352,39 +259,15 @@ namespace AccountingMetro.UI.Forms
                     txtNomerPassport.Text.Length == 6 &&
                     txtINN.Text.Length == 12 &&
                     txtInsCertific.Text.Length == 16 &&
-                    dtpContract.Value <= DateTime.Now &&
                     DateTime.Now.Year - dtpBithDay.Value.Year >= 16 &&
                     job.Days >= 1 &&
                     cmbStation.SelectedIndex >= 0;
             }
-        }
-        #endregion
-
-        private void cmbTrain_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var train = (Train)cmbTrain.SelectedItem;
-            if (train != null)
-            {
-                if (train.StatusTrainId != 1)
-                {
-                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
-                }
-            }
-            ValidateInput();
+            #endregion
         }
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var station = (Station)cmbStation.SelectedItem;
-            if (station != null)
-            {
-                if (station.StatusStationId != 1)
-                {
-                    MessageBox.Show("Станция " + station.Title + " на реконструкции!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == Employee.StationId);
-                }
-            }
             ValidateInput();
         }
 
@@ -418,7 +301,7 @@ namespace AccountingMetro.UI.Forms
 
         private void tsmiBack_Click(object sender, EventArgs e)
         {
-            InitializeView(Employee);
+            Initialize(Employee);
             FillNoneDB();
         }
 
@@ -426,41 +309,44 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                var employee = db.Employees.Include(x => x.Person.Document).FirstOrDefault(x => x.Id == Employee.Id);
+                var employee = Employee.Id == -1
+                    ? Employee
+                    : db.Employees.Include(x => x.Person.Document).FirstOrDefault(x => x.Id == Employee.Id);
 
-                if (employee != null)
+                employee.Person.Document.PassportSeries = txtSeriePassport.Text;
+                employee.Person.Document.PassportNomer = txtNomerPassport.Text;
+                employee.Person.Document.Issued = txtAdresPassport.Text;
+                employee.Person.Document.DateIssued = dtpPassportDate.Value;
+                employee.Person.Document.INN = txtINN.Text;
+                employee.Person.Document.InsCertific = txtInsCertific.Text;
+                employee.Person.Document.RegistratAddress = txtAdresReg.Text;
+
+                employee.Person.LastName = txtFam.Text;
+                employee.Person.FirstName = txtIma.Text;
+                employee.Person.Patronymic = txtPatr.Text;
+                employee.Person.Phone = mtxtMobilePhone.Text;
+                employee.Person.Email = txtEmail.Text;
+                employee.Person.ResidentAddress = txtAdresResid.Text;
+                employee.Person.BirthDay = dtpBithDay.Value;
+                employee.Person.GenderId = ((Gender)cmbGender.SelectedItem).Id;
+                employee.Person.StatusMariId = ((StatusMari)cmbStatusMari.SelectedItem).Id;
+
+                employee.ContractDay = dtpContract.Value;
+                employee.EmploymentDay = dtpJob.Value;
+                employee.PhoneWork = mtxtWorkPhone.Text;
+                employee.NormShift = (int)numNormShift.Value;
+                employee.Salary = (int)numSalary.Value;
+                employee.Allowance = (int)numAllowance.Value;
+                employee.Vacation = (int)numVacation.Value;
+                employee.PostId = ((Post)cmbPost.SelectedItem).Id;
+                employee.StationId = ((Station)cmbStation.SelectedItem).Id;
+                if (cmbTrain.Enabled == true)
                 {
-                    employee.Person.Document.PassportSeries = txtSeriePassport.Text;
-                    employee.Person.Document.PassportNomer = txtNomerPassport.Text;
-                    employee.Person.Document.Issued = txtAdresPassport.Text;
-                    employee.Person.Document.DateIssued = dtpPassportDate.Value;
-                    employee.Person.Document.INN = txtINN.Text;
-                    employee.Person.Document.InsCertific = txtInsCertific.Text;
-                    employee.Person.Document.RegistratAddress = txtAdresReg.Text;
-
-                    employee.Person.LastName = txtFam.Text;
-                    employee.Person.FirstName = txtIma.Text;
-                    employee.Person.Patronymic = txtPatr.Text;
-                    employee.Person.Phone = mtxtMobilePhone.Text;
-                    employee.Person.Email = txtEmail.Text;
-                    employee.Person.ResidentAddress = txtAdresResid.Text;
-                    employee.Person.BirthDay = dtpBithDay.Value;
-                    employee.Person.GenderId = ((Gender)cmbGender.SelectedItem).Id;
-                    employee.Person.StatusMariId = ((StatusMari)cmbStatusMari.SelectedItem).Id;
-
-                    employee.ContractDay = dtpContract.Value;
-                    employee.EmploymentDay = dtpJob.Value;
-                    employee.PhoneWork = mtxtWorkPhone.Text;
-                    employee.NormShift = (int)numNormShift.Value;
-                    employee.Salary = (int)numSalary.Value;
-                    employee.Allowance = (int)numAllowance.Value;
-                    employee.Vacation = (int)numVacation.Value;
-                    employee.PostId = ((Post)cmbPost.SelectedItem).Id;
-                    employee.StationId = ((Station)cmbStation.SelectedItem).Id;
-                    if(cmbTrain.Enabled == true)
-                    {
-                        employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
-                    }
+                    employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
+                }
+                if (employee.Id == -1)
+                {
+                    db.Employees.Add(employee);
                 }
                 db.SaveChanges();
                 MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -471,6 +357,20 @@ namespace AccountingMetro.UI.Forms
         private void tsmiClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void EmployeeViewForm_Load(object sender, EventArgs e)
+        {
+            FillComboBoxes();
+            if (Employee != null)
+            {
+                Initialize(Employee);
+                return;
+            }
+            Employee = new Employee()
+            {
+                Id = -1,
+            };
         }
     }
 }

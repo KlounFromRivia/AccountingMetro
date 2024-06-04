@@ -26,7 +26,7 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                FillEmployeeView();
+                FillStationView();
 
                 cmbVetka.Items.Clear();
                 cmbVetka.Items.AddRange(db.Vetkas.ToArray());
@@ -71,11 +71,8 @@ namespace AccountingMetro.UI.Forms
                     .Include(x => x.Post)
                     .Where(x => (x.StationId == station.Id || station.Id == -1)
                     && (x.Station.VetkaId == vetka.Id || vetka.Id == -1)
-                    && (x.PostId == post.Id || post.Id == -1)
-                    && (x.Person.LastName.Contains(txtSearchFIO.Text) || x.Person.FirstName.Contains(txtSearchFIO.Text) 
-                    || x.Person.Patronymic.Contains(txtSearchFIO.Text)))
+                    && (x.PostId == post.Id || post.Id == -1))
                     .ToList();
-
                 foreach (var employee in employees)
                 {
                     AddOrderView(employee);
@@ -86,7 +83,7 @@ namespace AccountingMetro.UI.Forms
         }
         #endregion
 
-        public void FillEmployeeView()
+        public void FillStationView()
         {
             flpEmployees.Controls.Clear();
             using (var db = new AccountingMetroDBContext())
@@ -117,7 +114,7 @@ namespace AccountingMetro.UI.Forms
             {
                 var vetka = (Vetka)cmbVetka.SelectedItem;
                 cmbStation.Items.Clear();
-                if(vetka.Id == -1)
+                if (vetka.Id == -1)
                 {
                     cmbStation.Items.AddRange(db.Stations.ToArray());
                 }
@@ -138,7 +135,7 @@ namespace AccountingMetro.UI.Forms
 
         private void cmbPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(sender.Equals(cmbVetka))
+            if (sender.Equals(cmbVetka))
             {
                 FillComboBoxStation();
             }
@@ -155,17 +152,17 @@ namespace AccountingMetro.UI.Forms
             this.Close();
         }
 
+        private void flpEmployees_VisibleChanged(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"Вы хотите добавить новую станцию?", "Подтвердите действие",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                var acf = new EmployeeViewForm();
-                if (acf.ShowDialog() == DialogResult.OK)
-                {
-                    FillEmployeeView();
-                }
-            }
+            var ev = new EmployeeViewForm();
+            this.Hide();
+            ev.ShowDialog();
+            this.Show();
         }
     }
 }
