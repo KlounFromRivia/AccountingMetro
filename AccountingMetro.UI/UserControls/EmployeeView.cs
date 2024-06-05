@@ -23,6 +23,7 @@ namespace AccountingMetro.UI.UserControls
         public Employee Employee { get; set; }
         public Document Document { get; set; }
         public Person Person { get; set; }
+        string element = "";
         public EmployeeView(Employee employee)
         {
             InitializeComponent();
@@ -33,9 +34,19 @@ namespace AccountingMetro.UI.UserControls
         {
             using (var db = new AccountingMetroDBContext())
             {
-                lblFIO.Text = employee.Person.LastName +" "+ employee.Person.FirstName +" " + employee.Person.Patronymic;
+                lblFIO.Text = element = employee.Person.LastName +" "+ employee.Person.FirstName +" " + employee.Person.Patronymic;
                 lblPost.Text = employee.Post.Title;
                 lblStation.Text = employee.Station.Title;
+
+                tsmiDelete.Enabled = employee.StatusEmployeeId == 2
+                    ? true
+                    : false;
+
+                if(employee.StatusEmployeeId == 2)
+                {
+                    this.BackColor = Color.LightCoral;
+                    lblStatus.Visible = true;
+                }
 
                 if (employee.TrainId != null)
                 {
@@ -66,6 +77,25 @@ namespace AccountingMetro.UI.UserControls
             shiftForm.Employee = this.Employee;
             shiftForm.ShowDialog();
             this.ParentForm.Show();
+        }
+
+        private void tsmiDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Вы действительно уверены, что хотите удалить '{element}'?\n" +
+                $"Если вы удалите сотрудника, то все его данные и смены будут удалены!!!",
+                "ВНИМАНИЕ",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                using (var db = new AccountingMetroDBContext())
+                {
+                    var document = db.Documents.FirstOrDefault(x => x.Id == Employee.Person.DocumentId);
+                    db.Documents.Remove(document);
+                    db.SaveChanges();
+                    MessageBox.Show("Сотрудник удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                this.Parent.Controls.Remove(this);
+            }
         }
     }
 }

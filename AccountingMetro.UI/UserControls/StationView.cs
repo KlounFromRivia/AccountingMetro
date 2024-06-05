@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -71,21 +72,34 @@ namespace AccountingMetro.UI.UserControls
 
         private void tsmiDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"Вы уверены, что хотите удалить станцию '{element}'?",
-                "Подтвердите действие",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Asterisk) == DialogResult.OK)
+            using (var db = new AccountingMetroDBContext())
             {
-                using (var db = new AccountingMetroDBContext())
+                var employee = db.Employees
+                .Include(x => x.Station).FirstOrDefault(x => x.Id == Station.Id);
+                if (employee == null)
                 {
-                    var station = db.Stations.FirstOrDefault(x => x.Id == Station.Id);
-                    db.Stations.Remove(station);
-                    db.SaveChanges();
-                    MessageBox.Show("Станция удалена", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Station = station;
+                    if (MessageBox.Show($"Вы уверены, что хотите удалить станцию '{element}'?",
+                        "Подтвердите действие",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Asterisk) == DialogResult.OK)
+                    {
+                        var station = db.Stations.FirstOrDefault(x => x.Id == Station.Id);
+                        db.Stations.Remove(station);
+                        db.SaveChanges();
+                        MessageBox.Show("Станция удалена", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Station = station;
+                        this.Parent.Controls.Remove(this);
+                    }
                 }
-                this.Parent.Controls.Remove(this);
+                else
+                {
+                    MessageBox.Show($"Нельзя удалить станцию '{element}', так как на ней работают люди",
+                        "Внимание!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
+
         }
 
         private void tsmiBack_Click(object sender, EventArgs e)

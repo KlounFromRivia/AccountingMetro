@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeViewForm));
             this.grpJob = new System.Windows.Forms.GroupBox();
             this.label34 = new System.Windows.Forms.Label();
             this.numVacation = new System.Windows.Forms.NumericUpDown();
@@ -56,11 +57,11 @@
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpContactInfo = new System.Windows.Forms.GroupBox();
+            this.mtxtWorkPhone = new System.Windows.Forms.TextBox();
+            this.mtxtMobilePhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.mtxtWorkPhone = new System.Windows.Forms.MaskedTextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.mtxtMobilePhone = new System.Windows.Forms.MaskedTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.grpDocument = new System.Windows.Forms.GroupBox();
             this.txtInsCertific = new System.Windows.Forms.TextBox();
@@ -103,6 +104,9 @@
             this.tsmiClose = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiWork = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiToFire = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.grpJob.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVacation)).BeginInit();
@@ -448,11 +452,11 @@
             // 
             // grpContactInfo
             // 
+            this.grpContactInfo.Controls.Add(this.mtxtWorkPhone);
+            this.grpContactInfo.Controls.Add(this.mtxtMobilePhone);
             this.grpContactInfo.Controls.Add(this.txtEmail);
             this.grpContactInfo.Controls.Add(this.label33);
-            this.grpContactInfo.Controls.Add(this.mtxtWorkPhone);
             this.grpContactInfo.Controls.Add(this.label32);
-            this.grpContactInfo.Controls.Add(this.mtxtMobilePhone);
             this.grpContactInfo.Controls.Add(this.label31);
             this.grpContactInfo.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.grpContactInfo.Location = new System.Drawing.Point(9, 364);
@@ -464,9 +468,25 @@
             this.grpContactInfo.TabStop = false;
             this.grpContactInfo.Text = "Контактная информация";
             // 
+            // mtxtWorkPhone
+            // 
+            this.mtxtWorkPhone.Location = new System.Drawing.Point(169, 61);
+            this.mtxtWorkPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.mtxtWorkPhone.Name = "mtxtWorkPhone";
+            this.mtxtWorkPhone.Size = new System.Drawing.Size(139, 23);
+            this.mtxtWorkPhone.TabIndex = 9;
+            // 
+            // mtxtMobilePhone
+            // 
+            this.mtxtMobilePhone.Location = new System.Drawing.Point(169, 29);
+            this.mtxtMobilePhone.Margin = new System.Windows.Forms.Padding(4);
+            this.mtxtMobilePhone.Name = "mtxtMobilePhone";
+            this.mtxtMobilePhone.Size = new System.Drawing.Size(139, 23);
+            this.mtxtMobilePhone.TabIndex = 8;
+            // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(384, 30);
+            this.txtEmail.Location = new System.Drawing.Point(385, 29);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(191, 23);
@@ -475,22 +495,12 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(333, 33);
+            this.label33.Location = new System.Drawing.Point(334, 32);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(40, 16);
             this.label33.TabIndex = 6;
             this.label33.Text = "Email";
-            // 
-            // mtxtWorkPhone
-            // 
-            this.mtxtWorkPhone.Location = new System.Drawing.Point(169, 60);
-            this.mtxtWorkPhone.Margin = new System.Windows.Forms.Padding(4);
-            this.mtxtWorkPhone.Mask = "+7(000)-000-00-00";
-            this.mtxtWorkPhone.Name = "mtxtWorkPhone";
-            this.mtxtWorkPhone.Size = new System.Drawing.Size(139, 23);
-            this.mtxtWorkPhone.TabIndex = 4;
-            this.mtxtWorkPhone.TextChanged += new System.EventHandler(this.txtFam_TextChanged);
             // 
             // label32
             // 
@@ -501,15 +511,6 @@
             this.label32.Size = new System.Drawing.Size(126, 16);
             this.label32.TabIndex = 3;
             this.label32.Text = "Рабочий телефон";
-            // 
-            // mtxtMobilePhone
-            // 
-            this.mtxtMobilePhone.Location = new System.Drawing.Point(169, 28);
-            this.mtxtMobilePhone.Margin = new System.Windows.Forms.Padding(4);
-            this.mtxtMobilePhone.Mask = "+7(000)-000-00-00";
-            this.mtxtMobilePhone.Name = "mtxtMobilePhone";
-            this.mtxtMobilePhone.Size = new System.Drawing.Size(139, 23);
-            this.mtxtMobilePhone.TabIndex = 2;
             // 
             // label31
             // 
@@ -933,7 +934,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiClose,
             this.tsmiBack,
-            this.tsmiSave});
+            this.tsmiSave,
+            this.tsmiStatus});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(974, 24);
@@ -963,6 +965,30 @@
             this.tsmiSave.Text = "Сохранить изменения";
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
+            // tsmiStatus
+            // 
+            this.tsmiStatus.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiWork,
+            this.tsmiToFire});
+            this.tsmiStatus.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tsmiStatus.Name = "tsmiStatus";
+            this.tsmiStatus.Size = new System.Drawing.Size(163, 20);
+            this.tsmiStatus.Text = "Статус сотрудника";
+            // 
+            // tsmiWork
+            // 
+            this.tsmiWork.Name = "tsmiWork";
+            this.tsmiWork.Size = new System.Drawing.Size(144, 22);
+            this.tsmiWork.Text = "Работает";
+            this.tsmiWork.Click += new System.EventHandler(this.tsmiWork_Click);
+            // 
+            // tsmiToFire
+            // 
+            this.tsmiToFire.Name = "tsmiToFire";
+            this.tsmiToFire.Size = new System.Drawing.Size(144, 22);
+            this.tsmiToFire.Text = "Уволить";
+            this.tsmiToFire.Click += new System.EventHandler(this.tsmiToFire_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -978,9 +1004,14 @@
             this.Controls.Add(this.grpContactInfo);
             this.Controls.Add(this.grpDocument);
             this.Controls.Add(this.grpPerson);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EmployeeViewForm";
             this.Padding = new System.Windows.Forms.Padding(5);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавление/редактирование сотрудника";
             this.Load += new System.EventHandler(this.EmployeeViewForm_Load);
             this.grpJob.ResumeLayout(false);
@@ -1036,9 +1067,7 @@
         private System.Windows.Forms.GroupBox grpContactInfo;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.MaskedTextBox mtxtWorkPhone;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.MaskedTextBox mtxtMobilePhone;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.GroupBox grpDocument;
         private System.Windows.Forms.TextBox txtInsCertific;
@@ -1083,5 +1112,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiBack;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiStatus;
+        private System.Windows.Forms.ToolStripMenuItem tsmiWork;
+        private System.Windows.Forms.ToolStripMenuItem tsmiToFire;
+        private System.Windows.Forms.TextBox mtxtWorkPhone;
+        private System.Windows.Forms.TextBox mtxtMobilePhone;
     }
 }

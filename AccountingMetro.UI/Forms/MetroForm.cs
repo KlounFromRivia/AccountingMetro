@@ -216,21 +216,32 @@ namespace AccountingMetro.UI.Forms
 
         private void btnDeleteVETKA_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"Вы уверены, что хотите удалить выбранную ветку?",
+            using (var db = new AccountingMetroDBContext())
+            {
+                string strVetka = lstVetka.SelectedItems[0].Text;
+                var station = db.Stations.FirstOrDefault(x => x.Vetka.Title == strVetka);
+                if (station == null)
+                {
+                    if (MessageBox.Show($"Вы уверены, что хотите удалить выбранную ветку?",
                 "Подтвердите действие",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Asterisk) == DialogResult.Yes)
-            {
-                using (var db = new AccountingMetroDBContext())
-                {
-                    string strVetka = lstVetka.SelectedItems[0].Text;
-                    var vetka = db.Vetkas.FirstOrDefault(x => x.Title == strVetka);
-                    db.Vetkas.Remove(vetka);
-                    db.SaveChanges();
-                    MessageBox.Show("Удалена ветка", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    {
+                        var vetka = db.Vetkas.FirstOrDefault(x => x.Title == strVetka);
+                        db.Vetkas.Remove(vetka);
+                        db.SaveChanges();
+                        MessageBox.Show("Удалена ветка", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    FillStationView();
+                    InitList();
                 }
-                FillStationView();
-                InitList();
+                else
+                {
+                    MessageBox.Show($"Нельзя удалить эту ветку, так как на ней есть станции",
+                        "Внимание!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
         }
         #endregion

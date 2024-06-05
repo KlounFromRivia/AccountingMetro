@@ -91,7 +91,7 @@ namespace AccountingMetro.UI.Forms
                         x.Employee.Person.Patronymic,
 
                         Post = x.Employee.Post.Title,
-                        PlaceJob = x.Employee.Station.Title,
+                        PlaceJob = x.PlaceWork,
                         WorkPhone = x.Employee.PhoneWork,
                         NormaShift = x.Employee.NormShift,
                         ShiftOpen = x.ShiftOpened,
@@ -110,6 +110,7 @@ namespace AccountingMetro.UI.Forms
                 panel1.Width = 184;
                 label1.Location = new Point(6, 180);
                 cmbStatusShift.Location = new Point(9, 199);
+                this.Width = 1500;
                 dgvShift.DataSource = db.Shifts
                     .Include(x => x.Employee.Person)
                     .Include(x => x.Employee.Station)
@@ -124,7 +125,7 @@ namespace AccountingMetro.UI.Forms
                         x.Employee.Person.Patronymic,
 
                         Post = x.Employee.Post.Title,
-                        PlaceJob = x.Employee.Station.Title,
+                        PlaceJob = x.PlaceWork,
                         WorkPhone = x.Employee.PhoneWork,
                         NormaShift = x.Employee.NormShift,
                         ShiftOpen = x.ShiftOpened,
@@ -201,7 +202,7 @@ namespace AccountingMetro.UI.Forms
                             x.Employee.Person.Patronymic,
 
                             Post = x.Employee.Post.Title,
-                            PlaceJob = x.Employee.Station.Title,
+                            PlaceJob = x.PlaceWork,
                             WorkPhone = x.Employee.PhoneWork,
                             NormaShift = x.Employee.NormShift,
                             ShiftOpen = x.ShiftOpened,

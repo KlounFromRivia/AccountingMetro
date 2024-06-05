@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202406021439416_AddVetkaTrain.Designer.cs">
       <DependentUpon>202406021439416_AddVetkaTrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406051457158_LongId.cs" />
+    <Compile Include="Migrations\202406051457158_LongId.Designer.cs">
+      <DependentUpon>202406051457158_LongId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Shift.cs" />
@@ -77,6 +81,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\StatusTrain.cs" />
+    <Compile Include="Models\StatusEmployee.cs" />
     <Compile Include="Models\Train.cs" />
     <Compile Include="Models\Vetka.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406021439416_AddVetkaTrain.resx">
       <DependentUpon>202406021439416_AddVetkaTrain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406051457158_LongId.resx">
+      <DependentUpon>202406051457158_LongId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

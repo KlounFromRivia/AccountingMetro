@@ -47,8 +47,18 @@ namespace AccountingMetro.UI.Forms
                 });
                 cmbPost.DisplayMember = nameof(Post.Title);
 
+                cmbStatusEmployee.Items.Clear();
+                cmbStatusEmployee.Items.AddRange(db.StatusEmployees.ToArray());
+                cmbStatusEmployee.Items.Insert(0, new StatusEmployee()
+                {
+                    Id = -1,
+                    Title = "Все сотрудники"
+                });
+                cmbStatusEmployee.DisplayMember = nameof(StatusEmployee.Title);
+
                 cmbPost.SelectedIndex = 0;
                 cmbVetka.SelectedIndex = 0;
+                cmbStatusEmployee.SelectedIndex = 0;
             }
         }
         #region Фильтрация
@@ -57,8 +67,9 @@ namespace AccountingMetro.UI.Forms
             var station = ((Station)cmbStation.SelectedItem);
             var vetka = ((Vetka)cmbVetka.SelectedItem);
             var post = ((Post)cmbPost.SelectedItem);
+            var status = ((StatusEmployee)cmbStatusEmployee.SelectedItem);
 
-            if (station == null || vetka == null || post == null)
+            if (station == null || vetka == null || post == null || status == null)
             {
                 return;
             }
@@ -70,9 +81,14 @@ namespace AccountingMetro.UI.Forms
                     .Include(x => x.Station)
                     .Include(x => x.Train)
                     .Include(x => x.Post)
+                    .Include(x => x.StatusEmployee)
                     .Where(x => (x.StationId == station.Id || station.Id == -1)
                     && (x.Station.VetkaId == vetka.Id || vetka.Id == -1)
-                    && (x.PostId == post.Id || post.Id == -1))
+                    && (x.PostId == post.Id || post.Id == -1)
+                    && (x.StatusEmployeeId == status.Id || status.Id == -1)
+                    && ((x.Person.LastName.ToLower().Contains(txtFam.Text.ToLower()) || txtFam.Text == "")
+                    || (x.Person.FirstName.ToLower().Contains(txtFam.Text.ToLower()) || txtFam.Text == "")
+                    || (x.Person.Patronymic.ToLower().Contains(txtFam.Text.ToLower()) || txtFam.Text == "")))
                     .ToList();
                 foreach (var employee in employees)
                 {
@@ -80,6 +96,7 @@ namespace AccountingMetro.UI.Forms
                 }
                 tsslCountEmployee.Text = "Кол-во сотрудников: " + db.Employees.Count();
                 tsslCountOnStation.Text = "Кол-во сотрудников на станции: " + db.Employees.Where(x => x.StationId == station.Id).Count();
+                tsslStatusEmployee.Text = "Кол-во работающих сотрудников: " + db.Employees.Where(x => x.StatusEmployeeId == 1).Count();
             }
         }
         #endregion

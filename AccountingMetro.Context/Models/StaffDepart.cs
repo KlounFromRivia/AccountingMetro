@@ -13,12 +13,15 @@ namespace AccountingMetro.Context.Models
     /// </summary>
     public class StaffDepart
     {
-        public int Id { get; set; }
-        public int EmployeeId { get; set; }
+        public long Id { get; set; }
+        public long EmployeeId { get; set; }
         public Employee Employee { get; set; }
         [Required]
+        [MaxLength(255)]
+        [Index(IsUnique = true)]
         public string Login { get; set; }
         [Required]
+        [MaxLength(255)]
         public string Password { get; set; }
         [Required]
         [MaxLength(255)]

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AccountingMetro.Context.Models
 {
@@ -8,7 +9,9 @@ namespace AccountingMetro.Context.Models
     /// </summary>
     public class StatusMari
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
+        [Required]
+        [MaxLength(255)]
         public string Title { get; set; }
         public ICollection<Person> Persons { get; set; }
     }
