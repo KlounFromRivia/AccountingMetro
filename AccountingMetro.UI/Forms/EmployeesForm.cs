@@ -27,7 +27,7 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                FillStationView();
+                FillEmployeeView();
 
                 cmbVetka.Items.Clear();
                 cmbVetka.Items.AddRange(db.Vetkas.ToArray());
@@ -84,7 +84,7 @@ namespace AccountingMetro.UI.Forms
         }
         #endregion
 
-        public void FillStationView()
+        public void FillEmployeeView()
         {
             flpEmployees.Controls.Clear();
             using (var db = new AccountingMetroDBContext())
@@ -153,16 +153,12 @@ namespace AccountingMetro.UI.Forms
             this.Close();
         }
 
-        private void flpEmployees_VisibleChanged(object sender, EventArgs e)
-        {
-            Filter();
-        }
-
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
             var ev = new EmployeeViewForm();
             this.Hide();
             ev.ShowDialog();
+            FillEmployeeView();
             this.Show();
         }
     }
