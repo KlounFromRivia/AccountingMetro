@@ -56,6 +56,7 @@ namespace AccountingMetro.UI.UserControls
             employeeView.Employee = this.Employee;
             employeeView.ShowDialog();
             this.ParentForm.Show();
+            ((EmployeesForm)ParentForm).FillEmployeeView();
         }
 
         private void tsmiViewShift_Click(object sender, EventArgs e)

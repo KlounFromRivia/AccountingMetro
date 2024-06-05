@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
+using static System.Net.Mime.MediaTypeNames;
+using Image = System.Drawing.Image;
 
 namespace AccountingMetro.UI.Forms
 {
@@ -20,6 +22,7 @@ namespace AccountingMetro.UI.Forms
         public Employee Employee { get; set; }
 
         private string photoUrl = null;
+        private byte[] image = null;
         public EmployeeViewForm()
         {
             InitializeComponent();
@@ -71,8 +74,8 @@ namespace AccountingMetro.UI.Forms
 
                 if (employee.Person.ImagePreview != null)
                 {
-                    var image = Image.FromStream(new MemoryStream(employee.Person.ImagePreview));
-                    picEmployee.Image = image;
+                    var image = new MemoryStream(employee.Person.ImagePreview);
+                    picEmployee.Image = Image.FromStream(image);
                 }
             }
             #endregion
@@ -126,7 +129,7 @@ namespace AccountingMetro.UI.Forms
             {
                 if (train.StatusTrainId != 1)
                 {
-                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
 
                     if(cmbTrain.SelectedItem == null)
@@ -244,15 +247,20 @@ namespace AccountingMetro.UI.Forms
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //var  = (Train)cmbTrain.SelectedItem;
-            //if (train != null)
-            //{
-            //    if (train.StatusTrainId != 1)
-            //    {
-            //        MessageBox.Show("Поезд под номером " + train.Nomer + " на ремонте!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        cmbTrain.SelectedItem = cmbTrain.Items.Cast<Train>().FirstOrDefault(x => x.Id == Employee.TrainId);
-            //    }
-            //}
+            var station = (Station)cmbStation.SelectedItem;
+            if (station != null)
+            {
+                if (station.StatusStationId != 1)
+                {
+                    MessageBox.Show("Станция " + station.Title + " на реконструкции!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.Id == Employee.StationId);
+
+                    if (cmbStation.SelectedItem == null)
+                    {
+                        cmbStation.SelectedItem = cmbStation.Items.Cast<Station>().FirstOrDefault(x => x.StatusStationId == 1);
+                    }
+                }
+            }
             ValidateInput();
         }
 
@@ -273,14 +281,14 @@ namespace AccountingMetro.UI.Forms
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var image = File.ReadAllBytes(openFileDialog1.FileName);
-                using (var db = new AccountingMetroDBContext())
-                {
-                    Employee.Person.ImagePreview = image;
-                    db.Entry(Employee.Person).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                picEmployee.Image = Image.FromStream(new MemoryStream(Employee.Person.ImagePreview));
+                image = File.ReadAllBytes(openFileDialog1.FileName);
+                //using (var db = new AccountingMetroDBContext())
+                //{
+                //    Employee.Person.ImagePreview = image;
+                //    db.Entry(Employee.Person).State = EntityState.Modified;
+                //    db.SaveChanges();
+                //}
+                picEmployee.Image = Image.FromStream(new MemoryStream(image));
             }
         }
 
@@ -292,50 +300,117 @@ namespace AccountingMetro.UI.Forms
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            using (var db = new AccountingMetroDBContext())
+            if (MessageBox.Show($"Вы хотите сохранить данные сотрудника?", "Подтвердите действие",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var employee = Employee.Id == -1
-                    ? Employee
-                    : db.Employees.Include(x => x.Person.Document).FirstOrDefault(x => x.Id == Employee.Id);
-
-                employee.Person.Document.PassportSeries = txtSeriePassport.Text;
-                employee.Person.Document.PassportNomer = txtNomerPassport.Text;
-                employee.Person.Document.Issued = txtAdresPassport.Text;
-                employee.Person.Document.DateIssued = dtpPassportDate.Value;
-                employee.Person.Document.INN = txtINN.Text;
-                employee.Person.Document.InsCertific = txtInsCertific.Text;
-                employee.Person.Document.RegistratAddress = txtAdresReg.Text;
-
-                employee.Person.LastName = txtFam.Text;
-                employee.Person.FirstName = txtIma.Text;
-                employee.Person.Patronymic = txtPatr.Text;
-                employee.Person.Phone = mtxtMobilePhone.Text;
-                employee.Person.Email = txtEmail.Text;
-                employee.Person.ResidentAddress = txtAdresResid.Text;
-                employee.Person.BirthDay = dtpBithDay.Value;
-                employee.Person.GenderId = ((Gender)cmbGender.SelectedItem).Id;
-                employee.Person.StatusMariId = ((StatusMari)cmbStatusMari.SelectedItem).Id;
-
-                employee.ContractDay = dtpContract.Value;
-                employee.EmploymentDay = dtpJob.Value;
-                employee.PhoneWork = mtxtWorkPhone.Text;
-                employee.NormShift = (int)numNormShift.Value;
-                employee.Salary = (int)numSalary.Value;
-                employee.Allowance = (int)numAllowance.Value;
-                employee.Vacation = (int)numVacation.Value;
-                employee.PostId = ((Post)cmbPost.SelectedItem).Id;
-                employee.StationId = ((Station)cmbStation.SelectedItem).Id;
-                if (cmbTrain.Enabled == true)
+                using (var db = new AccountingMetroDBContext())
                 {
-                    employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
+                    var employee = Employee.Id == -1
+                        ? Employee
+                        : db.Employees.Include(x => x.Person.Document).FirstOrDefault(x => x.Id == Employee.Id);
+
+                    //var image = File.ReadAllBytes(picEmployee.Image.ToString());
+
+                    if (employee.Id == -1)
+                    {
+                        var document = new Document()
+                        {
+                            Id = db.Documents.Count(),
+                            PassportSeries = txtSeriePassport.Text,
+                            PassportNomer = txtNomerPassport.Text,
+                            Issued = txtAdresPassport.Text,
+                            DateIssued = dtpPassportDate.Value,
+                            INN = txtINN.Text,
+                            InsCertific = txtInsCertific.Text,
+                            RegistratAddress = txtAdresReg.Text,
+                        };
+                        db.Documents.Add(document);
+                        db.SaveChanges();
+
+                        var person = new Person()
+                        {
+                            Id = db.Persons.Count(),
+                            LastName = txtFam.Text,
+                            FirstName = txtIma.Text,
+                            Patronymic = txtPatr.Text,
+                            Phone = mtxtMobilePhone.Text,
+                            Email = txtEmail.Text,
+                            ResidentAddress = txtAdresResid.Text,
+                            BirthDay = dtpBithDay.Value,
+                            GenderId = ((Gender)cmbGender.SelectedItem).Id,
+                            StatusMariId = ((StatusMari)cmbStatusMari.SelectedItem).Id,
+                            DocumentId = db.Documents.FirstOrDefault(x => x.Id == document.Id).Id,
+                        };
+                        if (picEmployee.Image != Properties.Resources.employee)
+                        {
+                            person.ImagePreview = image;
+                        }
+                        db.Persons.Add(person);
+                        db.SaveChanges();
+
+                        employee = new Employee()
+                        {
+                            Id = db.Employees.Count(),
+                            PersonId = db.Persons.FirstOrDefault(x => x.Id == person.Id).Id,
+                            ContractDay = dtpContract.Value,
+                            EmploymentDay = dtpJob.Value,
+                            PhoneWork = mtxtWorkPhone.Text,
+                            NormShift = (int)numNormShift.Value,
+                            Salary = (int)numSalary.Value,
+                            Allowance = (int)numAllowance.Value,
+                            Vacation = (int)numVacation.Value,
+                            PostId = ((Post)cmbPost.SelectedItem).Id,
+                            StationId = ((Station)cmbStation.SelectedItem).Id,
+                        };
+                        if (cmbTrain.Visible == true)
+                        {
+                            employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
+                        }
+                        db.Employees.Add(employee);
+                        db.SaveChanges();
+                        MessageBox.Show("Все данные сохранены", "Добавление сотрудника", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+
+                    employee.Person.Document.PassportSeries = txtSeriePassport.Text;
+                    employee.Person.Document.PassportNomer = txtNomerPassport.Text;
+                    employee.Person.Document.Issued = txtAdresPassport.Text;
+                    employee.Person.Document.DateIssued = dtpPassportDate.Value;
+                    employee.Person.Document.INN = txtINN.Text;
+                    employee.Person.Document.InsCertific = txtInsCertific.Text;
+                    employee.Person.Document.RegistratAddress = txtAdresReg.Text;
+
+                    employee.Person.LastName = txtFam.Text;
+                    employee.Person.FirstName = txtIma.Text;
+                    employee.Person.Patronymic = txtPatr.Text;
+                    employee.Person.Phone = mtxtMobilePhone.Text;
+                    employee.Person.Email = txtEmail.Text;
+                    employee.Person.ResidentAddress = txtAdresResid.Text; 
+                    if (image != null)
+                    {
+                        employee.Person.ImagePreview = image;
+                    }
+                    employee.Person.BirthDay = dtpBithDay.Value;
+                    employee.Person.GenderId = ((Gender)cmbGender.SelectedItem).Id;
+                    employee.Person.StatusMariId = ((StatusMari)cmbStatusMari.SelectedItem).Id;
+
+                    employee.ContractDay = dtpContract.Value;
+                    employee.EmploymentDay = dtpJob.Value;
+                    employee.PhoneWork = mtxtWorkPhone.Text;
+                    employee.NormShift = (int)numNormShift.Value;
+                    employee.Salary = (int)numSalary.Value;
+                    employee.Allowance = (int)numAllowance.Value;
+                    employee.Vacation = (int)numVacation.Value;
+                    employee.PostId = ((Post)cmbPost.SelectedItem).Id;
+                    employee.StationId = ((Station)cmbStation.SelectedItem).Id;
+                    if (cmbTrain.Visible == true)
+                    {
+                        employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
+                    }
+                    db.SaveChanges();
+                    MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
-                if (employee.Id == -1)
-                {
-                    db.Employees.Add(employee);
-                }
-                db.SaveChanges();
-                MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
             }
         }
 
@@ -356,6 +431,9 @@ namespace AccountingMetro.UI.Forms
             {
                 Id = -1,
             };
+            cmbVetka.SelectedIndex = 0;
+            cmbPost.SelectedIndex = 0;
+            tsmiBack.Visible = false;
         }
     }
 }
