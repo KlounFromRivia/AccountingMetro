@@ -40,6 +40,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiViewShift = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@
             // lblTrain
             // 
             this.lblTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblTrain.Location = new System.Drawing.Point(10, 230);
+            this.lblTrain.Location = new System.Drawing.Point(10, 210);
             this.lblTrain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrain.Name = "lblTrain";
             this.lblTrain.Size = new System.Drawing.Size(199, 20);
@@ -120,7 +122,7 @@
             // 
             this.lblTrains.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTrains.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTrains.Location = new System.Drawing.Point(10, 208);
+            this.lblTrains.Location = new System.Drawing.Point(10, 188);
             this.lblTrains.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrains.Name = "lblTrains";
             this.lblTrains.Size = new System.Drawing.Size(199, 22);
@@ -132,23 +134,43 @@
             this.contextMenuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiEdit,
-            this.tsmiViewShift});
+            this.tsmiViewShift,
+            this.tsmiDelete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(214, 92);
             // 
             // tsmiEdit
             // 
             this.tsmiEdit.Name = "tsmiEdit";
-            this.tsmiEdit.Size = new System.Drawing.Size(192, 22);
+            this.tsmiEdit.Size = new System.Drawing.Size(213, 22);
             this.tsmiEdit.Text = "Просмотр данных";
             this.tsmiEdit.Click += new System.EventHandler(this.tsmiEdit_Click);
             // 
             // tsmiViewShift
             // 
             this.tsmiViewShift.Name = "tsmiViewShift";
-            this.tsmiViewShift.Size = new System.Drawing.Size(192, 22);
+            this.tsmiViewShift.Size = new System.Drawing.Size(213, 22);
             this.tsmiViewShift.Text = "Просмотр смен";
             this.tsmiViewShift.Click += new System.EventHandler(this.tsmiViewShift_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblStatus.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblStatus.Location = new System.Drawing.Point(10, 230);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(199, 20);
+            this.lblStatus.TabIndex = 8;
+            this.lblStatus.Text = "Уволен";
+            this.lblStatus.Visible = false;
+            // 
+            // tsmiDelete
+            // 
+            this.tsmiDelete.Name = "tsmiDelete";
+            this.tsmiDelete.Size = new System.Drawing.Size(213, 22);
+            this.tsmiDelete.Text = "Удалить сотрудника";
+            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // EmployeeView
             // 
@@ -165,6 +187,7 @@
             this.Controls.Add(this.lblFIO);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTrain);
+            this.Controls.Add(this.lblStatus);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeView";
@@ -188,5 +211,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmiEdit;
         private System.Windows.Forms.ToolStripMenuItem tsmiViewShift;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
     }
 }

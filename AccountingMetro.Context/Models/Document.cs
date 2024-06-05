@@ -13,16 +13,20 @@ namespace AccountingMetro.Context.Models
     /// </summary>
     public class Document
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
+        [Required]
         public string PassportSeries { get; set; }
         [Required]
         public string PassportNomer { get; set; }
+        [Required]
         public string Issued { get; set; }
+        [Required]
         public DateTime DateIssued { get; set; }
         [Required]
         public string INN { get; set; }
         [Required]
         public string InsCertific { get; set; }
+        [Required]
         public string RegistratAddress { get; set; }
     }
 }

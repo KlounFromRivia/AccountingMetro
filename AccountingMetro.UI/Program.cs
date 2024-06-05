@@ -18,7 +18,7 @@ namespace AccountingMetro.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EmployeesForm());
+            Application.Run(new MainForm());
         }
     }
 }

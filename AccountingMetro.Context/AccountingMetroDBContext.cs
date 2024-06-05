@@ -25,6 +25,7 @@ namespace AccountingMetro.Context
         public DbSet<StatusStation> StatusStations { get; set; }
         public DbSet<StaffDepart> StaffDeparts { get; set; }
         public DbSet<Shift> Shifts { get; set; }
+        public DbSet<StatusEmployee> StatusEmployees { get; set; }
         public AccountingMetroDBContext() : base("AccountingMetroDBConnectionString")
         {
 

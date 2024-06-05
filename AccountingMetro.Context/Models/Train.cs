@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AccountingMetro.Context.Models
 {
@@ -7,11 +8,13 @@ namespace AccountingMetro.Context.Models
     /// </summary>
     public class Train
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
+        [Required]
+        [MaxLength(255)]
         public string Nomer { get; set; }
-        public int VetkaId { get; set; }
+        public long VetkaId { get; set; }
         public Vetka Vetka { get; set; }
-        public int StatusTrainId { get; set; }
+        public long StatusTrainId { get; set; }
         public StatusTrain StatusTrain { get; set; }
         public ICollection<Employee> Employees { get; set; }
     }

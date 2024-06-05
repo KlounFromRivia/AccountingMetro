@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AccountingMetro.Context.Models
 {
     /// <summary>
-    /// Сущность должности
+    /// Сущность статуса сотрудника
     /// </summary>
-    public class Post
+    public class StatusEmployee
     {
         public long Id { get; set; }
         [Required]

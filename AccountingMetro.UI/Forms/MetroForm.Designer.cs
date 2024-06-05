@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetroForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStation = new System.Windows.Forms.TabPage();
             this.flpStation = new System.Windows.Forms.FlowLayoutPanel();
@@ -498,11 +499,13 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(901, 643);
             this.Name = "MetroForm";
-            this.Text = "База данных";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Метрополитен";
             this.tabControl1.ResumeLayout(false);
             this.tabStation.ResumeLayout(false);
             this.tabStation.PerformLayout();

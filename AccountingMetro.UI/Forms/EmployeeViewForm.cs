@@ -21,8 +21,8 @@ namespace AccountingMetro.UI.Forms
     {
         public Employee Employee { get; set; }
 
-        private string photoUrl = null;
         private byte[] image = null;
+        private long status = 1;
         public EmployeeViewForm()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace AccountingMetro.UI.Forms
                 dtpContract.Text = employee.ContractDay.ToString();
                 dtpJob.Text = employee.EmploymentDay.ToString();
 
+                status = employee.StatusEmployeeId;
 
                 txtFam.Text = employee.Person.LastName;
                 txtIma.Text = employee.Person.FirstName;
@@ -282,12 +283,6 @@ namespace AccountingMetro.UI.Forms
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 image = File.ReadAllBytes(openFileDialog1.FileName);
-                //using (var db = new AccountingMetroDBContext())
-                //{
-                //    Employee.Person.ImagePreview = image;
-                //    db.Entry(Employee.Person).State = EntityState.Modified;
-                //    db.SaveChanges();
-                //}
                 picEmployee.Image = Image.FromStream(new MemoryStream(image));
             }
         }
@@ -298,6 +293,7 @@ namespace AccountingMetro.UI.Forms
             FillNoneDB();
         }
 
+        #region Сохранение данных
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show($"Вы хотите сохранить данные сотрудника?", "Подтвердите действие",
@@ -308,8 +304,6 @@ namespace AccountingMetro.UI.Forms
                     var employee = Employee.Id == -1
                         ? Employee
                         : db.Employees.Include(x => x.Person.Document).FirstOrDefault(x => x.Id == Employee.Id);
-
-                    //var image = File.ReadAllBytes(picEmployee.Image.ToString());
 
                     if (employee.Id == -1)
                     {
@@ -361,6 +355,7 @@ namespace AccountingMetro.UI.Forms
                             Vacation = (int)numVacation.Value,
                             PostId = ((Post)cmbPost.SelectedItem).Id,
                             StationId = ((Station)cmbStation.SelectedItem).Id,
+                            StatusEmployeeId = status,
                         };
                         if (cmbTrain.Visible == true)
                         {
@@ -370,6 +365,7 @@ namespace AccountingMetro.UI.Forms
                         db.SaveChanges();
                         MessageBox.Show("Все данные сохранены", "Добавление сотрудника", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
+                        return;
                     }
 
                     employee.Person.Document.PassportSeries = txtSeriePassport.Text;
@@ -403,6 +399,7 @@ namespace AccountingMetro.UI.Forms
                     employee.Vacation = (int)numVacation.Value;
                     employee.PostId = ((Post)cmbPost.SelectedItem).Id;
                     employee.StationId = ((Station)cmbStation.SelectedItem).Id;
+                    employee.StatusEmployeeId = status;
                     if (cmbTrain.Visible == true)
                     {
                         employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
@@ -413,6 +410,7 @@ namespace AccountingMetro.UI.Forms
                 }
             }
         }
+        #endregion
 
         private void tsmiClose_Click(object sender, EventArgs e)
         {
@@ -425,15 +423,57 @@ namespace AccountingMetro.UI.Forms
             if (Employee != null)
             {
                 Initialize(Employee);
+                ChangeStatusEmployee();
                 return;
             }
             Employee = new Employee()
             {
                 Id = -1,
             };
+            cmbGender.SelectedIndex = 0;
+            cmbStatusMari.SelectedIndex = 0;
             cmbVetka.SelectedIndex = 0;
             cmbPost.SelectedIndex = 0;
             tsmiBack.Visible = false;
+            tsmiStatus.Visible = false;
+            tsmiSave.Text = "Добавить сотрудника";
+            ChangeStatusEmployee();
+        }
+
+        private void ChangeStatusEmployee()
+        {
+            tsmiWork.Enabled = status != 1
+                ? true
+                : false;
+
+            tsmiToFire.Enabled =
+                grpContactInfo.Enabled =
+                    grpDocument.Enabled =
+                    grpPerson.Enabled =
+                    grpJob.Enabled = status != 2
+                ? true
+                : false;
+
+            if (status == 1)
+            {
+                tsmiWork.Text = "Работает";
+                tsmiToFire.Text = "Уволить";
+                return;
+            }
+            tsmiWork.Text = "Восстановить";
+            tsmiToFire.Text = "Уволен";
+        }
+
+        private void tsmiWork_Click(object sender, EventArgs e)
+        {
+            status = 1;
+            ChangeStatusEmployee();
+        }
+
+        private void tsmiToFire_Click(object sender, EventArgs e)
+        {
+            status = 2;
+            ChangeStatusEmployee();
         }
     }
 }
