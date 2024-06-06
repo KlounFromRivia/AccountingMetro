@@ -85,6 +85,29 @@ namespace AccountingMetro.UI.Forms
         }
         #endregion
 
+        private void EmployeeViewForm_Load(object sender, EventArgs e)
+        {
+            FillComboBoxes();
+            if (Employee != null)
+            {
+                Initialize(Employee);
+                ChangeStatusEmployee();
+                return;
+            }
+            Employee = new Employee()
+            {
+                Id = -1,
+            };
+            cmbGender.SelectedIndex = 0;
+            cmbStatusMari.SelectedIndex = 0;
+            cmbVetka.SelectedIndex = 0;
+            cmbPost.SelectedIndex = 0;
+            tsmiBack.Visible = false;
+            tsmiStatus.Visible = false;
+            tsmiSave.Text = "Добавить сотрудника";
+            ChangeStatusEmployee();
+        }
+
         public void FillComboBoxes()
         {
             using (var db = new AccountingMetroDBContext())
@@ -427,29 +450,6 @@ namespace AccountingMetro.UI.Forms
         private void tsmiClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void EmployeeViewForm_Load(object sender, EventArgs e)
-        {
-            FillComboBoxes();
-            if (Employee != null)
-            {
-                Initialize(Employee);
-                ChangeStatusEmployee();
-                return;
-            }
-            Employee = new Employee()
-            {
-                Id = -1,
-            };
-            cmbGender.SelectedIndex = 0;
-            cmbStatusMari.SelectedIndex = 0;
-            cmbVetka.SelectedIndex = 0;
-            cmbPost.SelectedIndex = 0;
-            tsmiBack.Visible = false;
-            tsmiStatus.Visible = false;
-            tsmiSave.Text = "Добавить сотрудника";
-            ChangeStatusEmployee();
         }
 
         private void ChangeStatusEmployee()

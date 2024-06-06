@@ -54,11 +54,11 @@
             this.tabTrain = new System.Windows.Forms.TabPage();
             this.flpTrain = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAddTrain = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtSearchTrain = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbStatusTrain = new System.Windows.Forms.ComboBox();
-            this.btnAddTrain = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbVetkaTrain = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -237,7 +237,7 @@
             this.groupBox1.Size = new System.Drawing.Size(246, 199);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Поиск";
+            this.groupBox1.Text = "Станция";
             // 
             // txtSearchStation
             // 
@@ -355,7 +355,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnAddTrain);
             this.panel2.Controls.Add(this.groupBox6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(4, 4);
@@ -365,8 +364,21 @@
             this.panel2.Size = new System.Drawing.Size(260, 558);
             this.panel2.TabIndex = 2;
             // 
+            // btnAddTrain
+            // 
+            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAddTrain.Location = new System.Drawing.Point(7, 176);
+            this.btnAddTrain.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddTrain.Name = "btnAddTrain";
+            this.btnAddTrain.Size = new System.Drawing.Size(232, 28);
+            this.btnAddTrain.TabIndex = 2;
+            this.btnAddTrain.Text = "Добавить новый поезд";
+            this.btnAddTrain.UseVisualStyleBackColor = true;
+            this.btnAddTrain.Click += new System.EventHandler(this.btnAddTrain_Click);
+            // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnAddTrain);
             this.groupBox6.Controls.Add(this.txtSearchTrain);
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.cmbStatusTrain);
@@ -378,10 +390,10 @@
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox6.Size = new System.Drawing.Size(246, 199);
+            this.groupBox6.Size = new System.Drawing.Size(246, 210);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Поиск";
+            this.groupBox6.Text = "Электропоезд";
             // 
             // txtSearchTrain
             // 
@@ -397,9 +409,9 @@
             this.label6.Location = new System.Drawing.Point(11, 22);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 16);
+            this.label6.Size = new System.Drawing.Size(49, 16);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Название";
+            this.label6.Text = "Номер";
             // 
             // cmbStatusTrain
             // 
@@ -411,18 +423,6 @@
             this.cmbStatusTrain.Size = new System.Drawing.Size(220, 24);
             this.cmbStatusTrain.TabIndex = 3;
             this.cmbStatusTrain.SelectedIndexChanged += new System.EventHandler(this.cmbStatusTrain_SelectedIndexChanged);
-            // 
-            // btnAddTrain
-            // 
-            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAddTrain.Location = new System.Drawing.Point(7, 205);
-            this.btnAddTrain.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddTrain.Name = "btnAddTrain";
-            this.btnAddTrain.Size = new System.Drawing.Size(246, 28);
-            this.btnAddTrain.TabIndex = 2;
-            this.btnAddTrain.Text = "Добавить новый поезд";
-            this.btnAddTrain.UseVisualStyleBackColor = true;
-            this.btnAddTrain.Click += new System.EventHandler(this.btnAddTrain_Click);
             // 
             // label7
             // 

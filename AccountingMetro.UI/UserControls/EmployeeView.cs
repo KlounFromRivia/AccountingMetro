@@ -37,7 +37,7 @@ namespace AccountingMetro.UI.UserControls
                     this.Visible = false;
                     return;
                 }
-                if (CurrentEmployee.StaffDepart.Id != 1)
+                if (employee.PostId == 9 && CurrentEmployee.StaffDepart.Id != 1)
                 {
                     this.Enabled = false;
                 }
