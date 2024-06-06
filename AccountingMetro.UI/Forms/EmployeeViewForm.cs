@@ -1,5 +1,6 @@
 ﻿using AccountingMetro.Context;
 using AccountingMetro.Context.Models;
+using AccountingMetro.UI.Validate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -207,9 +208,9 @@ namespace AccountingMetro.UI.Forms
             ValidateInput();
         }
 
+        #region Проверка данных
         public void ValidateInput()
         {
-            #region Проверка данных
             TimeSpan job = dtpJob.Value.Subtract(dtpContract.Value);
 
             if (cmbTrain.Enabled == true && cmbTrain.Visible == true)
@@ -243,8 +244,8 @@ namespace AccountingMetro.UI.Forms
                     job.Days >= 1 &&
                     cmbStation.SelectedIndex >= 0;
             }
-            #endregion
         }
+        #endregion
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {

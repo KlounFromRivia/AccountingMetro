@@ -53,19 +53,22 @@ namespace AccountingMetro.UI.Forms
 
         private void btnStaffDepart_Click(object sender, EventArgs e)
         {
-
+            var staffdepartForm = new StaffDepartForm();
+            this.Hide();
+            staffdepartForm.ShowDialog();
+            this.Show();
         }
 
         public void Initizalis()
         {
-            //tsslFIO.Text = CurrectEmployee.User.Employee.Person.LastName + " "
-            //+ CurrectEmployee.User.Employee.Person.FirstName + " " +
-            //CurrectEmployee.User.Employee.Person.Patronymic + " ";
-            //if (CurrectEmployee.User.Employee.Person.ImagePreview != null)
-            //{
-            //    var image = Image.FromStream(new MemoryStream(CurrectEmployee.User.Employee.Person.ImagePreview));
-            //    picEmployee.Image = image;
-            //}
+            tsslFIO.Text = CurrectEmployee.User.Employee.Person.LastName + " "
+            + CurrectEmployee.User.Employee.Person.FirstName + " " +
+            CurrectEmployee.User.Employee.Person.Patronymic + " ";
+            if (CurrectEmployee.User.Employee.Person.ImagePreview != null)
+            {
+                var image = Image.FromStream(new MemoryStream(CurrectEmployee.User.Employee.Person.ImagePreview));
+                picEmployee.Image = image;
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
