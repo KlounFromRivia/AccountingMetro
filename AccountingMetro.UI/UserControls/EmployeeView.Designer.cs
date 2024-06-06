@@ -40,8 +40,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiViewShift = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +95,7 @@
             this.lblStation.Name = "lblStation";
             this.lblStation.Size = new System.Drawing.Size(199, 35);
             this.lblStation.TabIndex = 5;
-            this.lblStation.Text = "Дежурный";
+            this.lblStation.Text = "Станция";
             // 
             // label5
             // 
@@ -110,8 +110,8 @@
             // 
             // lblTrain
             // 
-            this.lblTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblTrain.Location = new System.Drawing.Point(10, 210);
+            this.lblTrain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTrain.Location = new System.Drawing.Point(10, 227);
             this.lblTrain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrain.Name = "lblTrain";
             this.lblTrain.Size = new System.Drawing.Size(199, 20);
@@ -120,9 +120,9 @@
             // 
             // lblTrains
             // 
-            this.lblTrains.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblTrains.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTrains.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTrains.Location = new System.Drawing.Point(10, 188);
+            this.lblTrains.Location = new System.Drawing.Point(10, 205);
             this.lblTrains.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTrains.Name = "lblTrains";
             this.lblTrains.Size = new System.Drawing.Size(199, 22);
@@ -137,7 +137,7 @@
             this.tsmiViewShift,
             this.tsmiDelete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(214, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(214, 70);
             // 
             // tsmiEdit
             // 
@@ -153,24 +153,24 @@
             this.tsmiViewShift.Text = "Просмотр смен";
             this.tsmiViewShift.Click += new System.EventHandler(this.tsmiViewShift_Click);
             // 
-            // lblStatus
-            // 
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblStatus.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblStatus.Location = new System.Drawing.Point(10, 230);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(199, 20);
-            this.lblStatus.TabIndex = 8;
-            this.lblStatus.Text = "Уволен";
-            this.lblStatus.Visible = false;
-            // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
             this.tsmiDelete.Size = new System.Drawing.Size(213, 22);
             this.tsmiDelete.Text = "Удалить сотрудника";
             this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblStatus.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblStatus.Location = new System.Drawing.Point(10, 249);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(199, 20);
+            this.lblStatus.TabIndex = 8;
+            this.lblStatus.Text = "Уволен";
+            this.lblStatus.Visible = false;
             // 
             // EmployeeView
             // 
@@ -179,6 +179,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.lblTrain);
             this.Controls.Add(this.lblTrains);
             this.Controls.Add(this.lblStation);
             this.Controls.Add(this.label5);
@@ -186,13 +187,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblFIO);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblTrain);
             this.Controls.Add(this.lblStatus);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeView";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(219, 260);
+            this.Size = new System.Drawing.Size(219, 279);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 

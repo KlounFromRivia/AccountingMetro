@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddStaffDepartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddStaffDepartForm.Designer.cs">
+      <DependentUpon>AddStaffDepartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddStationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,12 @@
     <Compile Include="UserControls\EmployeeView.Designer.cs">
       <DependentUpon>EmployeeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\StaffDepartView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\StaffDepartView.Designer.cs">
+      <DependentUpon>StaffDepartView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\StationView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +149,9 @@
     </Compile>
     <Compile Include="Validate\CurrectEmployee.cs" />
     <Compile Include="Validate\CurrectShift.cs" />
+    <EmbeddedResource Include="Forms\AddStaffDepartForm.resx">
+      <DependentUpon>AddStaffDepartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddStationForm.resx">
       <DependentUpon>AddStationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +191,9 @@
     </Compile>
     <EmbeddedResource Include="UserControls\EmployeeView.resx">
       <DependentUpon>EmployeeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\StaffDepartView.resx">
+      <DependentUpon>StaffDepartView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StationView.resx">
       <DependentUpon>StationView.cs</DependentUpon>

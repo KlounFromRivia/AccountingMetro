@@ -21,8 +21,6 @@ namespace AccountingMetro.UI.UserControls
     public partial class EmployeeView : UserControl
     {
         public Employee Employee { get; set; }
-        public Document Document { get; set; }
-        public Person Person { get; set; }
         string element = "";
         public EmployeeView(Employee employee)
         {
@@ -34,6 +32,15 @@ namespace AccountingMetro.UI.UserControls
         {
             using (var db = new AccountingMetroDBContext())
             {
+                if (employee.Person.LastName == "Администратор" || employee.Person.FirstName == "Администратор" || employee.Person.Patronymic == "Администратор")
+                {
+                    this.Visible = false;
+                    return;
+                }
+                if (employee.PostId == CurrectEmployee.User.Employee.PostId && CurrectEmployee.User.Login != "admin")
+                {
+                    this.Enabled = false;
+                }
                 lblFIO.Text = element = employee.Person.LastName +" "+ employee.Person.FirstName +" " + employee.Person.Patronymic;
                 lblPost.Text = employee.Post.Title;
                 lblStation.Text = employee.Station.Title;

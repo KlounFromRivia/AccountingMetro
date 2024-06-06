@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using AccountingMetro.UI.UserControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Cryptography;
+using AccountingMetro.UI.Validate;
 
 namespace AccountingMetro.UI.Forms
 {
@@ -94,9 +95,9 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddOrderView(employee);
                 }
-                tsslCountEmployee.Text = "Кол-во сотрудников: " + db.Employees.Count();
-                tsslCountOnStation.Text = "Кол-во сотрудников на станции: " + db.Employees.Where(x => x.StationId == station.Id).Count();
-                tsslStatusEmployee.Text = "Кол-во работающих сотрудников: " + db.Employees.Where(x => x.StatusEmployeeId == 1).Count();
+                tsslCountEmployee.Text = "Кол-во сотрудников: " + db.Employees.Where(x => x.Person.LastName != "Администратор").Count();
+                tsslCountOnStation.Text = "Кол-во сотрудников на станции: " + db.Employees.Where(x => x.StationId == station.Id && x.Person.LastName != "Администратор").Count();
+                tsslStatusEmployee.Text = "Кол-во работающих сотрудников: " + db.Employees.Where(x => x.StatusEmployeeId == 1 && x.Person.LastName != "Администратор").Count();
             }
         }
         #endregion
@@ -118,6 +119,7 @@ namespace AccountingMetro.UI.Forms
                     AddOrderView(employee);
                 }
             }
+            Filter();
         }
 
         public void AddOrderView(Employee employee)
