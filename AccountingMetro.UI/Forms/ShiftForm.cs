@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using AccountingMetro.UI.General;
+using System.Xml.Linq;
+using AccountingMetro.UI.Validate;
 
 namespace AccountingMetro.UI.Forms
 {
@@ -21,16 +24,11 @@ namespace AccountingMetro.UI.Forms
         public ShiftForm()
         {
             InitializeComponent();
-            InitControls();
-            ShiftHandler();
         }
         public ShiftForm(Employee employee)
         {
             InitializeComponent();
             this.Employee = employee;
-            selectedForm = false;
-            InitControls();
-            ShiftEmployeeHandler(employee);
         }
         public void InitControls()
         {
@@ -62,19 +60,35 @@ namespace AccountingMetro.UI.Forms
                     Title = "Все должности"
                 });
                 cmbPost.DisplayMember = nameof(Post.Title);
-
-                cmbStatusShift.SelectedIndex = 0;
-                cmbStation.SelectedIndex = 0;
-                cmbPost.SelectedIndex = 0;
             }
         }
-        public void ShiftHandler()
+
+        private void ShiftForm_Load(object sender, EventArgs e)
         {
+            InitControls();
+            if (Employee != null)
+            {
+                ShiftEmployeeHandler(Employee);
+                btnStartShift.Visible = true;
+                FilterNone();
+                return;
+            }
+            ShiftHandler();
+            selectedForm = false;
+            FilterNone();
+        }
+
+        private void FilterNone()
+        {
+            dgvShift.ClearSelection();
             cmbStatusShift.SelectedIndex = 0;
             cmbStation.SelectedIndex = 0;
             cmbPost.SelectedIndex = 0;
-            mntShift.SelectionStart = mntShift.MinDate;
-            mntShift.SelectionEnd = DateTime.Now;
+        }
+
+        #region Смены всех сотрудников
+        public void ShiftHandler()
+        {
             txtSearchFIO.Text = "";
             using (var db = new AccountingMetroDBContext())
             {
@@ -86,8 +100,10 @@ namespace AccountingMetro.UI.Forms
                     .Include(x => x.StatusChange)
                     .Select(x => new
                     {
+                        Id = x.Id,
+                        EmployeeId = x.Employee.Id,
                         EmployeeFIO = x.Employee.Person.LastName + " " +
-                        x.Employee.Person.FirstName + " " + 
+                        x.Employee.Person.FirstName + " " +
                         x.Employee.Person.Patronymic,
 
                         Post = x.Employee.Post.Title,
@@ -102,15 +118,21 @@ namespace AccountingMetro.UI.Forms
             }
             dgvShift.ClearSelection();
         }
+        #endregion
+
+        #region Смены сотрудника
         public void ShiftEmployeeHandler(Employee employee)
         {
             using (var db = new AccountingMetroDBContext())
             {
-                panel1.Dock = DockStyle.Left;
-                panel1.Width = 184;
-                label1.Location = new Point(6, 180);
-                cmbStatusShift.Location = new Point(9, 199);
-                this.Width = 1500;
+                grpPoisk.Width = 195;
+                lblFio.Visible = txtSearchFIO.Visible =
+                        lblPost.Visible = cmbPost.Visible =
+                        lblStation.Visible = cmbStation.Visible = false;
+                lblDayShift.Location = new Point(13, 25);
+                dtpShift.Location = new Point(11, 45);
+                lblShift.Location = new Point(13, 72);
+                cmbStatusShift.Location = new Point(11, 92);
                 dgvShift.DataSource = db.Shifts
                     .Include(x => x.Employee.Person)
                     .Include(x => x.Employee.Station)
@@ -120,6 +142,8 @@ namespace AccountingMetro.UI.Forms
                     .Where(x => x.EmployeeId == employee.Id)
                     .Select(x => new
                     {
+                        Id = x.Id,
+                        EmployeeId = x.Employee.Id,
                         EmployeeFIO = x.Employee.Person.LastName + " " +
                         x.Employee.Person.FirstName + " " +
                         x.Employee.Person.Patronymic,
@@ -137,12 +161,13 @@ namespace AccountingMetro.UI.Forms
             }
             dgvShift.ClearSelection();
         }
+        #endregion
 
         #region Фильтрация
         private void Filter()
         {
-            var station = ((Station)cmbStation.SelectedItem);
             var status = ((StatusShift)cmbStatusShift.SelectedItem);
+            var station = ((Station)cmbStation.SelectedItem);
             var post = ((Post)cmbPost.SelectedItem);
 
             if (station == null || status == null || post == null)
@@ -151,8 +176,9 @@ namespace AccountingMetro.UI.Forms
             }
             using (var db = new AccountingMetroDBContext())
             {
-                if(selectedForm != true)
+                if (selectedForm == true)
                 {
+                    #region Фильтрация одного сотрудника
                     dgvShift.DataSource = db.Shifts
                         .Include(x => x.Employee.Person)
                         .Include(x => x.Employee.Station)
@@ -161,16 +187,17 @@ namespace AccountingMetro.UI.Forms
                         .Include(x => x.StatusChange)
                         .Where(x => x.EmployeeId == Employee.Id
                         && (x.StatusChangeId == status.Id || status.Id == -1)
-                        && (x.ShiftOpened >= mntShift.SelectionStart
-                        && x.ShiftClosed <= mntShift.SelectionEnd))
+                        && (x.ShiftOpened >= dtpShift.Value))
                         .Select(x => new
                         {
+                            Id = x.Id,
+                            EmployeeId = x.Employee.Id,
                             EmployeeFIO = x.Employee.Person.LastName + " " +
                             x.Employee.Person.FirstName + " " +
                             x.Employee.Person.Patronymic,
-                        
+
                             Post = x.Employee.Post.Title,
-                            PlaceJob = x.Employee.Station.Title,
+                            PlaceJob = x.PlaceWork,
                             WorkPhone = x.Employee.PhoneWork,
                             NormaShift = x.Employee.NormShift,
                             ShiftOpen = x.ShiftOpened,
@@ -179,9 +206,11 @@ namespace AccountingMetro.UI.Forms
                         })
                         .ToList();
                     tsslCountSuccessShift.Text = "Кол-во выполненных смен: " + db.Shifts.Where(x => x.EmployeeId == Employee.Id && x.StatusChangeId == 1).Count();
+                    #endregion
                 }
                 else
                 {
+                    #region Фильтрация по всем сотрудникам
                     dgvShift.DataSource = db.Shifts
                         .Include(x => x.Employee.Person)
                         .Include(x => x.Employee.Station)
@@ -191,12 +220,13 @@ namespace AccountingMetro.UI.Forms
                         .Where(x => (x.Employee.StationId == station.Id || station.Id == -1)
                         && (x.StatusChangeId == status.Id || status.Id == -1)
                         && (x.Employee.PostId == post.Id || post.Id == -1)
-                        && (x.ShiftOpened >= mntShift.SelectionStart
-                        && x.ShiftClosed <= mntShift.SelectionEnd)
+                        && (x.ShiftOpened >= dtpShift.Value)
                         && (x.Employee.Person.LastName.Contains(txtSearchFIO.Text) || x.Employee.Person.FirstName.Contains(txtSearchFIO.Text)
                         || x.Employee.Person.Patronymic.Contains(txtSearchFIO.Text)))
                         .Select(x => new
                         {
+                            Id = x.Id,
+                            EmployeeId = x.Employee.Id,
                             EmployeeFIO = x.Employee.Person.LastName + " " +
                             x.Employee.Person.FirstName + " " +
                             x.Employee.Person.Patronymic,
@@ -211,8 +241,10 @@ namespace AccountingMetro.UI.Forms
                         })
                         .ToList();
                     tsslCountSuccessShift.Text = "Кол-во выполненных смен: " + db.Shifts.Where(x => x.StatusChangeId == 1).Count();
+                    #endregion
                 }
             }
+            btnDelete.Enabled = dgvShift.SelectedRows.Count > 0;
         }
         #endregion
 
@@ -254,9 +286,108 @@ namespace AccountingMetro.UI.Forms
             xlApp.Visible = true;
         }
 
-        private void mntShift_DateChanged(object sender, DateRangeEventArgs e)
+        private void btnStartShift_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show($"Вы хотите добавить смену для этого сотрудника?",
+            "Добавление смены",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                using (var db = new AccountingMetroDBContext())
+                {
+                    var shift = new Shift()
+                    {
+                        ShiftOpened = DateTime.Now,
+                        EmployeeId = Employee.Id,
+                    };
+
+                    shift.PlaceWork = Employee.Station.Title;
+                    if (Employee.PostId == 1)
+                    {
+                        shift.PlaceWork = Employee.Station.Title + " - Поезд№" + Employee.Train.Nomer;
+                    }
+
+                    shift.StatusChangeId = 2;
+                    shift.ShiftClosed = shift.ShiftOpened.AddHours(Employee.NormShift - 2);
+
+                    if (MessageBox.Show($"Сотрудник выполнил смену?",
+                    "Статус смены",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        shift.StatusChangeId = 1;
+                        shift.ShiftClosed = shift.ShiftOpened.AddHours(Employee.NormShift);
+                    }
+
+                    db.Shifts.Add(shift);
+                    db.SaveChanges();
+                    ShiftEmployeeHandler(Employee);
+                }
+            }
+        }
+
+        private void dtpShift_ValueChanged(object sender, EventArgs e)
         {
             Filter();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var selectedRows = dgvShift.SelectedRows;
+            var rowIndex = selectedRows[0].Index - 1;
+            var element = selectedRows[0].Cells["ColumnOpenShift"].Value.ToString();
+
+
+            if (MessageBox.Show($"Вы уверены, что хотите удалить смену за {element}?",
+                "Подтвердите действие",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Asterisk) == DialogResult.OK)
+            {
+                using (var db = new AccountingMetroDBContext())
+                {
+                    foreach (DataGridViewRow row in selectedRows)
+                    {
+                        int.TryParse(row.Cells["ColumnEmployeeId"].Value.ToString(), out var employeeid);
+                        if (employeeid == CurrentEmployee.StaffDepart.EmployeeId)
+                        {
+                            MessageBox.Show($"Нельзя удалить свою смену!",
+                                "Внимание",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        int.TryParse(row.Cells["ColumnId"].Value.ToString(), out var id);
+
+                        var shift = db.Shifts.FirstOrDefault(x => x.Id == id);
+
+                        db.Shifts.Remove(shift);
+                    }
+                    db.SaveChanges();
+                }
+
+                if (selectedForm == true)
+                {
+                    ShiftEmployeeHandler(Employee);
+                    if (rowIndex >= 0)
+                    {
+                        dgvShift.FirstDisplayedScrollingRowIndex = rowIndex;
+                    }
+                    return;
+                }
+                ShiftHandler();
+                if (rowIndex >= 0)
+                {
+                    dgvShift.FirstDisplayedScrollingRowIndex = rowIndex;
+                }
+
+            }
+        }
+
+        private void dgvShift_SelectionChanged(object sender, EventArgs e)
+        {
+            btnDelete.Enabled = dgvShift.SelectedRows.Count > 0;
         }
     }
 }
