@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountingMetro.UI.General
 {
-    internal class Authorization
+    internal class Authorizator
     {
         public String CreateSalt(int size)
         {

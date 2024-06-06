@@ -61,12 +61,20 @@ namespace AccountingMetro.UI.Forms
 
         public void Initizalis()
         {
-            tsslFIO.Text = CurrectEmployee.User.Employee.Person.LastName + " "
-            + CurrectEmployee.User.Employee.Person.FirstName + " " +
-            CurrectEmployee.User.Employee.Person.Patronymic + " ";
-            if (CurrectEmployee.User.Employee.Person.ImagePreview != null)
+            btnStaffDepart.Visible = statusStrip1.Visible = CurrentEmployee.StaffDepart.Id == 1;
+            pnlStaff.Visible = CurrentEmployee.StaffDepart.Id != 1;
+            if (CurrentEmployee.StaffDepart.Id == 1)
             {
-                var image = Image.FromStream(new MemoryStream(CurrectEmployee.User.Employee.Person.ImagePreview));
+                tsslFIO.Text = CurrentEmployee.StaffDepart.Employee.Person.LastName;
+                return;
+            }
+            lblFio.Text = CurrentEmployee.StaffDepart.Employee.Person.LastName + " "
+                + CurrentEmployee.StaffDepart.Employee.Person.FirstName + " "
+                + CurrentEmployee.StaffDepart.Employee.Person.Patronymic;
+            lblStation.Text = "Станция '" + CurrentEmployee.StaffDepart.Employee.Station.Title + "'";
+            if (CurrentEmployee.StaffDepart.Employee.Person.ImagePreview != null)
+            {
+                var image = Image.FromStream(new MemoryStream(CurrentEmployee.StaffDepart.Employee.Person.ImagePreview));
                 picEmployee.Image = image;
             }
         }

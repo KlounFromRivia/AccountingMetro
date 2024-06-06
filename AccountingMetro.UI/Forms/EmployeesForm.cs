@@ -63,7 +63,7 @@ namespace AccountingMetro.UI.Forms
             }
         }
         #region Фильтрация
-        private void Filter()
+        public void Filter()
         {
             var station = ((Station)cmbStation.SelectedItem);
             var vetka = ((Vetka)cmbVetka.SelectedItem);

@@ -1,5 +1,6 @@
 ﻿using AccountingMetro.Context;
 using AccountingMetro.Context.Models;
+using AccountingMetro.UI.General;
 using AccountingMetro.UI.Validate;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ namespace AccountingMetro.UI.Forms
             this.Employee = employee;
         }
 
+        #region Инизиализация формы
         public void Initialize(Employee employee)
         {
-            #region Инизиализация формы
             using (var db = new AccountingMetroDBContext())
             {
                 txtStagJob.Text = "";
@@ -65,13 +66,14 @@ namespace AccountingMetro.UI.Forms
                 dtpBithDay.Text = employee.Person.BirthDay.ToString();
                 mtxtMobilePhone.Text = employee.Person.Phone;
 
+                var ecrt = new Encryption();
                 var document = db.Documents.FirstOrDefault(x => x.Id == employee.Person.DocumentId);
-                txtAdresReg.Text = document.RegistratAddress;
-                txtAdresPassport.Text = document.Issued;
-                txtSeriePassport.Text = document.PassportSeries;
-                txtNomerPassport.Text = document.PassportNomer;
-                txtINN.Text = document.INN;
-                txtInsCertific.Text = document.InsCertific;
+                txtAdresReg.Text = ecrt.DecryptCipherTextToPlainText(document.RegistratAddress);
+                txtAdresPassport.Text = ecrt.DecryptCipherTextToPlainText(document.Issued);
+                txtSeriePassport.Text = ecrt.DecryptCipherTextToPlainText(document.PassportSeries);
+                txtNomerPassport.Text = ecrt.DecryptCipherTextToPlainText(document.PassportNomer);
+                txtINN.Text = ecrt.DecryptCipherTextToPlainText(document.INN);
+                txtInsCertific.Text = ecrt.DecryptCipherTextToPlainText(document.InsCertific);
                 dtpPassportDate.Text = document.DateIssued.ToString();
 
                 if (employee.Person.ImagePreview != null)
@@ -80,8 +82,8 @@ namespace AccountingMetro.UI.Forms
                     picEmployee.Image = Image.FromStream(image);
                 }
             }
-            #endregion
         }
+        #endregion
 
         public void FillComboBoxes()
         {
@@ -211,6 +213,14 @@ namespace AccountingMetro.UI.Forms
         #region Проверка данных
         public void ValidateInput()
         {
+            if (DateTime.Now.Year - dtpBithDay.Value.Year < 16)
+            {
+                var tooltip = new ToolTip();
+
+                tooltip.SetToolTip(dtpBithDay, "");
+                tooltip.Show("Возраст должен быть больше 16!", dtpBithDay, 2000);
+            }
+
             TimeSpan job = dtpJob.Value.Subtract(dtpContract.Value);
 
             if (cmbTrain.Enabled == true && cmbTrain.Visible == true)
@@ -300,6 +310,7 @@ namespace AccountingMetro.UI.Forms
             if (MessageBox.Show($"Вы хотите сохранить данные сотрудника?", "Подтвердите действие",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                var ecrt = new Encryption();
                 using (var db = new AccountingMetroDBContext())
                 {
                     var employee = Employee.Id == -1
@@ -311,13 +322,13 @@ namespace AccountingMetro.UI.Forms
                         var document = new Document()
                         {
                             Id = db.Documents.Count(),
-                            PassportSeries = txtSeriePassport.Text,
-                            PassportNomer = txtNomerPassport.Text,
-                            Issued = txtAdresPassport.Text,
+                            PassportSeries = ecrt.EncryptPlainTextToCipherText(txtSeriePassport.Text),
+                            PassportNomer = ecrt.EncryptPlainTextToCipherText(txtNomerPassport.Text),
+                            Issued = ecrt.EncryptPlainTextToCipherText(txtAdresPassport.Text),
                             DateIssued = dtpPassportDate.Value,
-                            INN = txtINN.Text,
-                            InsCertific = txtInsCertific.Text,
-                            RegistratAddress = txtAdresReg.Text,
+                            INN = ecrt.EncryptPlainTextToCipherText(txtINN.Text),
+                            InsCertific = ecrt.EncryptPlainTextToCipherText(txtInsCertific.Text),
+                            RegistratAddress = ecrt.EncryptPlainTextToCipherText(txtAdresReg.Text),
                         };
                         db.Documents.Add(document);
                         db.SaveChanges();
@@ -369,13 +380,13 @@ namespace AccountingMetro.UI.Forms
                         return;
                     }
 
-                    employee.Person.Document.PassportSeries = txtSeriePassport.Text;
-                    employee.Person.Document.PassportNomer = txtNomerPassport.Text;
-                    employee.Person.Document.Issued = txtAdresPassport.Text;
+                    employee.Person.Document.PassportSeries = ecrt.EncryptPlainTextToCipherText(txtSeriePassport.Text);
+                    employee.Person.Document.PassportNomer = ecrt.EncryptPlainTextToCipherText(txtNomerPassport.Text);
+                    employee.Person.Document.Issued = ecrt.EncryptPlainTextToCipherText(txtAdresPassport.Text);
                     employee.Person.Document.DateIssued = dtpPassportDate.Value;
-                    employee.Person.Document.INN = txtINN.Text;
-                    employee.Person.Document.InsCertific = txtInsCertific.Text;
-                    employee.Person.Document.RegistratAddress = txtAdresReg.Text;
+                    employee.Person.Document.INN = ecrt.EncryptPlainTextToCipherText(txtINN.Text);
+                    employee.Person.Document.InsCertific = ecrt.EncryptPlainTextToCipherText(txtInsCertific.Text);
+                    employee.Person.Document.RegistratAddress = ecrt.EncryptPlainTextToCipherText(txtAdresReg.Text);
 
                     employee.Person.LastName = txtFam.Text;
                     employee.Person.FirstName = txtIma.Text;

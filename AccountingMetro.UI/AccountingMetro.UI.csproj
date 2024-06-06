@@ -119,7 +119,7 @@
     <Compile Include="Forms\StaffDepartForm.Designer.cs">
       <DependentUpon>StaffDepartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="General\Authorization.cs" />
+    <Compile Include="General\Authorizator.cs" />
     <Compile Include="General\Encryption.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,8 +147,7 @@
     <Compile Include="UserControls\TrainView.Designer.cs">
       <DependentUpon>TrainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Validate\CurrectEmployee.cs" />
-    <Compile Include="Validate\CurrectShift.cs" />
+    <Compile Include="Validate\CurrentEmployee.cs" />
     <EmbeddedResource Include="Forms\AddStaffDepartForm.resx">
       <DependentUpon>AddStaffDepartForm.cs</DependentUpon>
     </EmbeddedResource>

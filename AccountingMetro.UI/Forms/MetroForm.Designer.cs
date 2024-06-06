@@ -237,7 +237,7 @@
             this.groupBox1.Size = new System.Drawing.Size(246, 199);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Станции";
+            this.groupBox1.Text = "Поиск";
             // 
             // txtSearchStation
             // 
@@ -253,9 +253,9 @@
             this.label4.Location = new System.Drawing.Point(11, 22);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 16);
+            this.label4.Size = new System.Drawing.Size(71, 16);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Поиск по названию";
+            this.label4.Text = "Название";
             // 
             // cmbStatStation
             // 
@@ -309,7 +309,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ветки";
+            this.label1.Text = "Ветка";
             // 
             // statusStrip1
             // 
@@ -355,6 +355,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnAddTrain);
             this.panel2.Controls.Add(this.groupBox6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(4, 4);
@@ -369,7 +370,6 @@
             this.groupBox6.Controls.Add(this.txtSearchTrain);
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.cmbStatusTrain);
-            this.groupBox6.Controls.Add(this.btnAddTrain);
             this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Controls.Add(this.cmbVetkaTrain);
             this.groupBox6.Controls.Add(this.label8);
@@ -381,7 +381,7 @@
             this.groupBox6.Size = new System.Drawing.Size(246, 199);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Электропоезда";
+            this.groupBox6.Text = "Поиск";
             // 
             // txtSearchTrain
             // 
@@ -397,9 +397,9 @@
             this.label6.Location = new System.Drawing.Point(11, 22);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 16);
+            this.label6.Size = new System.Drawing.Size(71, 16);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Поиск по названию";
+            this.label6.Text = "Название";
             // 
             // cmbStatusTrain
             // 
@@ -414,11 +414,11 @@
             // 
             // btnAddTrain
             // 
-            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAddTrain.Location = new System.Drawing.Point(7, 165);
+            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAddTrain.Location = new System.Drawing.Point(7, 205);
             this.btnAddTrain.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddTrain.Name = "btnAddTrain";
-            this.btnAddTrain.Size = new System.Drawing.Size(232, 28);
+            this.btnAddTrain.Size = new System.Drawing.Size(246, 28);
             this.btnAddTrain.TabIndex = 2;
             this.btnAddTrain.Text = "Добавить новый поезд";
             this.btnAddTrain.UseVisualStyleBackColor = true;
@@ -453,7 +453,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 16);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Ветки";
+            this.label8.Text = "Ветка";
             // 
             // statusStrip2
             // 

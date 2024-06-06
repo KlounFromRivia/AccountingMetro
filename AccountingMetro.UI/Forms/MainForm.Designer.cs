@@ -40,11 +40,16 @@
             this.btnShift = new System.Windows.Forms.Button();
             this.btnEmployee = new System.Windows.Forms.Button();
             this.picEmployee = new System.Windows.Forms.PictureBox();
+            this.pnlStaff = new System.Windows.Forms.Panel();
+            this.lblFio = new System.Windows.Forms.Label();
+            this.lblStation = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).BeginInit();
+            this.pnlStaff.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -92,7 +97,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel.Controls.Add(this.panel1, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.picEmployee, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.pnlStaff, 0, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -109,10 +114,10 @@
             this.panel1.Controls.Add(this.btnShift);
             this.panel1.Controls.Add(this.btnEmployee);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(234, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(250, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(20, 20, 20, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(298, 436);
+            this.panel1.Size = new System.Drawing.Size(266, 420);
             this.panel1.TabIndex = 0;
             // 
             // btnStaffDepart
@@ -121,7 +126,7 @@
             this.btnStaffDepart.Location = new System.Drawing.Point(0, 171);
             this.btnStaffDepart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStaffDepart.Name = "btnStaffDepart";
-            this.btnStaffDepart.Size = new System.Drawing.Size(298, 57);
+            this.btnStaffDepart.Size = new System.Drawing.Size(266, 57);
             this.btnStaffDepart.TabIndex = 4;
             this.btnStaffDepart.Text = "Отдел кадров";
             this.btnStaffDepart.UseVisualStyleBackColor = true;
@@ -133,7 +138,7 @@
             this.btnBDOther.Location = new System.Drawing.Point(0, 114);
             this.btnBDOther.Margin = new System.Windows.Forms.Padding(4);
             this.btnBDOther.Name = "btnBDOther";
-            this.btnBDOther.Size = new System.Drawing.Size(298, 57);
+            this.btnBDOther.Size = new System.Drawing.Size(266, 57);
             this.btnBDOther.TabIndex = 2;
             this.btnBDOther.Text = "Метрополитен";
             this.btnBDOther.UseVisualStyleBackColor = true;
@@ -145,7 +150,7 @@
             this.btnShift.Location = new System.Drawing.Point(0, 57);
             this.btnShift.Margin = new System.Windows.Forms.Padding(4);
             this.btnShift.Name = "btnShift";
-            this.btnShift.Size = new System.Drawing.Size(298, 57);
+            this.btnShift.Size = new System.Drawing.Size(266, 57);
             this.btnShift.TabIndex = 1;
             this.btnShift.Text = "Смены";
             this.btnShift.UseVisualStyleBackColor = true;
@@ -157,7 +162,7 @@
             this.btnEmployee.Location = new System.Drawing.Point(0, 0);
             this.btnEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployee.Name = "btnEmployee";
-            this.btnEmployee.Size = new System.Drawing.Size(298, 57);
+            this.btnEmployee.Size = new System.Drawing.Size(266, 57);
             this.btnEmployee.TabIndex = 0;
             this.btnEmployee.Text = "Сотрудники";
             this.btnEmployee.UseVisualStyleBackColor = true;
@@ -167,13 +172,57 @@
             // 
             this.picEmployee.Dock = System.Windows.Forms.DockStyle.Top;
             this.picEmployee.Image = global::AccountingMetro.UI.Properties.Resources.employee;
-            this.picEmployee.Location = new System.Drawing.Point(40, 30);
+            this.picEmployee.Location = new System.Drawing.Point(0, 0);
             this.picEmployee.Margin = new System.Windows.Forms.Padding(40, 30, 40, 0);
             this.picEmployee.Name = "picEmployee";
             this.picEmployee.Size = new System.Drawing.Size(150, 178);
             this.picEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picEmployee.TabIndex = 4;
             this.picEmployee.TabStop = false;
+            // 
+            // pnlStaff
+            // 
+            this.pnlStaff.Controls.Add(this.lblStation);
+            this.pnlStaff.Controls.Add(this.lblFio);
+            this.pnlStaff.Controls.Add(this.label1);
+            this.pnlStaff.Controls.Add(this.picEmployee);
+            this.pnlStaff.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlStaff.Location = new System.Drawing.Point(40, 40);
+            this.pnlStaff.Margin = new System.Windows.Forms.Padding(40);
+            this.pnlStaff.Name = "pnlStaff";
+            this.pnlStaff.Size = new System.Drawing.Size(150, 306);
+            this.pnlStaff.TabIndex = 1;
+            // 
+            // lblFio
+            // 
+            this.lblFio.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblFio.Location = new System.Drawing.Point(0, 208);
+            this.lblFio.Name = "lblFio";
+            this.lblFio.Size = new System.Drawing.Size(150, 33);
+            this.lblFio.TabIndex = 5;
+            this.lblFio.Text = "ФИО";
+            this.lblFio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStation
+            // 
+            this.lblStation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblStation.Location = new System.Drawing.Point(0, 241);
+            this.lblStation.Name = "lblStation";
+            this.lblStation.Size = new System.Drawing.Size(150, 25);
+            this.lblStation.TabIndex = 6;
+            this.lblStation.Text = "Станция";
+            this.lblStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(0, 178);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 30);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Отдел кадров";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -201,6 +250,7 @@
             this.tableLayoutPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).EndInit();
+            this.pnlStaff.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +269,9 @@
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Button btnEmployee;
         private System.Windows.Forms.PictureBox picEmployee;
+        private System.Windows.Forms.Panel pnlStaff;
+        private System.Windows.Forms.Label lblStation;
+        private System.Windows.Forms.Label lblFio;
+        private System.Windows.Forms.Label label1;
     }
 }

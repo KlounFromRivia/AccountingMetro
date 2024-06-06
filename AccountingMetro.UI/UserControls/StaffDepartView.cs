@@ -1,6 +1,7 @@
 ﻿using AccountingMetro.Context;
 using AccountingMetro.Context.Models;
 using AccountingMetro.UI.Forms;
+using AccountingMetro.UI.Validate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace AccountingMetro.UI.UserControls
         {
             using (var db = new AccountingMetroDBContext())
             {
-                if (staffdepart.Login == "admin")
+                if (staffdepart.Id == 1)
                 {
                     this.Visible = false;
                     return;
@@ -71,8 +72,8 @@ namespace AccountingMetro.UI.UserControls
                         db.Documents.Remove(document);
                         db.SaveChanges();
                         MessageBox.Show("Сотрудник удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Parent.Controls.Remove(this);
                     }
-                    this.Parent.Controls.Remove(this);
                 }
                 else
                 {
@@ -91,7 +92,17 @@ namespace AccountingMetro.UI.UserControls
             employeeView.Employee = this.StaffDepart.Employee;
             employeeView.ShowDialog();
             this.ParentForm.Show();
-            ((EmployeesForm)ParentForm).FillEmployeeView();
+            ((StaffDepartForm)ParentForm).FillEmployeeView();
+        }
+
+        private void tsmiEditStaff_Click(object sender, EventArgs e)
+        {
+            var staffDepartView = new AddStaffDepartForm(StaffDepart);
+            this.ParentForm.Hide();
+            staffDepartView.StaffDepart = this.StaffDepart;
+            staffDepartView.ShowDialog();
+            this.ParentForm.Show();
+            ((StaffDepartForm)ParentForm).FillEmployeeView();
         }
     }
 }
