@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Collections.Specialized.BitVector32;
 
 namespace AccountingMetro.UI.Forms
 {
@@ -123,29 +124,20 @@ namespace AccountingMetro.UI.Forms
             {
                 return;
             }
-            foreach (var control in flpStation.Controls)
+            flpStation.Controls.Clear();
+            using (var db = new AccountingMetroDBContext())
             {
-                if (control is StationView stationView)
+                var stations = db.Stations
+                    .Include(x => x.Vetka)
+                    .Include(x => x.StatusStation)
+                    .Where(x => (x.VetkaId == vetka.Id || vetka.Id == -1)
+                        && (x.StatusStationId == status.Id || status.Id == -1))
+                        .ToList();
+                foreach (var station in stations)
                 {
-                    var visible = true;
-
-                    if (status.Id != -1 && stationView.Station.StatusStationId != status.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (vetka.Id != -1 && stationView.Station.VetkaId != vetka.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(txtSearchStation.Text) && !stationView.Station.Title.ToLower().Contains(txtSearchStation.Text.ToLower()))
-                    {
-                        visible = false;
-                    }
-
-                    stationView.Visible = visible;
+                    AddStationView(station);
                 }
+                tsslStatusStation.Text = "Кол-во сотрудников: " + db.Stations.Where(x => x.StatusStationId == 1).Count();
             }
         }
 

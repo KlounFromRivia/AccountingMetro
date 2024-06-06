@@ -30,85 +30,149 @@
         {
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtLogin = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.cmbStaff = new System.Windows.Forms.ComboBox();
+            this.lblStaff = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(126, 158);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtPassword.Location = new System.Drawing.Point(40, 126);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(233, 20);
+            this.txtPassword.Size = new System.Drawing.Size(283, 23);
             this.txtPassword.TabIndex = 20;
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(126, 119);
-            this.txtLogin.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtLogin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtLogin.Location = new System.Drawing.Point(40, 87);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(233, 20);
+            this.txtLogin.Size = new System.Drawing.Size(283, 23);
             this.txtLogin.TabIndex = 19;
             // 
-            // label1
+            // lblPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 161);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Пароль:";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblPassword.Location = new System.Drawing.Point(40, 110);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(55, 16);
+            this.lblPassword.TabIndex = 18;
+            this.lblPassword.Text = "Пароль";
             // 
-            // label4
+            // lblLogin
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(63, 122);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Логин:";
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblLogin.Location = new System.Drawing.Point(40, 71);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(47, 16);
+            this.lblLogin.TabIndex = 17;
+            this.lblLogin.Text = "Логин";
             // 
-            // cmbStatus
+            // cmbStaff
             // 
-            this.cmbStatus.BackColor = System.Drawing.Color.White;
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(126, 76);
-            this.cmbStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(233, 21);
-            this.cmbStatus.TabIndex = 16;
+            this.cmbStaff.BackColor = System.Drawing.Color.White;
+            this.cmbStaff.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmbStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStaff.FormattingEnabled = true;
+            this.cmbStaff.Location = new System.Drawing.Point(40, 47);
+            this.cmbStaff.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.cmbStaff.Name = "cmbStaff";
+            this.cmbStaff.Size = new System.Drawing.Size(283, 24);
+            this.cmbStaff.TabIndex = 16;
             // 
-            // label2
+            // lblStaff
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 79);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Сотрудник";
+            this.lblStaff.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblStaff.Location = new System.Drawing.Point(40, 30);
+            this.lblStaff.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblStaff.Name = "lblStaff";
+            this.lblStaff.Size = new System.Drawing.Size(283, 17);
+            this.lblStaff.TabIndex = 15;
+            this.lblStaff.Text = "Сотрудник";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSave.Location = new System.Drawing.Point(10, 10);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(85, 34);
+            this.btnSave.TabIndex = 21;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCancel.Location = new System.Drawing.Point(268, 10);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(85, 34);
+            this.btnCancel.TabIndex = 22;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 180);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(363, 54);
+            this.panel1.TabIndex = 23;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.txtPassword);
+            this.panel2.Controls.Add(this.lblPassword);
+            this.panel2.Controls.Add(this.txtLogin);
+            this.panel2.Controls.Add(this.lblLogin);
+            this.panel2.Controls.Add(this.cmbStaff);
+            this.panel2.Controls.Add(this.lblStaff);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(40, 30, 40, 40);
+            this.panel2.Size = new System.Drawing.Size(363, 180);
+            this.panel2.TabIndex = 24;
             // 
             // AddStaffDepartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 255);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtLogin);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbStatus);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(363, 234);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddStaffDepartForm";
-            this.Text = "AddStaffDepartForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Добавление/редактирование дежурного";
+            this.Load += new System.EventHandler(this.AddStaffDepartForm_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -116,9 +180,13 @@
 
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtLogin;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.ComboBox cmbStaff;
+        private System.Windows.Forms.Label lblStaff;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

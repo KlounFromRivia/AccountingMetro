@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AccountingMetro.UI.Validate
 {
-    public static class CurrectEmployee
+    public static class CurrentEmployee
     {
-        public static StaffDepart User { get; set; }
+        public static StaffDepart StaffDepart { get; set; }
     }
 }

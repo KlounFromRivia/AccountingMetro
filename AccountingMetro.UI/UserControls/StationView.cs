@@ -75,7 +75,7 @@ namespace AccountingMetro.UI.UserControls
             using (var db = new AccountingMetroDBContext())
             {
                 var employee = db.Employees
-                .Include(x => x.Station).FirstOrDefault(x => x.Id == Station.Id);
+                .Include(x => x.Station).FirstOrDefault(x => x.StationId == Station.Id);
                 if (employee == null)
                 {
                     if (MessageBox.Show($"Вы уверены, что хотите удалить станцию '{element}'?",

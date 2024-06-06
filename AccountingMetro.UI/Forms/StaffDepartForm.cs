@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccountingMetro.UI.UserControls;
+using static System.Collections.Specialized.BitVector32;
 
 namespace AccountingMetro.UI.Forms
 {
@@ -57,6 +58,9 @@ namespace AccountingMetro.UI.Forms
                 List<StaffDepart> listStaffDepart;
                 listStaffDepart = db.StaffDeparts
                     .Include(x => x.Employee)
+                    .Include(x => x.Employee.Person)
+                    .Include(x => x.Employee.Station)
+                    .Include(x => x.Employee.Post)
                     .ToList();
                 foreach (var staffDepart in listStaffDepart)
                 {
@@ -86,11 +90,10 @@ namespace AccountingMetro.UI.Forms
             using (var db = new AccountingMetroDBContext())
             {
                 var staffdeparts = db.StaffDeparts
-                    //.Include(x => x.Employee)
-                    //.Include(x => x.Employee.Person)
-                    //.Include(x => x.Employee.Station)
-                    //.Include(x => x.Employee.Post)
-                    //.Include(x => x.Employee.StatusEmployee)
+                    .Include(x => x.Employee)
+                    .Include(x => x.Employee.Person)
+                    .Include(x => x.Employee.Station)
+                    .Include(x => x.Employee.Post)
                     .Where(x => (x.Employee.StationId == station.Id || station.Id == -1)
                     && (x.Employee.Station.VetkaId == vetka.Id || vetka.Id == -1)
                     && (x.Employee.PostId == 9)
@@ -147,11 +150,23 @@ namespace AccountingMetro.UI.Forms
 
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            var ev = new AddStaffDepartForm();
-            this.Hide();
-            ev.ShowDialog();
-            FillEmployeeView();
-            this.Show();
+            using (var db = new AccountingMetroDBContext())
+            {
+                var employeeExist = db.Employees.Include(x => x.Person).Where(x => x.PostId == 9
+                                                                && !db.StaffDeparts.Select(y => y.EmployeeId)
+                                                                                   .ToList()
+                                                                                   .Contains(x.Id)).Any();
+                if (employeeExist)
+                {
+                    var ev = new AddStaffDepartForm();
+                    this.Hide();
+                    ev.ShowDialog();
+                    FillEmployeeView();
+                    this.Show();
+                    return;
+                }
+                MessageBox.Show("Все дежурным выдан доступ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

@@ -38,51 +38,47 @@ namespace AccountingMetro.UI
         {
             using (var db = new AccountingMetroDBContext())
             {
-                var user = db.StaffDeparts.Include(x => x.Employee.Person).FirstOrDefault(x => x.Login == txtLogin.Text
-                && x.Password == txtPassword.Text);
+                var staffDepart = db.StaffDeparts
+                    .Include(x => x.Employee.Person)
+                    .Include(x => x.Employee.Station)
+                    .FirstOrDefault(x => x.Login == txtLogin.Text);
 
-                if (user == null)
+                if (staffDepart == null)
                 {
                     MessageBox.Show("Введенные данные неверны!",
                         "Пользователь не существует!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                    return;
                 }
-                else
+
+                var hashPassword = new Authorizator()
+                    .GenerateSHA256Hash(txtPassword.Text, staffDepart.Salt); 
+
+                if (hashPassword != staffDepart.Password)
                 {
-                    MessageBox.Show("Добро пожаловать, "+user.Employee.Person.LastName+ " "
-                        + user.Employee.Person.FirstName + " "
-                        + user.Employee.Person.Patronymic + "!",
+                    MessageBox.Show("Введенные данные неверны!",
+                    "Пользователь не существует!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                CurrentEmployee.StaffDepart = staffDepart;
+
+                    MessageBox.Show("Добро пожаловать, "+CurrentEmployee.StaffDepart.Employee.Person.LastName+"!",
                         "Авторизация успешна!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                    CurrectEmployee.User = user;
+
                     var mainForm = new MainForm();
                     this.Hide();
                     mainForm.ShowDialog();
                     txtLogin.Clear();
                     txtPassword.Clear();
                     this.Show();
-                }
-
-                //var hashPassword = new Authorization()
-                //    .GenerateSHA256Hash(txtPassword.Text, user.Salt);
-
-                //if (hashPassword != user.Password)
-                //{
-                //    MessageBox.Show("Введенные данные неверны!",
-                //    "Пользователь не существует!",
-                //    MessageBoxButtons.OK,
-                //    MessageBoxIcon.Error);
-                //    return;
-                //}
-                //db.SaveChanges();
             }
-            //if (isAuthForm)
-            //{
-
-            //    return;
-            //}
         }
 
         private void txtLogin_TextChanged(object sender, EventArgs e)

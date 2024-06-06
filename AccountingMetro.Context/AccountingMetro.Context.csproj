@@ -68,6 +68,14 @@
     <Compile Include="Migrations\202406051457158_LongId.Designer.cs">
       <DependentUpon>202406051457158_LongId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406060901527_FIOStaff.cs" />
+    <Compile Include="Migrations\202406060901527_FIOStaff.Designer.cs">
+      <DependentUpon>202406060901527_FIOStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406061152331_DeleteFio.cs" />
+    <Compile Include="Migrations\202406061152331_DeleteFio.Designer.cs">
+      <DependentUpon>202406061152331_DeleteFio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Shift.cs" />
@@ -102,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406051457158_LongId.resx">
       <DependentUpon>202406051457158_LongId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406060901527_FIOStaff.resx">
+      <DependentUpon>202406060901527_FIOStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406061152331_DeleteFio.resx">
+      <DependentUpon>202406061152331_DeleteFio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

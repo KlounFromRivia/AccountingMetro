@@ -35,9 +35,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditStaff = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiViewData = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteStaff = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEditStaff = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,6 +104,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(230, 92);
             // 
+            // tsmiEditStaff
+            // 
+            this.tsmiEditStaff.Name = "tsmiEditStaff";
+            this.tsmiEditStaff.Size = new System.Drawing.Size(229, 22);
+            this.tsmiEditStaff.Text = "Редактирование сотрудника";
+            this.tsmiEditStaff.Click += new System.EventHandler(this.tsmiEditStaff_Click);
+            // 
             // tsmiViewData
             // 
             this.tsmiViewData.Name = "tsmiViewData";
@@ -118,12 +125,6 @@
             this.tsmiDeleteStaff.Text = "Удалить сотрудника";
             this.tsmiDeleteStaff.Click += new System.EventHandler(this.tsmiDeleteStaff_Click);
             // 
-            // tsmiEditStaff
-            // 
-            this.tsmiEditStaff.Name = "tsmiEditStaff";
-            this.tsmiEditStaff.Size = new System.Drawing.Size(229, 22);
-            this.tsmiEditStaff.Text = "Редактирование сотрудника";
-            // 
             // StaffDepartView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -137,7 +138,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblStatus);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StaffDepartView";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(228, 237);

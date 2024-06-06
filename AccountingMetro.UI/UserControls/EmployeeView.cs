@@ -37,7 +37,7 @@ namespace AccountingMetro.UI.UserControls
                     this.Visible = false;
                     return;
                 }
-                if (employee.PostId == CurrectEmployee.User.Employee.PostId && CurrectEmployee.User.Login != "admin")
+                if (CurrentEmployee.StaffDepart.Id != 1)
                 {
                     this.Enabled = false;
                 }
@@ -74,7 +74,7 @@ namespace AccountingMetro.UI.UserControls
             employeeView.Employee = this.Employee;
             employeeView.ShowDialog();
             this.ParentForm.Show();
-            ((EmployeesForm)ParentForm).FillEmployeeView();
+            ((EmployeesForm)ParentForm).Filter();
         }
 
         private void tsmiViewShift_Click(object sender, EventArgs e)
