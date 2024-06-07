@@ -398,7 +398,8 @@ namespace AccountingMetro.UI.Forms
                         }
                         db.Employees.Add(employee);
                         db.SaveChanges();
-                        MessageBox.Show("Все данные сохранены", "Добавление сотрудника", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Все данные сохранены", "Добавление сотрудника", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                         return;
                     }
@@ -440,7 +441,8 @@ namespace AccountingMetro.UI.Forms
                         employee.TrainId = ((Train)cmbTrain.SelectedItem).Id;
                     }
                     db.SaveChanges();
-                    MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Все данные сохранены", "Сохранение изменений", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }

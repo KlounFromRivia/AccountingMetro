@@ -261,7 +261,11 @@ namespace AccountingMetro.UI.Forms
             wBook = xlApp.Workbooks.Add();
             xlApp.Columns.ColumnWidth = 30;
 
+
             xlSheet = (Excel.Worksheet)wBook.Sheets[1];
+
+            xlSheet.SaveAs($"Отчёт c {dtpStartShift.Value.ToShortDateString()} " +
+                $"по {dtpEndShift.Value.ToShortDateString()}.xlsx");
 
             xlSheet.Name = selectedForm == true
                 ? "Смены"

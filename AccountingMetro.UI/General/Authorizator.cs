@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AccountingMetro.UI.General
 {
+    /// <summary>
+    /// Хеширование
+    /// </summary>
     internal class Authorizator
     {
         public String CreateSalt(int size)
