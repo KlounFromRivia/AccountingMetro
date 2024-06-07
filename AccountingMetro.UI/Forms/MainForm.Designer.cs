@@ -39,24 +39,27 @@
             this.btnBDOther = new System.Windows.Forms.Button();
             this.btnShift = new System.Windows.Forms.Button();
             this.btnEmployee = new System.Windows.Forms.Button();
-            this.picEmployee = new System.Windows.Forms.PictureBox();
             this.pnlStaff = new System.Windows.Forms.Panel();
-            this.lblFio = new System.Windows.Forms.Label();
             this.lblStation = new System.Windows.Forms.Label();
+            this.lblFio = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.picEmployee = new System.Windows.Forms.PictureBox();
+            this.tsmiEditPassword = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).BeginInit();
             this.pnlStaff.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiExit});
+            this.tsmiExit,
+            this.tsmiEditPassword});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -74,6 +77,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslFIO});
@@ -102,6 +106,7 @@
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(767, 444);
@@ -109,21 +114,23 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.btnStaffDepart);
             this.panel1.Controls.Add(this.btnBDOther);
             this.panel1.Controls.Add(this.btnShift);
             this.panel1.Controls.Add(this.btnEmployee);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(250, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(20, 20, 20, 4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(240, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(266, 420);
+            this.panel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.panel1.Size = new System.Drawing.Size(286, 265);
             this.panel1.TabIndex = 0;
             // 
             // btnStaffDepart
             // 
             this.btnStaffDepart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStaffDepart.Location = new System.Drawing.Point(0, 171);
+            this.btnStaffDepart.Location = new System.Drawing.Point(10, 191);
             this.btnStaffDepart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStaffDepart.Name = "btnStaffDepart";
             this.btnStaffDepart.Size = new System.Drawing.Size(266, 57);
@@ -135,7 +142,7 @@
             // btnBDOther
             // 
             this.btnBDOther.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnBDOther.Location = new System.Drawing.Point(0, 114);
+            this.btnBDOther.Location = new System.Drawing.Point(10, 134);
             this.btnBDOther.Margin = new System.Windows.Forms.Padding(4);
             this.btnBDOther.Name = "btnBDOther";
             this.btnBDOther.Size = new System.Drawing.Size(266, 57);
@@ -147,7 +154,7 @@
             // btnShift
             // 
             this.btnShift.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnShift.Location = new System.Drawing.Point(0, 57);
+            this.btnShift.Location = new System.Drawing.Point(10, 77);
             this.btnShift.Margin = new System.Windows.Forms.Padding(4);
             this.btnShift.Name = "btnShift";
             this.btnShift.Size = new System.Drawing.Size(266, 57);
@@ -159,7 +166,7 @@
             // btnEmployee
             // 
             this.btnEmployee.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEmployee.Location = new System.Drawing.Point(0, 0);
+            this.btnEmployee.Location = new System.Drawing.Point(10, 20);
             this.btnEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployee.Name = "btnEmployee";
             this.btnEmployee.Size = new System.Drawing.Size(266, 57);
@@ -167,6 +174,50 @@
             this.btnEmployee.Text = "Сотрудники";
             this.btnEmployee.UseVisualStyleBackColor = true;
             this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
+            // 
+            // pnlStaff
+            // 
+            this.pnlStaff.Controls.Add(this.lblStation);
+            this.pnlStaff.Controls.Add(this.lblFio);
+            this.pnlStaff.Controls.Add(this.label1);
+            this.pnlStaff.Controls.Add(this.picEmployee);
+            this.pnlStaff.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlStaff.Location = new System.Drawing.Point(40, 40);
+            this.pnlStaff.Margin = new System.Windows.Forms.Padding(40, 20, 40, 40);
+            this.pnlStaff.Name = "pnlStaff";
+            this.pnlStaff.Size = new System.Drawing.Size(150, 306);
+            this.pnlStaff.TabIndex = 1;
+            // 
+            // lblStation
+            // 
+            this.lblStation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblStation.Location = new System.Drawing.Point(0, 241);
+            this.lblStation.Name = "lblStation";
+            this.lblStation.Size = new System.Drawing.Size(150, 25);
+            this.lblStation.TabIndex = 6;
+            this.lblStation.Text = "Станция";
+            this.lblStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFio
+            // 
+            this.lblFio.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblFio.Location = new System.Drawing.Point(0, 208);
+            this.lblFio.Name = "lblFio";
+            this.lblFio.Size = new System.Drawing.Size(150, 33);
+            this.lblFio.TabIndex = 5;
+            this.lblFio.Text = "ФИО";
+            this.lblFio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(0, 178);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 30);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Отдел кадров";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picEmployee
             // 
@@ -180,49 +231,12 @@
             this.picEmployee.TabIndex = 4;
             this.picEmployee.TabStop = false;
             // 
-            // pnlStaff
+            // tsmiEditPassword
             // 
-            this.pnlStaff.Controls.Add(this.lblStation);
-            this.pnlStaff.Controls.Add(this.lblFio);
-            this.pnlStaff.Controls.Add(this.label1);
-            this.pnlStaff.Controls.Add(this.picEmployee);
-            this.pnlStaff.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlStaff.Location = new System.Drawing.Point(40, 40);
-            this.pnlStaff.Margin = new System.Windows.Forms.Padding(40);
-            this.pnlStaff.Name = "pnlStaff";
-            this.pnlStaff.Size = new System.Drawing.Size(150, 306);
-            this.pnlStaff.TabIndex = 1;
-            // 
-            // lblFio
-            // 
-            this.lblFio.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblFio.Location = new System.Drawing.Point(0, 208);
-            this.lblFio.Name = "lblFio";
-            this.lblFio.Size = new System.Drawing.Size(150, 33);
-            this.lblFio.TabIndex = 5;
-            this.lblFio.Text = "ФИО";
-            this.lblFio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblStation
-            // 
-            this.lblStation.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblStation.Location = new System.Drawing.Point(0, 241);
-            this.lblStation.Name = "lblStation";
-            this.lblStation.Size = new System.Drawing.Size(150, 25);
-            this.lblStation.TabIndex = 6;
-            this.lblStation.Text = "Станция";
-            this.lblStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(0, 178);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 30);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Отдел кадров";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tsmiEditPassword.Name = "tsmiEditPassword";
+            this.tsmiEditPassword.Size = new System.Drawing.Size(134, 20);
+            this.tsmiEditPassword.Text = "Изменить пароль";
+            this.tsmiEditPassword.Click += new System.EventHandler(this.tsmiEditPassword_Click);
             // 
             // MainForm
             // 
@@ -249,8 +263,8 @@
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).EndInit();
             this.pnlStaff.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +287,6 @@
         private System.Windows.Forms.Label lblStation;
         private System.Windows.Forms.Label lblFio;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEditPassword;
     }
 }

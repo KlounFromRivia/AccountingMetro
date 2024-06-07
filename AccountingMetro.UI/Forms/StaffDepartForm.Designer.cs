@@ -43,6 +43,7 @@
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tssmBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.grpList.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -57,7 +58,7 @@
             this.flpStaffDeparts.Location = new System.Drawing.Point(275, 24);
             this.flpStaffDeparts.Margin = new System.Windows.Forms.Padding(5);
             this.flpStaffDeparts.Name = "flpStaffDeparts";
-            this.flpStaffDeparts.Size = new System.Drawing.Size(550, 527);
+            this.flpStaffDeparts.Size = new System.Drawing.Size(486, 527);
             this.flpStaffDeparts.TabIndex = 6;
             // 
             // panel1
@@ -89,6 +90,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtFam);
             this.groupBox1.Controls.Add(this.label2);
@@ -208,7 +210,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(825, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(761, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -220,16 +222,27 @@
             this.tssmBack.Text = "Назад";
             this.tssmBack.Click += new System.EventHandler(this.tssmBack_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(44, 290);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(145, 28);
+            this.btnReset.TabIndex = 17;
+            this.btnReset.Text = "Сбросить";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // StaffDepartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 551);
+            this.ClientSize = new System.Drawing.Size(761, 551);
             this.Controls.Add(this.flpStaffDeparts);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(777, 590);
             this.Name = "StaffDepartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Сотрудники отдела кадров";
@@ -261,5 +274,6 @@
         private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tssmBack;
+        private System.Windows.Forms.Button btnReset;
     }
 }

@@ -17,9 +17,11 @@ namespace AccountingMetro.UI.Forms
 {
     public partial class MainForm : Form
     {
+        public StaffDepart StaffDepart { get; set; }
         public MainForm()
         {
             InitializeComponent();
+            this.StaffDepart = CurrentEmployee.StaffDepart;
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace AccountingMetro.UI.Forms
 
         public void Initizalis()
         {
-            btnStaffDepart.Visible = statusStrip1.Visible = CurrentEmployee.StaffDepart.Id == 1;
+            btnStaffDepart.Visible = tsmiEditPassword.Visible = CurrentEmployee.StaffDepart.Id == 1;
             pnlStaff.Visible = CurrentEmployee.StaffDepart.Id != 1;
             if (CurrentEmployee.StaffDepart.Id == 1)
             {
@@ -72,6 +74,9 @@ namespace AccountingMetro.UI.Forms
                 + CurrentEmployee.StaffDepart.Employee.Person.FirstName + " "
                 + CurrentEmployee.StaffDepart.Employee.Person.Patronymic;
             lblStation.Text = "Станция '" + CurrentEmployee.StaffDepart.Employee.Station.Title + "'";
+            tsslFIO.Text = "Отдел кадров: " + CurrentEmployee.StaffDepart.Employee.Person.LastName + " "
+                + CurrentEmployee.StaffDepart.Employee.Person.FirstName + " "
+                + CurrentEmployee.StaffDepart.Employee.Person.Patronymic;
             if (CurrentEmployee.StaffDepart.Employee.Person.ImagePreview != null)
             {
                 var image = Image.FromStream(new MemoryStream(CurrentEmployee.StaffDepart.Employee.Person.ImagePreview));
@@ -82,6 +87,15 @@ namespace AccountingMetro.UI.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             Initizalis();
+        }
+
+        private void tsmiEditPassword_Click(object sender, EventArgs e)
+        {
+            var staffDepartView = new AddStaffDepartForm(StaffDepart);
+            this.Hide();
+            staffDepartView.StaffDepart = this.StaffDepart;
+            staffDepartView.ShowDialog();
+            this.Show();
         }
     }
 }

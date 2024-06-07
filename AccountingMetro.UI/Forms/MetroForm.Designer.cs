@@ -54,8 +54,8 @@
             this.tabTrain = new System.Windows.Forms.TabPage();
             this.flpTrain = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAddTrain = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnAddTrain = new System.Windows.Forms.Button();
             this.txtSearchTrain = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbStatusTrain = new System.Windows.Forms.ComboBox();
@@ -89,7 +89,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1077, 617);
+            this.tabControl1.Size = new System.Drawing.Size(1074, 617);
             this.tabControl1.TabIndex = 0;
             // 
             // tabStation
@@ -101,7 +101,7 @@
             this.tabStation.Margin = new System.Windows.Forms.Padding(4);
             this.tabStation.Name = "tabStation";
             this.tabStation.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStation.Size = new System.Drawing.Size(1069, 588);
+            this.tabStation.Size = new System.Drawing.Size(1066, 588);
             this.tabStation.TabIndex = 0;
             this.tabStation.Text = "Станции";
             this.tabStation.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             this.flpStation.Location = new System.Drawing.Point(264, 4);
             this.flpStation.Margin = new System.Windows.Forms.Padding(4);
             this.flpStation.Name = "flpStation";
-            this.flpStation.Size = new System.Drawing.Size(801, 558);
+            this.flpStation.Size = new System.Drawing.Size(798, 558);
             this.flpStation.TabIndex = 0;
             // 
             // panel1
@@ -319,7 +319,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(4, 562);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1061, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1058, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -364,18 +364,6 @@
             this.panel2.Size = new System.Drawing.Size(260, 558);
             this.panel2.TabIndex = 2;
             // 
-            // btnAddTrain
-            // 
-            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAddTrain.Location = new System.Drawing.Point(7, 176);
-            this.btnAddTrain.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddTrain.Name = "btnAddTrain";
-            this.btnAddTrain.Size = new System.Drawing.Size(232, 28);
-            this.btnAddTrain.TabIndex = 2;
-            this.btnAddTrain.Text = "Добавить новый поезд";
-            this.btnAddTrain.UseVisualStyleBackColor = true;
-            this.btnAddTrain.Click += new System.EventHandler(this.btnAddTrain_Click);
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btnAddTrain);
@@ -394,6 +382,18 @@
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Электропоезд";
+            // 
+            // btnAddTrain
+            // 
+            this.btnAddTrain.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAddTrain.Location = new System.Drawing.Point(7, 176);
+            this.btnAddTrain.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddTrain.Name = "btnAddTrain";
+            this.btnAddTrain.Size = new System.Drawing.Size(232, 28);
+            this.btnAddTrain.TabIndex = 2;
+            this.btnAddTrain.Text = "Добавить новый поезд";
+            this.btnAddTrain.UseVisualStyleBackColor = true;
+            this.btnAddTrain.Click += new System.EventHandler(this.btnAddTrain_Click);
             // 
             // txtSearchTrain
             // 
@@ -479,7 +479,7 @@
             this.tsmiBack});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1077, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1074, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -495,14 +495,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 641);
+            this.ClientSize = new System.Drawing.Size(1074, 641);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(901, 643);
+            this.MinimumSize = new System.Drawing.Size(700, 680);
             this.Name = "MetroForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Метрополитен";

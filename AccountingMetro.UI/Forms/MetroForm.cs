@@ -131,7 +131,8 @@ namespace AccountingMetro.UI.Forms
                     .Include(x => x.Vetka)
                     .Include(x => x.StatusStation)
                     .Where(x => (x.VetkaId == vetka.Id || vetka.Id == -1)
-                        && (x.StatusStationId == status.Id || status.Id == -1))
+                        && (x.StatusStationId == status.Id || status.Id == -1)
+                    && (x.Title.ToLower().Contains(txtSearchStation.Text.ToLower()) || txtSearchStation.Text == ""))
                         .ToList();
                 foreach (var station in stations)
                 {
