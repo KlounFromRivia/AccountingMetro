@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AccountingMetro.UI.General
 {
+    /// <summary>
+    /// Шифрование
+    /// </summary>
     internal class Encryption
     {
         private const string SecurityKey = "ADKJFGNLKJADFHG32412";
