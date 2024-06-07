@@ -51,10 +51,13 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnStartShift = new System.Windows.Forms.Button();
             this.grpPoisk = new System.Windows.Forms.GroupBox();
-            this.txtSearchFIO = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDayShift = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpEndShift = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartShift = new System.Windows.Forms.DateTimePicker();
+            this.txtSearchFIO = new System.Windows.Forms.TextBox();
             this.lblFio = new System.Windows.Forms.Label();
-            this.dtpShift = new System.Windows.Forms.DateTimePicker();
             this.cmbPost = new System.Windows.Forms.ComboBox();
             this.lblShift = new System.Windows.Forms.Label();
             this.lblStation = new System.Windows.Forms.Label();
@@ -68,6 +71,7 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.grpPoisk.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvShift
@@ -240,7 +244,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(803, 160);
+            this.panel2.Size = new System.Drawing.Size(1008, 160);
             this.panel2.TabIndex = 2;
             // 
             // panel3
@@ -248,7 +252,7 @@
             this.panel3.Controls.Add(this.btnDelete);
             this.panel3.Controls.Add(this.btnStartShift);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(617, 10);
+            this.panel3.Location = new System.Drawing.Point(763, 10);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(10);
             this.panel3.Size = new System.Drawing.Size(173, 140);
@@ -279,10 +283,9 @@
             // 
             // grpPoisk
             // 
+            this.grpPoisk.Controls.Add(this.groupBox1);
             this.grpPoisk.Controls.Add(this.txtSearchFIO);
-            this.grpPoisk.Controls.Add(this.lblDayShift);
             this.grpPoisk.Controls.Add(this.lblFio);
-            this.grpPoisk.Controls.Add(this.dtpShift);
             this.grpPoisk.Controls.Add(this.cmbPost);
             this.grpPoisk.Controls.Add(this.lblShift);
             this.grpPoisk.Controls.Add(this.lblStation);
@@ -292,56 +295,91 @@
             this.grpPoisk.Dock = System.Windows.Forms.DockStyle.Left;
             this.grpPoisk.Location = new System.Drawing.Point(10, 10);
             this.grpPoisk.Name = "grpPoisk";
-            this.grpPoisk.Size = new System.Drawing.Size(607, 140);
+            this.grpPoisk.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.grpPoisk.Size = new System.Drawing.Size(753, 140);
             this.grpPoisk.TabIndex = 21;
             this.grpPoisk.TabStop = false;
             this.grpPoisk.Text = "Смены ";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblDayShift);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dtpEndShift);
+            this.groupBox1.Controls.Add(this.dtpStartShift);
+            this.groupBox1.Location = new System.Drawing.Point(13, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(294, 63);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Дата смены";
+            // 
+            // lblDayShift
+            // 
+            this.lblDayShift.AutoSize = true;
+            this.lblDayShift.Location = new System.Drawing.Point(8, 30);
+            this.lblDayShift.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDayShift.Name = "lblDayShift";
+            this.lblDayShift.Size = new System.Drawing.Size(24, 16);
+            this.lblDayShift.TabIndex = 20;
+            this.lblDayShift.Text = "От";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(151, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 16);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "До";
+            // 
+            // dtpEndShift
+            // 
+            this.dtpEndShift.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEndShift.Location = new System.Drawing.Point(184, 25);
+            this.dtpEndShift.MinDate = new System.DateTime(1960, 1, 1, 0, 0, 0, 0);
+            this.dtpEndShift.Name = "dtpEndShift";
+            this.dtpEndShift.Size = new System.Drawing.Size(103, 23);
+            this.dtpEndShift.TabIndex = 21;
+            this.dtpEndShift.Value = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.dtpEndShift.ValueChanged += new System.EventHandler(this.dtpShift_ValueChanged);
+            // 
+            // dtpStartShift
+            // 
+            this.dtpStartShift.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStartShift.Location = new System.Drawing.Point(40, 25);
+            this.dtpStartShift.MinDate = new System.DateTime(1960, 1, 1, 0, 0, 0, 0);
+            this.dtpStartShift.Name = "dtpStartShift";
+            this.dtpStartShift.Size = new System.Drawing.Size(103, 23);
+            this.dtpStartShift.TabIndex = 19;
+            this.dtpStartShift.Value = new System.DateTime(2023, 6, 7, 0, 0, 0, 0);
+            this.dtpStartShift.ValueChanged += new System.EventHandler(this.dtpShift_ValueChanged);
+            // 
             // txtSearchFIO
             // 
-            this.txtSearchFIO.Location = new System.Drawing.Point(11, 38);
+            this.txtSearchFIO.Location = new System.Drawing.Point(321, 41);
             this.txtSearchFIO.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearchFIO.Name = "txtSearchFIO";
             this.txtSearchFIO.Size = new System.Drawing.Size(225, 23);
             this.txtSearchFIO.TabIndex = 13;
             this.txtSearchFIO.TextChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
             // 
-            // lblDayShift
-            // 
-            this.lblDayShift.AutoSize = true;
-            this.lblDayShift.Location = new System.Drawing.Point(487, 20);
-            this.lblDayShift.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblDayShift.Name = "lblDayShift";
-            this.lblDayShift.Size = new System.Drawing.Size(87, 16);
-            this.lblDayShift.TabIndex = 20;
-            this.lblDayShift.Text = "Дата смены";
-            // 
             // lblFio
             // 
             this.lblFio.AutoSize = true;
-            this.lblFio.Location = new System.Drawing.Point(13, 20);
+            this.lblFio.Location = new System.Drawing.Point(330, 21);
             this.lblFio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFio.Name = "lblFio";
             this.lblFio.Size = new System.Drawing.Size(37, 16);
             this.lblFio.TabIndex = 12;
             this.lblFio.Text = "ФИО";
             // 
-            // dtpShift
-            // 
-            this.dtpShift.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpShift.Location = new System.Drawing.Point(485, 39);
-            this.dtpShift.MinDate = new System.DateTime(1960, 1, 1, 0, 0, 0, 0);
-            this.dtpShift.Name = "dtpShift";
-            this.dtpShift.Size = new System.Drawing.Size(103, 23);
-            this.dtpShift.TabIndex = 19;
-            this.dtpShift.Value = new System.DateTime(2023, 6, 7, 0, 0, 0, 0);
-            this.dtpShift.ValueChanged += new System.EventHandler(this.dtpShift_ValueChanged);
-            // 
             // cmbPost
             // 
             this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPost.FormattingEnabled = true;
-            this.cmbPost.Location = new System.Drawing.Point(11, 92);
+            this.cmbPost.Location = new System.Drawing.Point(321, 98);
             this.cmbPost.Name = "cmbPost";
             this.cmbPost.Size = new System.Drawing.Size(225, 24);
             this.cmbPost.TabIndex = 17;
@@ -350,7 +388,7 @@
             // lblShift
             // 
             this.lblShift.AutoSize = true;
-            this.lblShift.Location = new System.Drawing.Point(257, 73);
+            this.lblShift.Location = new System.Drawing.Point(21, 101);
             this.lblShift.Name = "lblShift";
             this.lblShift.Size = new System.Drawing.Size(49, 16);
             this.lblShift.TabIndex = 0;
@@ -359,7 +397,7 @@
             // lblStation
             // 
             this.lblStation.AutoSize = true;
-            this.lblStation.Location = new System.Drawing.Point(257, 19);
+            this.lblStation.Location = new System.Drawing.Point(564, 21);
             this.lblStation.Name = "lblStation";
             this.lblStation.Size = new System.Drawing.Size(64, 16);
             this.lblStation.TabIndex = 14;
@@ -369,16 +407,16 @@
             // 
             this.cmbStatusShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatusShift.FormattingEnabled = true;
-            this.cmbStatusShift.Location = new System.Drawing.Point(255, 92);
+            this.cmbStatusShift.Location = new System.Drawing.Point(76, 98);
             this.cmbStatusShift.Name = "cmbStatusShift";
-            this.cmbStatusShift.Size = new System.Drawing.Size(103, 24);
+            this.cmbStatusShift.Size = new System.Drawing.Size(113, 24);
             this.cmbStatusShift.TabIndex = 1;
             this.cmbStatusShift.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
             // 
             // lblPost
             // 
             this.lblPost.AutoSize = true;
-            this.lblPost.Location = new System.Drawing.Point(13, 72);
+            this.lblPost.Location = new System.Drawing.Point(330, 79);
             this.lblPost.Name = "lblPost";
             this.lblPost.Size = new System.Drawing.Size(82, 16);
             this.lblPost.TabIndex = 16;
@@ -388,7 +426,7 @@
             // 
             this.cmbStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStation.FormattingEnabled = true;
-            this.cmbStation.Location = new System.Drawing.Point(255, 38);
+            this.cmbStation.Location = new System.Drawing.Point(557, 40);
             this.cmbStation.Name = "cmbStation";
             this.cmbStation.Size = new System.Drawing.Size(190, 24);
             this.cmbStation.TabIndex = 15;
@@ -424,6 +462,8 @@
             this.panel3.ResumeLayout(false);
             this.grpPoisk.ResumeLayout(false);
             this.grpPoisk.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,9 +489,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiExport;
         private System.Windows.Forms.Button btnStartShift;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DateTimePicker dtpShift;
+        private System.Windows.Forms.DateTimePicker dtpStartShift;
         private System.Windows.Forms.GroupBox grpPoisk;
-        private System.Windows.Forms.Label lblDayShift;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmployeeId;
@@ -463,5 +502,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOpenShift;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCloseShift;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusShift;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblDayShift;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpEndShift;
     }
 }

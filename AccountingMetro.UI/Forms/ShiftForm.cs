@@ -125,14 +125,10 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                grpPoisk.Width = 195;
+                grpPoisk.Width = 300;
                 lblFio.Visible = txtSearchFIO.Visible =
                         lblPost.Visible = cmbPost.Visible =
                         lblStation.Visible = cmbStation.Visible = false;
-                lblDayShift.Location = new Point(13, 25);
-                dtpShift.Location = new Point(11, 45);
-                lblShift.Location = new Point(13, 72);
-                cmbStatusShift.Location = new Point(11, 92);
                 dgvShift.DataSource = db.Shifts
                     .Include(x => x.Employee.Person)
                     .Include(x => x.Employee.Station)
@@ -187,7 +183,8 @@ namespace AccountingMetro.UI.Forms
                         .Include(x => x.StatusChange)
                         .Where(x => x.EmployeeId == Employee.Id
                         && (x.StatusChangeId == status.Id || status.Id == -1)
-                        && (x.ShiftOpened >= dtpShift.Value))
+                        && (x.ShiftOpened >= dtpStartShift.Value)
+                        && (x.ShiftOpened <= dtpEndShift.Value))
                         .Select(x => new
                         {
                             Id = x.Id,
@@ -220,7 +217,8 @@ namespace AccountingMetro.UI.Forms
                         .Where(x => (x.Employee.StationId == station.Id || station.Id == -1)
                         && (x.StatusChangeId == status.Id || status.Id == -1)
                         && (x.Employee.PostId == post.Id || post.Id == -1)
-                        && (x.ShiftOpened >= dtpShift.Value)
+                        && (x.ShiftOpened >= dtpStartShift.Value)
+                        && (x.ShiftOpened <= dtpEndShift.Value)
                         && (x.Employee.Person.LastName.Contains(txtSearchFIO.Text) || x.Employee.Person.FirstName.Contains(txtSearchFIO.Text)
                         || x.Employee.Person.Patronymic.Contains(txtSearchFIO.Text)))
                         .Select(x => new
