@@ -30,27 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShiftForm));
             this.dgvShift = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsslCountSuccessShift = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblPost = new System.Windows.Forms.Label();
-            this.cmbPost = new System.Windows.Forms.ComboBox();
-            this.lblStation = new System.Windows.Forms.Label();
-            this.cmbStation = new System.Windows.Forms.ComboBox();
-            this.txtSearchFIO = new System.Windows.Forms.TextBox();
-            this.lblFio = new System.Windows.Forms.Label();
-            this.lblShift = new System.Windows.Forms.Label();
-            this.cmbStatusShift = new System.Windows.Forms.ComboBox();
-            this.btnStartShift = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.dtpShift = new System.Windows.Forms.DateTimePicker();
-            this.lblDayShift = new System.Windows.Forms.Label();
-            this.grpPoisk = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEmployee = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,13 +40,34 @@
             this.ColumnOpenShift = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCloseShift = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStatusShift = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslCountSuccessShift = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnStartShift = new System.Windows.Forms.Button();
+            this.grpPoisk = new System.Windows.Forms.GroupBox();
+            this.txtSearchFIO = new System.Windows.Forms.TextBox();
+            this.lblDayShift = new System.Windows.Forms.Label();
+            this.lblFio = new System.Windows.Forms.Label();
+            this.dtpShift = new System.Windows.Forms.DateTimePicker();
+            this.cmbPost = new System.Windows.Forms.ComboBox();
+            this.lblShift = new System.Windows.Forms.Label();
+            this.lblStation = new System.Windows.Forms.Label();
+            this.cmbStatusShift = new System.Windows.Forms.ComboBox();
+            this.lblPost = new System.Windows.Forms.Label();
+            this.cmbStation = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShift)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.grpPoisk.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.grpPoisk.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvShift
@@ -97,223 +97,6 @@
             this.dgvShift.Size = new System.Drawing.Size(1274, 445);
             this.dgvShift.TabIndex = 0;
             this.dgvShift.SelectionChanged += new System.EventHandler(this.dgvShift_SelectionChanged);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiBack,
-            this.tsmiExport});
-            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1274, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // tsmiBack
-            // 
-            this.tsmiBack.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsmiBack.Name = "tsmiBack";
-            this.tsmiBack.Size = new System.Drawing.Size(59, 20);
-            this.tsmiBack.Text = "Назад";
-            // 
-            // tsmiExport
-            // 
-            this.tsmiExport.Name = "tsmiExport";
-            this.tsmiExport.Size = new System.Drawing.Size(128, 20);
-            this.tsmiExport.Text = "Экспорт данных";
-            this.tsmiExport.Click += new System.EventHandler(this.tsmiExport_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslCountSuccessShift});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 634);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1274, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tsslCountSuccessShift
-            // 
-            this.tsslCountSuccessShift.Name = "tsslCountSuccessShift";
-            this.tsslCountSuccessShift.Size = new System.Drawing.Size(186, 17);
-            this.tsslCountSuccessShift.Text = "Кол-во выполненных смен";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(5, 29);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1274, 160);
-            this.panel1.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.grpPoisk);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(803, 160);
-            this.panel2.TabIndex = 2;
-            // 
-            // lblPost
-            // 
-            this.lblPost.AutoSize = true;
-            this.lblPost.Location = new System.Drawing.Point(13, 72);
-            this.lblPost.Name = "lblPost";
-            this.lblPost.Size = new System.Drawing.Size(82, 16);
-            this.lblPost.TabIndex = 16;
-            this.lblPost.Text = "Должность";
-            // 
-            // cmbPost
-            // 
-            this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPost.FormattingEnabled = true;
-            this.cmbPost.Location = new System.Drawing.Point(11, 92);
-            this.cmbPost.Name = "cmbPost";
-            this.cmbPost.Size = new System.Drawing.Size(225, 24);
-            this.cmbPost.TabIndex = 17;
-            this.cmbPost.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
-            // 
-            // lblStation
-            // 
-            this.lblStation.AutoSize = true;
-            this.lblStation.Location = new System.Drawing.Point(257, 19);
-            this.lblStation.Name = "lblStation";
-            this.lblStation.Size = new System.Drawing.Size(64, 16);
-            this.lblStation.TabIndex = 14;
-            this.lblStation.Text = "Станция";
-            // 
-            // cmbStation
-            // 
-            this.cmbStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStation.FormattingEnabled = true;
-            this.cmbStation.Location = new System.Drawing.Point(255, 38);
-            this.cmbStation.Name = "cmbStation";
-            this.cmbStation.Size = new System.Drawing.Size(190, 24);
-            this.cmbStation.TabIndex = 15;
-            this.cmbStation.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
-            // 
-            // txtSearchFIO
-            // 
-            this.txtSearchFIO.Location = new System.Drawing.Point(11, 38);
-            this.txtSearchFIO.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSearchFIO.Name = "txtSearchFIO";
-            this.txtSearchFIO.Size = new System.Drawing.Size(225, 23);
-            this.txtSearchFIO.TabIndex = 13;
-            this.txtSearchFIO.TextChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
-            // 
-            // lblFio
-            // 
-            this.lblFio.AutoSize = true;
-            this.lblFio.Location = new System.Drawing.Point(13, 20);
-            this.lblFio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblFio.Name = "lblFio";
-            this.lblFio.Size = new System.Drawing.Size(37, 16);
-            this.lblFio.TabIndex = 12;
-            this.lblFio.Text = "ФИО";
-            // 
-            // lblShift
-            // 
-            this.lblShift.AutoSize = true;
-            this.lblShift.Location = new System.Drawing.Point(257, 73);
-            this.lblShift.Name = "lblShift";
-            this.lblShift.Size = new System.Drawing.Size(49, 16);
-            this.lblShift.TabIndex = 0;
-            this.lblShift.Text = "Смена";
-            // 
-            // cmbStatusShift
-            // 
-            this.cmbStatusShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatusShift.FormattingEnabled = true;
-            this.cmbStatusShift.Location = new System.Drawing.Point(255, 92);
-            this.cmbStatusShift.Name = "cmbStatusShift";
-            this.cmbStatusShift.Size = new System.Drawing.Size(103, 24);
-            this.cmbStatusShift.TabIndex = 1;
-            this.cmbStatusShift.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
-            // 
-            // btnStartShift
-            // 
-            this.btnStartShift.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStartShift.Location = new System.Drawing.Point(10, 10);
-            this.btnStartShift.Name = "btnStartShift";
-            this.btnStartShift.Size = new System.Drawing.Size(153, 31);
-            this.btnStartShift.TabIndex = 3;
-            this.btnStartShift.Text = "Добавить смену";
-            this.btnStartShift.UseVisualStyleBackColor = true;
-            this.btnStartShift.Visible = false;
-            this.btnStartShift.Click += new System.EventHandler(this.btnStartShift_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDelete.Location = new System.Drawing.Point(10, 41);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(153, 31);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Удалить смену";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // dtpShift
-            // 
-            this.dtpShift.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpShift.Location = new System.Drawing.Point(485, 39);
-            this.dtpShift.MinDate = new System.DateTime(1960, 1, 1, 0, 0, 0, 0);
-            this.dtpShift.Name = "dtpShift";
-            this.dtpShift.Size = new System.Drawing.Size(103, 23);
-            this.dtpShift.TabIndex = 19;
-            this.dtpShift.Value = new System.DateTime(2023, 6, 7, 0, 0, 0, 0);
-            this.dtpShift.ValueChanged += new System.EventHandler(this.dtpShift_ValueChanged);
-            // 
-            // lblDayShift
-            // 
-            this.lblDayShift.AutoSize = true;
-            this.lblDayShift.Location = new System.Drawing.Point(487, 20);
-            this.lblDayShift.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblDayShift.Name = "lblDayShift";
-            this.lblDayShift.Size = new System.Drawing.Size(87, 16);
-            this.lblDayShift.TabIndex = 20;
-            this.lblDayShift.Text = "Дата смены";
-            // 
-            // grpPoisk
-            // 
-            this.grpPoisk.Controls.Add(this.txtSearchFIO);
-            this.grpPoisk.Controls.Add(this.lblDayShift);
-            this.grpPoisk.Controls.Add(this.lblFio);
-            this.grpPoisk.Controls.Add(this.dtpShift);
-            this.grpPoisk.Controls.Add(this.cmbPost);
-            this.grpPoisk.Controls.Add(this.lblShift);
-            this.grpPoisk.Controls.Add(this.lblStation);
-            this.grpPoisk.Controls.Add(this.cmbStatusShift);
-            this.grpPoisk.Controls.Add(this.lblPost);
-            this.grpPoisk.Controls.Add(this.cmbStation);
-            this.grpPoisk.Dock = System.Windows.Forms.DockStyle.Left;
-            this.grpPoisk.Location = new System.Drawing.Point(10, 10);
-            this.grpPoisk.Name = "grpPoisk";
-            this.grpPoisk.Size = new System.Drawing.Size(607, 140);
-            this.grpPoisk.TabIndex = 21;
-            this.grpPoisk.TabStop = false;
-            this.grpPoisk.Text = "Смены ";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnDelete);
-            this.panel3.Controls.Add(this.btnStartShift);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(617, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(173, 140);
-            this.panel3.TabIndex = 22;
             // 
             // ColumnId
             // 
@@ -393,6 +176,224 @@
             this.ColumnStatusShift.Name = "ColumnStatusShift";
             this.ColumnStatusShift.ReadOnly = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiBack,
+            this.tsmiExport});
+            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1274, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // tsmiBack
+            // 
+            this.tsmiBack.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsmiBack.Name = "tsmiBack";
+            this.tsmiBack.Size = new System.Drawing.Size(59, 20);
+            this.tsmiBack.Text = "Назад";
+            this.tsmiBack.Click += new System.EventHandler(this.tsmiBack_Click);
+            // 
+            // tsmiExport
+            // 
+            this.tsmiExport.Name = "tsmiExport";
+            this.tsmiExport.Size = new System.Drawing.Size(128, 20);
+            this.tsmiExport.Text = "Экспорт данных";
+            this.tsmiExport.Click += new System.EventHandler(this.tsmiExport_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslCountSuccessShift});
+            this.statusStrip1.Location = new System.Drawing.Point(5, 634);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1274, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslCountSuccessShift
+            // 
+            this.tsslCountSuccessShift.Name = "tsslCountSuccessShift";
+            this.tsslCountSuccessShift.Size = new System.Drawing.Size(186, 17);
+            this.tsslCountSuccessShift.Text = "Кол-во выполненных смен";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(5, 29);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1274, 160);
+            this.panel1.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.grpPoisk);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(803, 160);
+            this.panel2.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Controls.Add(this.btnStartShift);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(617, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10);
+            this.panel3.Size = new System.Drawing.Size(173, 140);
+            this.panel3.TabIndex = 22;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDelete.Location = new System.Drawing.Point(10, 41);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(153, 31);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Удалить смену";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnStartShift
+            // 
+            this.btnStartShift.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStartShift.Location = new System.Drawing.Point(10, 10);
+            this.btnStartShift.Name = "btnStartShift";
+            this.btnStartShift.Size = new System.Drawing.Size(153, 31);
+            this.btnStartShift.TabIndex = 3;
+            this.btnStartShift.Text = "Добавить смену";
+            this.btnStartShift.UseVisualStyleBackColor = true;
+            this.btnStartShift.Visible = false;
+            this.btnStartShift.Click += new System.EventHandler(this.btnStartShift_Click);
+            // 
+            // grpPoisk
+            // 
+            this.grpPoisk.Controls.Add(this.txtSearchFIO);
+            this.grpPoisk.Controls.Add(this.lblDayShift);
+            this.grpPoisk.Controls.Add(this.lblFio);
+            this.grpPoisk.Controls.Add(this.dtpShift);
+            this.grpPoisk.Controls.Add(this.cmbPost);
+            this.grpPoisk.Controls.Add(this.lblShift);
+            this.grpPoisk.Controls.Add(this.lblStation);
+            this.grpPoisk.Controls.Add(this.cmbStatusShift);
+            this.grpPoisk.Controls.Add(this.lblPost);
+            this.grpPoisk.Controls.Add(this.cmbStation);
+            this.grpPoisk.Dock = System.Windows.Forms.DockStyle.Left;
+            this.grpPoisk.Location = new System.Drawing.Point(10, 10);
+            this.grpPoisk.Name = "grpPoisk";
+            this.grpPoisk.Size = new System.Drawing.Size(607, 140);
+            this.grpPoisk.TabIndex = 21;
+            this.grpPoisk.TabStop = false;
+            this.grpPoisk.Text = "Смены ";
+            // 
+            // txtSearchFIO
+            // 
+            this.txtSearchFIO.Location = new System.Drawing.Point(11, 38);
+            this.txtSearchFIO.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearchFIO.Name = "txtSearchFIO";
+            this.txtSearchFIO.Size = new System.Drawing.Size(225, 23);
+            this.txtSearchFIO.TabIndex = 13;
+            this.txtSearchFIO.TextChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
+            // 
+            // lblDayShift
+            // 
+            this.lblDayShift.AutoSize = true;
+            this.lblDayShift.Location = new System.Drawing.Point(487, 20);
+            this.lblDayShift.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDayShift.Name = "lblDayShift";
+            this.lblDayShift.Size = new System.Drawing.Size(87, 16);
+            this.lblDayShift.TabIndex = 20;
+            this.lblDayShift.Text = "Дата смены";
+            // 
+            // lblFio
+            // 
+            this.lblFio.AutoSize = true;
+            this.lblFio.Location = new System.Drawing.Point(13, 20);
+            this.lblFio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFio.Name = "lblFio";
+            this.lblFio.Size = new System.Drawing.Size(37, 16);
+            this.lblFio.TabIndex = 12;
+            this.lblFio.Text = "ФИО";
+            // 
+            // dtpShift
+            // 
+            this.dtpShift.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpShift.Location = new System.Drawing.Point(485, 39);
+            this.dtpShift.MinDate = new System.DateTime(1960, 1, 1, 0, 0, 0, 0);
+            this.dtpShift.Name = "dtpShift";
+            this.dtpShift.Size = new System.Drawing.Size(103, 23);
+            this.dtpShift.TabIndex = 19;
+            this.dtpShift.Value = new System.DateTime(2023, 6, 7, 0, 0, 0, 0);
+            this.dtpShift.ValueChanged += new System.EventHandler(this.dtpShift_ValueChanged);
+            // 
+            // cmbPost
+            // 
+            this.cmbPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPost.FormattingEnabled = true;
+            this.cmbPost.Location = new System.Drawing.Point(11, 92);
+            this.cmbPost.Name = "cmbPost";
+            this.cmbPost.Size = new System.Drawing.Size(225, 24);
+            this.cmbPost.TabIndex = 17;
+            this.cmbPost.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
+            // 
+            // lblShift
+            // 
+            this.lblShift.AutoSize = true;
+            this.lblShift.Location = new System.Drawing.Point(257, 73);
+            this.lblShift.Name = "lblShift";
+            this.lblShift.Size = new System.Drawing.Size(49, 16);
+            this.lblShift.TabIndex = 0;
+            this.lblShift.Text = "Смена";
+            // 
+            // lblStation
+            // 
+            this.lblStation.AutoSize = true;
+            this.lblStation.Location = new System.Drawing.Point(257, 19);
+            this.lblStation.Name = "lblStation";
+            this.lblStation.Size = new System.Drawing.Size(64, 16);
+            this.lblStation.TabIndex = 14;
+            this.lblStation.Text = "Станция";
+            // 
+            // cmbStatusShift
+            // 
+            this.cmbStatusShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatusShift.FormattingEnabled = true;
+            this.cmbStatusShift.Location = new System.Drawing.Point(255, 92);
+            this.cmbStatusShift.Name = "cmbStatusShift";
+            this.cmbStatusShift.Size = new System.Drawing.Size(103, 24);
+            this.cmbStatusShift.TabIndex = 1;
+            this.cmbStatusShift.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
+            // 
+            // lblPost
+            // 
+            this.lblPost.AutoSize = true;
+            this.lblPost.Location = new System.Drawing.Point(13, 72);
+            this.lblPost.Name = "lblPost";
+            this.lblPost.Size = new System.Drawing.Size(82, 16);
+            this.lblPost.TabIndex = 16;
+            this.lblPost.Text = "Должность";
+            // 
+            // cmbStation
+            // 
+            this.cmbStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStation.FormattingEnabled = true;
+            this.cmbStation.Location = new System.Drawing.Point(255, 38);
+            this.cmbStation.Name = "cmbStation";
+            this.cmbStation.Size = new System.Drawing.Size(190, 24);
+            this.cmbStation.TabIndex = 15;
+            this.cmbStation.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
+            // 
             // ShiftForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -420,9 +421,9 @@
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.grpPoisk.ResumeLayout(false);
             this.grpPoisk.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

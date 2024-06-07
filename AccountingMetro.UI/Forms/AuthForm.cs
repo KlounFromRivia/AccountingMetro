@@ -41,43 +41,54 @@ namespace AccountingMetro.UI
                 var staffDepart = db.StaffDeparts
                     .Include(x => x.Employee.Person)
                     .Include(x => x.Employee.Station)
+                    .Include(x => x.Employee.StatusEmployee)
                     .FirstOrDefault(x => x.Login == txtLogin.Text);
 
                 if (staffDepart == null)
                 {
-                    MessageBox.Show("Введенные данные неверны!",
-                        "Пользователь не существует!",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.Show("Введенные данные неверны!", "Пользователь не существует!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogin.Text = txtPassword.Text = "";
                     return;
                 }
 
                 var hashPassword = new Authorizator()
-                    .GenerateSHA256Hash(txtPassword.Text, staffDepart.Salt); 
+                    .GenerateSHA256Hash(txtPassword.Text, staffDepart.Salt);
 
                 if (hashPassword != staffDepart.Password)
                 {
-                    MessageBox.Show("Введенные данные неверны!",
-                    "Пользователь не существует!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
+                    MessageBox.Show("Введенные данные неверны!", "Пользователь не существует!", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogin.Text = txtPassword.Text = "";
                     return;
                 }
 
                 CurrentEmployee.StaffDepart = staffDepart;
 
-                    MessageBox.Show("Добро пожаловать, "+CurrentEmployee.StaffDepart.Employee.Person.LastName+"!",
-                        "Авторизация успешна!",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                if (CurrentEmployee.StaffDepart.Employee.StatusEmployeeId == 2)
+                {
+                    MessageBox.Show("Данный сотрудник уволен!", "Доступ запрещен!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLogin.Text = txtPassword.Text = "";
+                    return;
+                }
 
-                    var mainForm = new MainForm();
-                    this.Hide();
-                    mainForm.ShowDialog();
-                    txtLogin.Clear();
-                    txtPassword.Clear();
-                    this.Show();
+                var username = CurrentEmployee.StaffDepart.Id != 1
+                    ? "Добро пожаловать, " + CurrentEmployee.StaffDepart.Employee.Person.LastName + " " +
+                        CurrentEmployee.StaffDepart.Employee.Person.FirstName + " " +
+                        CurrentEmployee.StaffDepart.Employee.Person.Patronymic + "!"
+                    : "Добро пожаловать, " + CurrentEmployee.StaffDepart.Employee.Person.LastName + "!";
+
+                MessageBox.Show(username, "Авторизация успешна!", 
+                    MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+                var mainForm = new MainForm();
+                this.Hide();
+                mainForm.ShowDialog();
+                CurrentEmployee.StaffDepart = null;
+                txtLogin.Clear();
+                txtPassword.Clear();
+                this.Show();
             }
         }
 

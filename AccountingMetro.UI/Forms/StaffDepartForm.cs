@@ -108,6 +108,8 @@ namespace AccountingMetro.UI.Forms
                 }
             }
         }
+        #endregion
+
         private void FillComboBoxStation()
         {
             using (var db = new AccountingMetroDBContext())
@@ -132,7 +134,6 @@ namespace AccountingMetro.UI.Forms
                 cmbStation.SelectedIndex = 0;
             }
         }
-        #endregion
 
         private void cmbVetka_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -167,6 +168,15 @@ namespace AccountingMetro.UI.Forms
                 }
                 MessageBox.Show("Все дежурным выдан доступ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            FillEmployeeView();
+            txtFam.Text = "";
+            cmbVetka.SelectedIndex = 0;
+            cmbStatusEmployee.SelectedIndex = 0;
+            cmbStation.SelectedIndex = 0;
         }
     }
 }

@@ -264,22 +264,26 @@ namespace AccountingMetro.UI.Forms
             xlApp.Columns.ColumnWidth = 30;
 
             xlSheet = (Excel.Worksheet)wBook.Sheets[1];
-            xlSheet.Name = "Смена";
 
-            xlSheet.Cells[1, 1] = "Сотрудник";
-            xlSheet.Cells[1, 2] = "Должность";
-            xlSheet.Cells[1, 3] = "Место работы";
-            xlSheet.Cells[1, 4] = "Рабочий телефон";
-            xlSheet.Cells[1, 5] = "Норма смены";
-            xlSheet.Cells[1, 6] = "Начало смены";
-            xlSheet.Cells[1, 7] = "Конец смены";
-            xlSheet.Cells[1, 8] = "Статус смены";
+            xlSheet.Name = selectedForm == true
+                ? "Смены"
+                : "Смены сотрудников";
+
+            xlSheet.Rows[2].Font.Bold = true;
+            xlSheet.Cells[2, 1] = "Сотрудник";
+            xlSheet.Cells[2, 2] = "Должность";
+            xlSheet.Cells[2, 3] = "Место работы";
+            xlSheet.Cells[2, 4] = "Рабочий телефон";
+            xlSheet.Cells[2, 5] = "Норма смены";
+            xlSheet.Cells[2, 6] = "Начало смены";
+            xlSheet.Cells[2, 7] = "Конец смены";
+            xlSheet.Cells[2, 8] = "Статус смены";
 
             for (int i = 0; i < dgvShift.Rows.Count; i++)
             {
-                for (int j = 0; j < dgvShift.Columns.Count; j++)
+                for (int j = 0; j < dgvShift.Columns.Count - 2; j++)
                 {
-                    xlApp.Cells[i + 2, j + 1] = dgvShift.Rows[i].Cells[j].Value.ToString();
+                    xlApp.Cells[i + 3, j + 1] = dgvShift.Rows[i].Cells[j+2].Value.ToString();
                 }
             }
             xlApp.Columns.AutoFit();
@@ -288,7 +292,6 @@ namespace AccountingMetro.UI.Forms
 
         private void btnStartShift_Click(object sender, EventArgs e)
         {
-
             if (MessageBox.Show($"Вы хотите добавить смену для этого сотрудника?",
             "Добавление смены",
             MessageBoxButtons.YesNo,
@@ -388,6 +391,11 @@ namespace AccountingMetro.UI.Forms
         private void dgvShift_SelectionChanged(object sender, EventArgs e)
         {
             btnDelete.Enabled = dgvShift.SelectedRows.Count > 0;
+        }
+
+        private void tsmiBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

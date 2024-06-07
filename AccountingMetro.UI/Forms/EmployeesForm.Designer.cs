@@ -66,7 +66,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panel1.Size = new System.Drawing.Size(257, 533);
+            this.panel1.Size = new System.Drawing.Size(257, 534);
             this.panel1.TabIndex = 0;
             // 
             // grpList
@@ -226,10 +226,10 @@
             this.tsslCountEmployee,
             this.tsslStatusEmployee,
             this.tsslCountOnStation});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 558);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(960, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(961, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -260,7 +260,7 @@
             this.flpEmployees.Location = new System.Drawing.Point(257, 24);
             this.flpEmployees.Margin = new System.Windows.Forms.Padding(4);
             this.flpEmployees.Name = "flpEmployees";
-            this.flpEmployees.Size = new System.Drawing.Size(703, 533);
+            this.flpEmployees.Size = new System.Drawing.Size(704, 534);
             this.flpEmployees.TabIndex = 3;
             // 
             // menuStrip1
@@ -270,7 +270,7 @@
             this.tssmBack});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(960, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(961, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -286,7 +286,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 579);
+            this.ClientSize = new System.Drawing.Size(961, 580);
             this.Controls.Add(this.flpEmployees);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -295,7 +295,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(976, 618);
+            this.MinimumSize = new System.Drawing.Size(522, 619);
             this.Name = "EmployeesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Просмотр (редактирование) данных сотрудника";

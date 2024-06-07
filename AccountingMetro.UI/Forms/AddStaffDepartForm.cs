@@ -92,6 +92,7 @@ namespace AccountingMetro.UI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            var regex = new Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,15}$");
             if (isStaffDepartForm)
             {
                 if (txtLogin.Text != txtPassword.Text)
@@ -103,8 +104,6 @@ namespace AccountingMetro.UI.Forms
 
                     return;
                 }
-
-                var regex = new Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,15}$");
 
                 if (!regex.IsMatch(txtLogin.Text))
                 {
@@ -134,13 +133,41 @@ namespace AccountingMetro.UI.Forms
 
                     db.SaveChanges();
                 }
+                MessageBox.Show("Пароль успешно сохранен!", "Изменение пароля",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
                 return;
             }
-            
+
 
             using (var db = new AccountingMetroDBContext())
             {
+                var isUnique = db.StaffDeparts.FirstOrDefault(x => x.Login == txtLogin.Text);
+                if (isUnique != null)
+                {
+                    var tooltip = new ToolTip();
+
+                    tooltip.SetToolTip(txtLogin, "");
+                    tooltip.Show("Пользователь с таким логином уже есть!", txtLogin, 2000);
+
+                    return;
+                }
+
+                if (!regex.IsMatch(txtPassword.Text))
+                {
+                    var tooltip = new ToolTip();
+
+                    tooltip.SetToolTip(txtPassword, "");
+                    tooltip.ToolTipTitle = "Пароль должен содержать:";
+                    tooltip.Show("- строчные и прописные латинские буквы\n" +
+                                 "- не менее одной цифры\n" +
+                                 "- не менее одного специального символа\n" +
+                                 "- от 8 до 15 символов"
+                                 , txtPassword, 2000);
+
+                    return;
+                }
+
                 int.TryParse(cmbStaff.SelectedValue.ToString(), out var id);
                 var employee = db.Employees.FirstOrDefault(x => x.Id == id);
                 var staffDepart = new StaffDepart()
@@ -158,6 +185,8 @@ namespace AccountingMetro.UI.Forms
                 db.StaffDeparts.Add(staffDepart);
                 db.SaveChanges();
             }
+            MessageBox.Show("Сотрудник успешно добавлен!", "Добавление",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
