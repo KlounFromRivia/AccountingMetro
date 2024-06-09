@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,6 @@ namespace AccountingMetro.UI.UserControls
 {
     public partial class TrainView : UserControl
     {
-        public event Action StatusCountTrain;
         public Train Train { get; set; }
         string element = "";
         public TrainView(Train train)
@@ -65,28 +65,38 @@ namespace AccountingMetro.UI.UserControls
                 db.SaveChanges();
                 MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Train = train;
-                StatusCountTrain?.Invoke();
+                ((MetroForm)ParentForm).FillTrainView();
             }
         }
 
         private void tsmiDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"Вы уверены, что хотите удалить станцию '{element}'?",
+            using (var db = new AccountingMetroDBContext())
+            {
+                var employee = db.Employees
+                .Include(x => x.Train).FirstOrDefault(x => x.TrainId == Train.Id);
+                if (employee == null)
+                {
+                    if (MessageBox.Show($"Вы уверены, что хотите удалить поезд №{element}?",
                 "Подтвердите действие",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Asterisk) == DialogResult.OK)
-            {
-                using (var db = new AccountingMetroDBContext())
-                {
-                    var train = db.Trains.FirstOrDefault(x => x.Id == Train.Id);
-                    db.Trains.Remove(train);
-                    db.SaveChanges();
-                    MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Train = train;
-                    StatusCountTrain?.Invoke();
+                    {
+                        var train = db.Trains.FirstOrDefault(x => x.Id == Train.Id);
+                        db.Trains.Remove(train);
+                        db.SaveChanges();
+                        MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Train = train;
+                        ((MetroForm)ParentForm).FillTrainView();
+                    }
                 }
-                var sf = this.ParentForm as MetroForm;
-                sf.FillTrainView();
+                else
+                {
+                    MessageBox.Show($"Нельзя удалить поезд №{element}, так как на ней работает машинист",
+                        "Внимание!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
             }
         }
 

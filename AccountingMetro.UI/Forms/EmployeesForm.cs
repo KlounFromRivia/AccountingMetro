@@ -56,6 +56,7 @@ namespace AccountingMetro.UI.Forms
                     Title = "Все сотрудники"
                 });
                 cmbStatusEmployee.DisplayMember = nameof(StatusEmployee.Title);
+                
 
                 cmbPost.SelectedIndex = 0;
                 cmbVetka.SelectedIndex = 0;
@@ -98,6 +99,10 @@ namespace AccountingMetro.UI.Forms
                 tsslCountEmployee.Text = "Кол-во сотрудников: " + db.Employees.Where(x => x.Person.LastName != "Администратор").Count();
                 tsslCountOnStation.Text = "Кол-во сотрудников на станции: " + db.Employees.Where(x => x.StationId == station.Id && x.Person.LastName != "Администратор").Count();
                 tsslStatusEmployee.Text = "Кол-во работающих сотрудников: " + db.Employees.Where(x => x.StatusEmployeeId == 1 && x.Person.LastName != "Администратор").Count();
+                if(employees.Count() <= 0)
+                {
+                    MessageBox.Show("Ничего не найдено", "Поиск!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                }
             }
         }
         #endregion

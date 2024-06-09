@@ -84,12 +84,12 @@ namespace AccountingMetro.UI.Forms
             cmbStatusShift.SelectedIndex = 0;
             cmbStation.SelectedIndex = 0;
             cmbPost.SelectedIndex = 0;
+            txtSearchFIO.Text = "";
         }
 
         #region Смены всех сотрудников
         public void ShiftHandler()
         {
-            txtSearchFIO.Text = "";
             using (var db = new AccountingMetroDBContext())
             {
                 dgvShift.DataSource = db.Shifts
@@ -240,6 +240,10 @@ namespace AccountingMetro.UI.Forms
                         .ToList();
                     tsslCountSuccessShift.Text = "Кол-во выполненных смен: " + db.Shifts.Where(x => x.StatusChangeId == 1).Count();
                     #endregion
+                }
+                if (dgvShift.Rows.Count <= 0)
+                {
+                    MessageBox.Show("Ничего не найдено", "Поиск!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             btnDelete.Enabled = dgvShift.SelectedRows.Count > 0;
@@ -398,6 +402,18 @@ namespace AccountingMetro.UI.Forms
         private void tsmiBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tsmiReset_Click(object sender, EventArgs e)
+        {
+            if (selectedForm == true)
+            {
+                ShiftEmployeeHandler(Employee);
+                FilterNone();
+                return;
+            }
+            ShiftHandler();
+            FilterNone();
         }
     }
 }

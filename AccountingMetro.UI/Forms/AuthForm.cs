@@ -46,8 +46,8 @@ namespace AccountingMetro.UI
 
                 if (staffDepart == null)
                 {
-                    MessageBox.Show("Введенные данные неверны!", "Пользователь не существует!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ничего не найдено!", "Поиск!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLogin.Text = txtPassword.Text = "";
                     return;
                 }

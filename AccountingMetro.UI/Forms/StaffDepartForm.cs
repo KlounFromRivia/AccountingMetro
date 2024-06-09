@@ -106,6 +106,10 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddOrderView(staffdepart);
                 }
+                if (staffdeparts.Count() <= 0)
+                {
+                    MessageBox.Show("Ничего не найдено", "Поиск!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         #endregion
