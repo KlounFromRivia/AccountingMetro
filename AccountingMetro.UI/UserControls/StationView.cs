@@ -66,7 +66,7 @@ namespace AccountingMetro.UI.UserControls
                 db.SaveChanges();
                 MessageBox.Show("Все данные сохранены", "Сохранение изменений", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Station = station;
-                ((MetroForm)ParentForm).FillStationCount();
+                ((MetroForm)ParentForm).FillStationView();
             }
         }
 
@@ -88,7 +88,7 @@ namespace AccountingMetro.UI.UserControls
                         db.SaveChanges();
                         MessageBox.Show("Станция удалена", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Station = station;
-                        this.Parent.Controls.Remove(this);
+                        ((MetroForm)ParentForm).FillStationView();
                     }
                 }
                 else

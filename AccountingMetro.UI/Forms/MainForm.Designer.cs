@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEditPassword = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslFIO = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -44,7 +45,6 @@
             this.lblFio = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picEmployee = new System.Windows.Forms.PictureBox();
-            this.tsmiEditPassword = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -74,6 +74,13 @@
             this.tsmiExit.Size = new System.Drawing.Size(59, 20);
             this.tsmiExit.Text = "Выход";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
+            // 
+            // tsmiEditPassword
+            // 
+            this.tsmiEditPassword.Name = "tsmiEditPassword";
+            this.tsmiEditPassword.Size = new System.Drawing.Size(134, 20);
+            this.tsmiEditPassword.Text = "Изменить пароль";
+            this.tsmiEditPassword.Click += new System.EventHandler(this.tsmiEditPassword_Click);
             // 
             // statusStrip1
             // 
@@ -193,7 +200,7 @@
             this.lblStation.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblStation.Location = new System.Drawing.Point(0, 241);
             this.lblStation.Name = "lblStation";
-            this.lblStation.Size = new System.Drawing.Size(150, 25);
+            this.lblStation.Size = new System.Drawing.Size(150, 49);
             this.lblStation.TabIndex = 6;
             this.lblStation.Text = "Станция";
             this.lblStation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -230,13 +237,6 @@
             this.picEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picEmployee.TabIndex = 4;
             this.picEmployee.TabStop = false;
-            // 
-            // tsmiEditPassword
-            // 
-            this.tsmiEditPassword.Name = "tsmiEditPassword";
-            this.tsmiEditPassword.Size = new System.Drawing.Size(134, 20);
-            this.tsmiEditPassword.Text = "Изменить пароль";
-            this.tsmiEditPassword.Click += new System.EventHandler(this.tsmiEditPassword_Click);
             // 
             // MainForm
             // 

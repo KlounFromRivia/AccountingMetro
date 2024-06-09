@@ -64,6 +64,7 @@
             this.cmbStatusShift = new System.Windows.Forms.ComboBox();
             this.lblPost = new System.Windows.Forms.Label();
             this.cmbStation = new System.Windows.Forms.ComboBox();
+            this.tsmiReset = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShift)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -185,6 +186,7 @@
             this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBack,
+            this.tsmiReset,
             this.tsmiExport});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
@@ -432,6 +434,13 @@
             this.cmbStation.TabIndex = 15;
             this.cmbStation.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
             // 
+            // tsmiReset
+            // 
+            this.tsmiReset.Name = "tsmiReset";
+            this.tsmiReset.Size = new System.Drawing.Size(145, 20);
+            this.tsmiReset.Text = "Сбросить фильтры";
+            this.tsmiReset.Click += new System.EventHandler(this.tsmiReset_Click);
+            // 
             // ShiftForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -506,5 +515,6 @@
         private System.Windows.Forms.Label lblDayShift;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpEndShift;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReset;
     }
 }

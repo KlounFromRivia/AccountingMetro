@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffDepartForm));
             this.flpStaffDeparts = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grpList = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFam = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +45,6 @@
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tssmBack = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.grpList.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -107,6 +108,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Поиск";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(44, 290);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(145, 28);
+            this.btnReset.TabIndex = 17;
+            this.btnReset.Text = "Сбросить";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // label4
             // 
@@ -222,16 +233,6 @@
             this.tssmBack.Text = "Назад";
             this.tssmBack.Click += new System.EventHandler(this.tssmBack_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(44, 290);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(145, 28);
-            this.btnReset.TabIndex = 17;
-            this.btnReset.Text = "Сбросить";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
             // StaffDepartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -241,6 +242,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(777, 590);
             this.Name = "StaffDepartForm";

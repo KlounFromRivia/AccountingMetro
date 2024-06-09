@@ -97,7 +97,10 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddStationView(station);
                 }
+                tsslStatusStation.Text = "Кол-во открытых станций: "
+                    + db.Stations.Where(x => x.StatusStationId == 1).Count();
             }
+
         }
         public void InitList()
         {
@@ -116,7 +119,7 @@ namespace AccountingMetro.UI.Forms
             lstVetka.SelectedItems.Clear();
         }
 
-        private void FilterStation()
+        public void FilterStation()
         {
             var status = ((StatusStation)cmbStatStation.SelectedItem);
             var vetka = ((Vetka)cmbVetka.SelectedItem);
@@ -139,8 +142,12 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddStationView(station);
                 }
-                tsslStatusStation.Text = "Кол-во сотрудников: " 
+                tsslStatusStation.Text = "Кол-во открытых станций: " 
                     + db.Stations.Where(x => x.StatusStationId == 1).Count();
+                if (stations.Count() <= 0)
+                {
+                    MessageBox.Show("Ничего не найдено", "Поиск!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -256,6 +263,8 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddTrainView(train);
                 }
+                tsslCountTrain.Text = "Кол-во открытых станций: "
+                    + db.Trains.Where(x => x.StatusTrainId == 1).Count();
             }
         }
 
@@ -263,31 +272,8 @@ namespace AccountingMetro.UI.Forms
         {
             var stationControl = new TrainView(train);
             stationControl.Parent = flpTrain;
-            stationControl.StatusCountTrain += TrainControl_StatusCount;
-            CountTrain();
         }
-        private void TrainControl_StatusCount()
-        {
-            CountTrain();
-        }
-
-        public void CountTrain()
-        {
-            int CountTrain = 0;
-
-            foreach (var train in flpTrain.Controls)
-            {
-                if (train is TrainView controlTrain)
-                {
-                    if (controlTrain.Train.StatusTrainId == 1)
-                    {
-                        CountTrain++;
-                    }
-                }
-            }
-            tsslCountTrain.Text = "Работающих поездов: " + CountTrain.ToString();
-        }
-        private void FilterTrain()
+        public void FilterTrain()
         {
             var status = ((StatusTrain)cmbStatusTrain.SelectedItem);
             var vetka = ((Vetka)cmbVetkaTrain.SelectedItem);
@@ -295,28 +281,26 @@ namespace AccountingMetro.UI.Forms
             {
                 return;
             }
-            foreach (var control in flpTrain.Controls)
+            flpTrain.Controls.Clear();
+            using (var db = new AccountingMetroDBContext())
             {
-                if (control is TrainView trainView)
+                var trains = db.Trains
+                    .Include(x => x.Vetka)
+                    .Include(x => x.StatusTrain)
+                    .Where(x => (x.VetkaId == vetka.Id || vetka.Id == -1)
+                        && (x.StatusTrainId == status.Id || status.Id == -1)
+                    && (x.Nomer.ToLower().Contains(txtSearchTrain.Text.ToLower())
+                        || txtSearchTrain.Text == ""))
+                        .ToList();
+                foreach (var train in trains)
                 {
-                    var visible = true;
-
-                    if (status.Id != -1 && trainView.Train.StatusTrainId != status.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (vetka.Id != -1 && trainView.Train.VetkaId != vetka.Id)
-                    {
-                        visible = false;
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(txtSearchTrain.Text) && !trainView.Train.Nomer.ToLower().Contains(txtSearchTrain.Text.ToLower()))
-                    {
-                        visible = false;
-                    }
-
-                    trainView.Visible = visible;
+                    AddTrainView(train);
+                }
+                tsslCountTrain.Text = "Кол-во работающих поездов: "
+                    + db.Trains.Where(x => x.StatusTrainId == 1).Count();
+                if (trains.Count() <= 0)
+                {
+                    MessageBox.Show("Ничего не найдено", "Поиск!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -354,20 +338,6 @@ namespace AccountingMetro.UI.Forms
         private void tsmiBack_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        public void FillStationCount()
-        {
-            using (var db = new AccountingMetroDBContext())
-            {
-                var stationCount = db.Stations.Where(x => x.StatusStationId == 1).Count();
-                tsslStatusStation.Text = "Открытых станций: " + stationCount;
-            }
-        }
-
-        private void flpStation_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            FillStationCount();
         }
     }
 }
