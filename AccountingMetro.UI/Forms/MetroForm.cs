@@ -263,7 +263,7 @@ namespace AccountingMetro.UI.Forms
                 {
                     AddTrainView(train);
                 }
-                tsslCountTrain.Text = "Кол-во открытых станций: "
+                tsslCountTrain.Text = "Кол-во работающих поездов: "
                     + db.Trains.Where(x => x.StatusTrainId == 1).Count();
             }
         }
