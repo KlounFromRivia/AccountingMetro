@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма добавления нового электропоезда
+    /// </summary>
     public partial class AddTrainForm : Form
     {
         public string TitleTrain { get; set; }

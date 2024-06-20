@@ -16,6 +16,9 @@ using System.Xml.Linq;
 
 namespace AccountingMetro.UI.UserControls
 {
+    /// <summary>
+    /// Отображение сотрудника отдела кадра в списке
+    /// </summary>
     public partial class StaffDepartView : UserControl
     {
         public StaffDepart StaffDepart { get; set; }

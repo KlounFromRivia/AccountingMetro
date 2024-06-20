@@ -17,6 +17,9 @@ using AccountingMetro.UI.Validate;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма работы со сотрудниками
+    /// </summary>
     public partial class EmployeesForm : Form
     {
         public EmployeesForm()

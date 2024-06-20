@@ -17,6 +17,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AccountingMetro.UI.UserControls
 {
+    /// <summary>
+    /// Отображение станции в списке
+    /// </summary>
     public partial class StationView : UserControl
     {
         public Station Station { get; set; }

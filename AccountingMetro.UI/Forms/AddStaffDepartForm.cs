@@ -19,6 +19,9 @@ using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма добавление сотрудника отдела кардов/Изменение пароля сотрудника отдела кардов
+    /// </summary>
     public partial class AddStaffDepartForm : Form
     {
         private bool isStaffDepartForm = true;

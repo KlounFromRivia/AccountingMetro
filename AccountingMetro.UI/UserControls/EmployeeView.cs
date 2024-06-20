@@ -18,6 +18,9 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace AccountingMetro.UI.UserControls
 {
+    /// <summary>
+    /// Отображение сотрудника в списке
+    /// </summary>
     public partial class EmployeeView : UserControl
     {
         public Employee Employee { get; set; }
@@ -37,17 +40,20 @@ namespace AccountingMetro.UI.UserControls
                     this.Visible = false;
                     return;
                 }
-                if (employee.PostId == 9 && CurrentEmployee.StaffDepart.Id != 1)
-                {
-                    this.Enabled = false;
-                }
-                lblFIO.Text = element = employee.Person.LastName +" "+ employee.Person.FirstName +" " + employee.Person.Patronymic;
-                lblPost.Text = employee.Post.Title;
-                lblStation.Text = employee.Station.Title;
 
                 tsmiDelete.Enabled = employee.StatusEmployeeId == 2
                     ? true
                     : false;
+
+                if (employee.PostId == 9 && CurrentEmployee.StaffDepart.Id != 1)
+                {
+                    tsmiDelete.Enabled = false;
+                }
+
+                lblFIO.Text = element = employee.Person.LastName +" "+ employee.Person.FirstName +" " + employee.Person.Patronymic;
+                lblPost.Text = employee.Post.Title;
+                lblStation.Text = employee.Station.Title;
+
 
                 if(employee.StatusEmployeeId == 2)
                 {

@@ -721,7 +721,7 @@
             this.dtpJob.MinDate = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
             this.dtpJob.Name = "dtpJob";
             this.dtpJob.Size = new System.Drawing.Size(111, 23);
-            this.dtpJob.TabIndex = 21;
+            this.dtpJob.TabIndex = 16;
             this.dtpJob.ValueChanged += new System.EventHandler(this.numSalary_ValueChanged);
             // 
             // label11

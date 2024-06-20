@@ -17,6 +17,9 @@ using AccountingMetro.UI.Validate;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма рабочих смен сотрудников
+    /// </summary>
     public partial class ShiftForm : Form
     {
         public bool selectedForm = true;
