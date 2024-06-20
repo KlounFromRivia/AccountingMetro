@@ -77,6 +77,7 @@ namespace AccountingMetro.UI.Forms
             tsslFIO.Text = "Отдел кадров: " + CurrentEmployee.StaffDepart.Employee.Person.LastName + " "
                 + CurrentEmployee.StaffDepart.Employee.Person.FirstName + " "
                 + CurrentEmployee.StaffDepart.Employee.Person.Patronymic;
+            pnlControl.Height = 211;
             if (CurrentEmployee.StaffDepart.Employee.Person.ImagePreview != null)
             {
                 var image = Image.FromStream(new MemoryStream(CurrentEmployee.StaffDepart.Employee.Person.ImagePreview));

@@ -67,7 +67,7 @@
             // 
             // txtNomerTrain
             // 
-            this.txtNomerTrain.Location = new System.Drawing.Point(163, 6);
+            this.txtNomerTrain.Location = new System.Drawing.Point(151, 9);
             this.txtNomerTrain.Margin = new System.Windows.Forms.Padding(5);
             this.txtNomerTrain.Name = "txtNomerTrain";
             this.txtNomerTrain.Size = new System.Drawing.Size(185, 23);
@@ -79,7 +79,7 @@
             this.cmbStatus.BackColor = System.Drawing.Color.White;
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(163, 45);
+            this.cmbStatus.Location = new System.Drawing.Point(151, 48);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(5);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(185, 24);
@@ -90,7 +90,7 @@
             this.cmbVetka.BackColor = System.Drawing.Color.White;
             this.cmbVetka.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVetka.FormattingEnabled = true;
-            this.cmbVetka.Location = new System.Drawing.Point(163, 85);
+            this.cmbVetka.Location = new System.Drawing.Point(151, 88);
             this.cmbVetka.Margin = new System.Windows.Forms.Padding(5);
             this.cmbVetka.Name = "cmbVetka";
             this.cmbVetka.Size = new System.Drawing.Size(185, 24);

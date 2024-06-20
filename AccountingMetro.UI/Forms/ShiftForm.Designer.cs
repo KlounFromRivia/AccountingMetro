@@ -42,6 +42,7 @@
             this.ColumnStatusShift = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiBack = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReset = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExport = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslCountSuccessShift = new System.Windows.Forms.ToolStripStatusLabel();
@@ -64,7 +65,6 @@
             this.cmbStatusShift = new System.Windows.Forms.ComboBox();
             this.lblPost = new System.Windows.Forms.Label();
             this.cmbStation = new System.Windows.Forms.ComboBox();
-            this.tsmiReset = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShift)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -94,12 +94,12 @@
             this.ColumnCloseShift,
             this.ColumnStatusShift});
             this.dgvShift.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvShift.Location = new System.Drawing.Point(5, 189);
+            this.dgvShift.Location = new System.Drawing.Point(0, 184);
             this.dgvShift.Margin = new System.Windows.Forms.Padding(4);
             this.dgvShift.MultiSelect = false;
             this.dgvShift.Name = "dgvShift";
             this.dgvShift.ReadOnly = true;
-            this.dgvShift.Size = new System.Drawing.Size(1274, 445);
+            this.dgvShift.Size = new System.Drawing.Size(1284, 455);
             this.dgvShift.TabIndex = 0;
             this.dgvShift.SelectionChanged += new System.EventHandler(this.dgvShift_SelectionChanged);
             // 
@@ -183,15 +183,16 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBack,
             this.tsmiReset,
             this.tsmiExport});
-            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1274, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -203,6 +204,13 @@
             this.tsmiBack.Text = "Назад";
             this.tsmiBack.Click += new System.EventHandler(this.tsmiBack_Click);
             // 
+            // tsmiReset
+            // 
+            this.tsmiReset.Name = "tsmiReset";
+            this.tsmiReset.Size = new System.Drawing.Size(145, 20);
+            this.tsmiReset.Text = "Сбросить фильтры";
+            this.tsmiReset.Click += new System.EventHandler(this.tsmiReset_Click);
+            // 
             // tsmiExport
             // 
             this.tsmiExport.Name = "tsmiExport";
@@ -212,13 +220,14 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslCountSuccessShift});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 634);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1274, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1284, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -232,10 +241,10 @@
             // 
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(5, 29);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1274, 160);
+            this.panel1.Size = new System.Drawing.Size(1284, 160);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -411,7 +420,7 @@
             this.cmbStatusShift.FormattingEnabled = true;
             this.cmbStatusShift.Location = new System.Drawing.Point(76, 98);
             this.cmbStatusShift.Name = "cmbStatusShift";
-            this.cmbStatusShift.Size = new System.Drawing.Size(113, 24);
+            this.cmbStatusShift.Size = new System.Drawing.Size(122, 24);
             this.cmbStatusShift.TabIndex = 1;
             this.cmbStatusShift.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
             // 
@@ -434,13 +443,6 @@
             this.cmbStation.TabIndex = 15;
             this.cmbStation.SelectedIndexChanged += new System.EventHandler(this.cmbPost_SelectedIndexChanged);
             // 
-            // tsmiReset
-            // 
-            this.tsmiReset.Name = "tsmiReset";
-            this.tsmiReset.Size = new System.Drawing.Size(145, 20);
-            this.tsmiReset.Text = "Сбросить фильтры";
-            this.tsmiReset.Click += new System.EventHandler(this.tsmiReset_Click);
-            // 
             // ShiftForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -457,7 +459,6 @@
             this.MaximumSize = new System.Drawing.Size(1500, 1000);
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "ShiftForm";
-            this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Смены сотрудников";
             this.Load += new System.EventHandler(this.ShiftForm_Load);
