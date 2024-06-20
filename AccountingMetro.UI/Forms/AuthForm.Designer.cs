@@ -103,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 9);
+            this.label3.Location = new System.Drawing.Point(95, 19);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 16);

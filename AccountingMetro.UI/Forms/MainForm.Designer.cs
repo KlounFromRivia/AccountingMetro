@@ -35,7 +35,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslFIO = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlControl = new System.Windows.Forms.Panel();
             this.btnStaffDepart = new System.Windows.Forms.Button();
             this.btnBDOther = new System.Windows.Forms.Button();
             this.btnShift = new System.Windows.Forms.Button();
@@ -48,15 +48,15 @@
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlControl.SuspendLayout();
             this.pnlStaff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiExit,
             this.tsmiEditPassword});
@@ -84,7 +84,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslFIO});
@@ -107,7 +107,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel.Controls.Add(this.panel1, 1, 0);
+            this.tableLayoutPanel.Controls.Add(this.pnlControl, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.pnlStaff, 0, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
@@ -119,20 +119,20 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(767, 444);
             this.tableLayoutPanel.TabIndex = 3;
             // 
-            // panel1
+            // pnlControl
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnStaffDepart);
-            this.panel1.Controls.Add(this.btnBDOther);
-            this.panel1.Controls.Add(this.btnShift);
-            this.panel1.Controls.Add(this.btnEmployee);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(240, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10, 20, 10, 0);
-            this.panel1.Size = new System.Drawing.Size(286, 265);
-            this.panel1.TabIndex = 0;
+            this.pnlControl.BackColor = System.Drawing.Color.White;
+            this.pnlControl.Controls.Add(this.btnStaffDepart);
+            this.pnlControl.Controls.Add(this.btnBDOther);
+            this.pnlControl.Controls.Add(this.btnShift);
+            this.pnlControl.Controls.Add(this.btnEmployee);
+            this.pnlControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlControl.Location = new System.Drawing.Point(240, 20);
+            this.pnlControl.Margin = new System.Windows.Forms.Padding(10, 0, 10, 4);
+            this.pnlControl.Name = "pnlControl";
+            this.pnlControl.Padding = new System.Windows.Forms.Padding(10, 20, 10, 0);
+            this.pnlControl.Size = new System.Drawing.Size(286, 261);
+            this.pnlControl.TabIndex = 0;
             // 
             // btnStaffDepart
             // 
@@ -262,7 +262,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.pnlControl.ResumeLayout(false);
             this.pnlStaff.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picEmployee)).EndInit();
             this.ResumeLayout(false);
@@ -277,7 +277,7 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslFIO;
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlControl;
         private System.Windows.Forms.Button btnStaffDepart;
         private System.Windows.Forms.Button btnBDOther;
         private System.Windows.Forms.Button btnShift;

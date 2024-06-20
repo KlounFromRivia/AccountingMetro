@@ -33,6 +33,7 @@ namespace AccountingMetro.UI.Forms
             InitList();
         }
 
+        
         public void InitControls()
         {
             using (var db = new AccountingMetroDBContext())

@@ -221,6 +221,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslCountEmployee,
@@ -265,6 +266,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssmBack});

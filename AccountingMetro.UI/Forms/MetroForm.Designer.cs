@@ -313,6 +313,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslStatusStation});
@@ -338,7 +339,7 @@
             this.tabTrain.Margin = new System.Windows.Forms.Padding(4);
             this.tabTrain.Name = "tabTrain";
             this.tabTrain.Padding = new System.Windows.Forms.Padding(4);
-            this.tabTrain.Size = new System.Drawing.Size(1069, 588);
+            this.tabTrain.Size = new System.Drawing.Size(1066, 588);
             this.tabTrain.TabIndex = 1;
             this.tabTrain.Text = "Электропоезда";
             this.tabTrain.UseVisualStyleBackColor = true;
@@ -350,7 +351,7 @@
             this.flpTrain.Location = new System.Drawing.Point(264, 4);
             this.flpTrain.Margin = new System.Windows.Forms.Padding(4);
             this.flpTrain.Name = "flpTrain";
-            this.flpTrain.Size = new System.Drawing.Size(801, 558);
+            this.flpTrain.Size = new System.Drawing.Size(798, 558);
             this.flpTrain.TabIndex = 1;
             // 
             // panel2
@@ -457,12 +458,13 @@
             // 
             // statusStrip2
             // 
+            this.statusStrip2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.statusStrip2.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslCountTrain});
             this.statusStrip2.Location = new System.Drawing.Point(4, 562);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1061, 22);
+            this.statusStrip2.Size = new System.Drawing.Size(1058, 22);
             this.statusStrip2.TabIndex = 3;
             this.statusStrip2.Text = "statusStrip2";
             // 
@@ -474,6 +476,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBack});

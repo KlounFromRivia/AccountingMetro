@@ -125,7 +125,7 @@ namespace AccountingMetro.UI.Forms
         {
             using (var db = new AccountingMetroDBContext())
             {
-                grpPoisk.Width = 300;
+                grpPoisk.Width = 320;
                 lblFio.Visible = txtSearchFIO.Visible =
                         lblPost.Visible = cmbPost.Visible =
                         lblStation.Visible = cmbStation.Visible = false;
