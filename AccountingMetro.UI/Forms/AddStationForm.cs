@@ -13,6 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма добавления новой станции
+    /// </summary>
     public partial class AddStationForm : Form
     {
         public string TitleStation { get; set; }

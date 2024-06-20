@@ -16,6 +16,9 @@ using AccountingMetro.UI.Forms;
 
 namespace AccountingMetro.UI.UserControls
 {
+    /// <summary>
+    /// Отображение электропоезда в списке
+    /// </summary>
     public partial class TrainView : UserControl
     {
         public Train Train { get; set; }

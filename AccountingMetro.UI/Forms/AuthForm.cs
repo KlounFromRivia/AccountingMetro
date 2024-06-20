@@ -16,6 +16,9 @@ using System.Windows.Forms;
 
 namespace AccountingMetro.UI
 {
+    /// <summary>
+    /// Форма авторизации
+    /// </summary>
     public partial class AuthForm : Form
     {
         private bool isAuthForm = true;

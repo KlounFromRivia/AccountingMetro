@@ -300,7 +300,7 @@
             this.MinimumSize = new System.Drawing.Size(522, 619);
             this.Name = "EmployeesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Просмотр (редактирование) данных сотрудника";
+            this.Text = "Сотрудники метрополитена";
             this.panel1.ResumeLayout(false);
             this.grpList.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

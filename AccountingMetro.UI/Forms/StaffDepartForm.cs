@@ -15,6 +15,9 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма сотрудников отдела кадров
+    /// </summary>
     public partial class StaffDepartForm : Form
     {
         public StaffDepartForm()

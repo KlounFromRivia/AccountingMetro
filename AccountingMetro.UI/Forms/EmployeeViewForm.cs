@@ -19,6 +19,9 @@ using Image = System.Drawing.Image;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма добавление/редактирования сотрудника
+    /// </summary>
     public partial class EmployeeViewForm : Form
     {
         public Employee Employee { get; set; }
@@ -222,8 +225,8 @@ namespace AccountingMetro.UI.Forms
         {
             FillComboBoxStation();
             FillComboBoxTrain();
-            ValidateInput();
             cmbTrain.Visible = lblTrain.Visible = cmbPost.SelectedItem != null && ((Post)cmbPost.SelectedItem).Id == 1;
+            ValidateInput();
         }
 
         private void cmbVetka_SelectedIndexChanged(object sender, EventArgs e)
@@ -456,6 +459,10 @@ namespace AccountingMetro.UI.Forms
 
         private void ChangeStatusEmployee()
         {
+            if(CurrentEmployee.StaffDepart.Id != 1 && Employee.PostId == 9)
+            {
+                tsmiStatus.Enabled = cmbPost.Enabled = false;
+            }
             tsmiWork.Enabled = status != 1
                 ? true
                 : false;

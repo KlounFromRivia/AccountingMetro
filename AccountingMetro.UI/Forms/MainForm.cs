@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace AccountingMetro.UI.Forms
 {
+    /// <summary>
+    /// Форма главной страницы программы
+    /// </summary>
     public partial class MainForm : Form
     {
         public StaffDepart StaffDepart { get; set; }

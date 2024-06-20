@@ -102,13 +102,16 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 19);
+            this.label3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 16);
+            this.label3.Size = new System.Drawing.Size(296, 32);
             this.label3.TabIndex = 6;
             this.label3.Text = "Отдел кадров";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AuthForm
             // 
