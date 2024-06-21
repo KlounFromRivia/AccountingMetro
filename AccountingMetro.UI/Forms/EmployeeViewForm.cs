@@ -239,10 +239,9 @@ namespace AccountingMetro.UI.Forms
         #region Проверка данных
         public void ValidateInput()
         {
+            var tooltip = new ToolTip();
             if (DateTime.Now.Year - dtpBithDay.Value.Year < 16)
             {
-                var tooltip = new ToolTip();
-
                 tooltip.SetToolTip(dtpBithDay, "");
                 tooltip.Show("Возраст должен быть больше 16!", dtpBithDay, 2000);
             }
@@ -305,6 +304,31 @@ namespace AccountingMetro.UI.Forms
         private void txtFam_TextChanged(object sender, EventArgs e)
         {
             ValidateInput();
+            var tooltip = new ToolTip();
+
+            if (txtSeriePassport.Text.Length != 4 && sender.Equals(txtSeriePassport))
+            {
+                tooltip.SetToolTip(txtSeriePassport, "");
+                tooltip.Show("У серии паспорта должно быть 4 цифры!", txtSeriePassport, 2000);
+            }
+
+            if (txtNomerPassport.Text.Length != 6 && sender.Equals(txtNomerPassport))
+            {
+                tooltip.SetToolTip(txtNomerPassport, "");
+                tooltip.Show("У номера паспорта должно быть 6 цифр!", txtNomerPassport, 2000);
+            }
+
+            if (txtINN.Text.Length != 12 && sender.Equals(txtINN))
+            {
+                tooltip.SetToolTip(txtINN, "");
+                tooltip.Show("У ИНН должно быть 12 цифр!", txtINN, 2000);
+            }
+
+            if (txtInsCertific.Text.Length != 16 && sender.Equals(txtInsCertific))
+            {
+                tooltip.SetToolTip(txtInsCertific, "");
+                tooltip.Show("У страхового полиса должно быть 16 цифр!", txtInsCertific, 2000);
+            }
         }
 
         private void txtSeriePassport_KeyPress(object sender, KeyPressEventArgs e)

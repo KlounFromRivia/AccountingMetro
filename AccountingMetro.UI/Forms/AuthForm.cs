@@ -49,7 +49,7 @@ namespace AccountingMetro.UI
 
                 if (staffDepart == null)
                 {
-                    MessageBox.Show("Ничего не найдено!", "Поиск!",
+                    MessageBox.Show("Введите логин и пароль!", "Введите данные!",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtLogin.Text = txtPassword.Text = "";
                     return;
